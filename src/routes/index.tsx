@@ -219,42 +219,9 @@ function Hero() {
         <img
           src={heroAsset.url}
           alt="Black Diamond Robotics combat arena"
-          className="h-full w-full object-cover animate-hero-zoom"
+          className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
-      </div>
-      <Sparks />
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
-        <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <Logo size={90} />
-        </div>
-        <p
-          className="mt-6 max-w-2xl text-base font-light tracking-widest text-[#f5f5f5]/80 sm:text-lg animate-fade-up"
-          style={{ animationDelay: "0.6s" }}
-        >
-          Forging Machines That Refuse To Lose.
-        </p>
-        <div
-          className="mt-10 flex flex-col gap-4 sm:flex-row animate-fade-up"
-          style={{ animationDelay: "0.9s" }}
-        >
-          <a
-            href="#bots"
-            className="group inline-flex items-center justify-center gap-2 rounded-sm border border-[#d4af37] bg-[#d4af37] px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-black transition hover:bg-transparent hover:text-[#d4af37]"
-          >
-            Explore Our Bots
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-          </a>
-          <a
-            href="#enroll"
-            className="inline-flex items-center justify-center gap-2 rounded-sm border border-[#d4af37]/60 px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
-          >
-            Join The Team
-          </a>
-        </div>
-      </div>
-      <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[#d4af37]/70 text-[10px] uppercase tracking-[0.4em]">
-        Scroll
       </div>
     </section>
   );
