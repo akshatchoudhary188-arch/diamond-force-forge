@@ -1,24 +1,717 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import heroAsset from "@/assets/hero.jpeg.asset.json";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
+import {
+  Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
+  Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
+  ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
+} from "lucide-react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: BlackDiamondSite,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+/* ---------- Data (easily editable) ---------- */
+
+const NAV = [
+  { label: "Home", href: "#home" },
+  { label: "Our Bots", href: "#bots" },
+  { label: "Our Team", href: "#team" },
+  { label: "Achievements", href: "#achievements" },
+  { label: "Sponsors", href: "#sponsors" },
+  { label: "Enroll", href: "#enroll" },
+  { label: "Contact", href: "#contact" },
+];
+
+const STATS = [
+  { label: "Robots Built", value: 12 },
+  { label: "Competitions", value: 18 },
+  { label: "Team Members", value: 24 },
+  { label: "Years Active", value: 5 },
+];
+
+const BOTS = [
+  { name: "Diamond Strike", weight: "15 kg", weapon: "Vertical Spinner", desc: "Our flagship destroyer — a titanium-armored beast built to overwhelm.", icon: Zap },
+  { name: "Carbon Fury", weight: "8 kg", weapon: "Horizontal Bar", desc: "Fast, agile, and unforgiving. Precision-machined chassis, brutal impact.", icon: Cog },
+  { name: "Obsidian", weight: "30 kg", weapon: "Drum Spinner", desc: "Heavyweight artillery — kinetic energy that reshapes arenas.", icon: Shield },
+  { name: "Black Phantom", weight: "3 kg", weapon: "Lifter / Flipper", desc: "Silent, strategic, surgical. The control-bot that pins opponents.", icon: Cpu },
+];
+
+const ACHIEVEMENTS = [
+  { icon: "🏆", title: "Winner — Competition Name", year: "2025" },
+  { icon: "🥈", title: "Runner-Up — Competition Name", year: "2024" },
+  { icon: "🏅", title: "Best Design Award", year: "2024" },
+  { icon: "⚙", title: "Innovation Award", year: "2023" },
+  { icon: "🏆", title: "Winner — Regional Championship", year: "2023" },
+  { icon: "🥈", title: "Runner-Up — National Robowars", year: "2022" },
+];
+
+const SPONSORS = [
+  { name: "Sponsor One" }, { name: "Sponsor Two" }, { name: "Sponsor Three" },
+  { name: "Sponsor Four" }, { name: "Sponsor Five" }, { name: "Sponsor Six" },
+];
+
+const TEAM = [
+  { name: "Team Member", role: "Captain" },
+  { name: "Team Member", role: "Mechanical Lead" },
+  { name: "Team Member", role: "Electronics Lead" },
+  { name: "Team Member", role: "CAD Designer" },
+  { name: "Team Member", role: "Programming Lead" },
+  { name: "Team Member", role: "Manufacturing Lead" },
+  { name: "Team Member", role: "Media Lead" },
+];
+
+const STEPS = [
+  { icon: ClipboardList, title: "Fill Registration Form", desc: "Submit your details and areas of interest." },
+  { icon: MessageSquare, title: "Attend Interview", desc: "Meet the team, share your passion." },
+  { icon: FlaskConical, title: "Technical Test", desc: "Prove your engineering fundamentals." },
+  { icon: CheckCircle2, title: "Become a Team Member", desc: "Join the forge. Start building." },
+];
+
+/* ---------- Hooks ---------- */
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
+      { threshold: 0.12 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function useCounter(target: number, start: boolean, duration = 1600) {
+  const [v, setV] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration);
+      setV(Math.floor(p * target));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, start, duration]);
+  return v;
+}
+
+/* ---------- Components ---------- */
+
+function Logo({ size = 48 }: { size?: number }) {
+  return (
+    <img
+      src={logoAsset.url}
+      alt="Black Diamond Robotics logo"
+      width={size}
+      height={size}
+      style={{ width: size, height: size }}
+      className="rounded-md object-cover gold-border"
+    />
+  );
+}
+
+function Sparks() {
+  const sparks = Array.from({ length: 24 });
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {sparks.map((_, i) => {
+        const left = Math.random() * 100;
+        const delay = Math.random() * 6;
+        const dur = 4 + Math.random() * 5;
+        const size = 2 + Math.random() * 3;
+        return (
+          <span
+            key={i}
+            style={{
+              left: `${left}%`,
+              bottom: `-10px`,
+              width: size,
+              height: size,
+              animation: `bd-spark ${dur}s linear ${delay}s infinite`,
+              background: "radial-gradient(circle, #f0cf5a, #d4af37 40%, transparent 70%)",
+              boxShadow: "0 0 8px #d4af37",
+            }}
+            className="absolute rounded-full"
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-[#0b0b0b]/95 backdrop-blur-md border-b border-[#d4af37]/20" : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        <a href="#home" aria-label="Home" className="flex items-center gap-3 shrink-0">
+          <Logo size={50} />
+          <span className="hidden sm:block font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+            BLACK <span className="text-[#d4af37]">DIAMOND</span>
+          </span>
+        </a>
+        <ul className="hidden lg:flex items-center gap-8">
+          {NAV.map((n) => (
+            <li key={n.href}>
+              <a
+                href={n.href}
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5f5f5]/80 transition hover:text-[#d4af37]"
+              >
+                {n.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="#enroll"
+          className="hidden lg:inline-flex items-center gap-2 rounded-sm border border-[#d4af37]/60 px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
+        >
+          Join <ArrowRight className="h-3 w-3" />
+        </a>
+        <button
+          onClick={() => setOpen(!open)}
+          className="lg:hidden text-[#d4af37]"
+          aria-label="Toggle menu"
+        >
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div className="lg:hidden bg-[#0b0b0b] border-t border-[#d4af37]/20">
+          <ul className="flex flex-col px-6 py-4">
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <a
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-sm font-semibold uppercase tracking-widest text-[#f5f5f5] hover:text-[#d4af37]"
+                >
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="home" className="relative min-h-screen w-full overflow-hidden">
+      <div className="absolute inset-0">
+        <img
+          src={heroAsset.url}
+          alt="Black Diamond Robotics combat arena"
+          className="h-full w-full object-cover animate-hero-zoom"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+      </div>
+      <Sparks />
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
+        <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <Logo size={90} />
+        </div>
+        <h1
+          className="mt-8 font-[Orbitron] text-4xl font-black leading-tight tracking-[0.15em] text-[#f5f5f5] sm:text-6xl md:text-7xl animate-fade-up"
+          style={{ animationDelay: "0.3s" }}
+        >
+          BLACK <span className="gold-gradient">DIAMOND</span>
+          <br />
+          ROBOTICS
+        </h1>
+        <p
+          className="mt-6 max-w-2xl text-base font-light tracking-widest text-[#f5f5f5]/80 sm:text-lg animate-fade-up"
+          style={{ animationDelay: "0.6s" }}
+        >
+          Forging Machines That Refuse To Lose.
+        </p>
+        <div
+          className="mt-10 flex flex-col gap-4 sm:flex-row animate-fade-up"
+          style={{ animationDelay: "0.9s" }}
+        >
+          <a
+            href="#bots"
+            className="group inline-flex items-center justify-center gap-2 rounded-sm border border-[#d4af37] bg-[#d4af37] px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-black transition hover:bg-transparent hover:text-[#d4af37]"
+          >
+            Explore Our Bots
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+          </a>
+          <a
+            href="#enroll"
+            className="inline-flex items-center justify-center gap-2 rounded-sm border border-[#d4af37]/60 px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
+          >
+            Join The Team
+          </a>
+        </div>
+      </div>
+      <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[#d4af37]/70 text-[10px] uppercase tracking-[0.4em]">
+        Scroll
+      </div>
+    </section>
+  );
+}
+
+function SectionHeader({ eyebrow, title }: { eyebrow: string; title: React.ReactNode }) {
+  return (
+    <div className="reveal mb-14 text-center">
+      <div className="text-[10px] uppercase tracking-[0.5em] text-[#d4af37]">{eyebrow}</div>
+      <h2 className="mt-3 font-[Orbitron] text-3xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-5xl">
+        {title}
+      </h2>
+      <div className="mx-auto mt-4 h-[2px] w-20 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+    </div>
+  );
+}
+
+function StatItem({ label, value }: { label: string; value: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [start, setStart] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const io = new IntersectionObserver(
+      ([e]) => e.isIntersecting && setStart(true),
+      { threshold: 0.5 },
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+  const v = useCounter(value, start);
+  return (
+    <div ref={ref} className="text-center">
+      <div className="font-[Orbitron] text-4xl font-black gold-gradient sm:text-6xl">{v}+</div>
+      <div className="mt-2 text-[10px] uppercase tracking-[0.35em] text-[#f5f5f5]/70">{label}</div>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="relative bg-[#0b0b0b] py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Who We Are" title={<>The <span className="gold-gradient">Forge</span></>} />
+        <div className="reveal mx-auto max-w-3xl text-center text-base leading-relaxed text-[#f5f5f5]/75 sm:text-lg">
+          Black Diamond Robotics is a student-led robotics team passionate about designing and building
+          world-class combat robots. Our mission is to innovate, compete, and inspire the next generation
+          of engineers through robotics competitions, research, and teamwork.
+        </div>
+        <div className="reveal mt-20 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {STATS.map((s) => (
+            <StatItem key={s.label} {...s} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Bots() {
+  return (
+    <section id="bots" className="relative bg-[#0b0b0b] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Our Arsenal" title={<>Our <span className="gold-gradient">Bots</span></>} />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {BOTS.map((b) => {
+            const Icon = b.icon;
+            return (
+              <div
+                key={b.name}
+                className="reveal group metallic-border rounded-md p-6 transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(212,175,55,0.4)]"
+              >
+                <div className="mb-6 flex aspect-square items-center justify-center rounded-sm bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
+                  <Icon className="h-16 w-16 text-[#d4af37]/70 transition group-hover:text-[#d4af37] group-hover:scale-110" strokeWidth={1} />
+                </div>
+                <h3 className="font-[Orbitron] text-lg font-bold uppercase tracking-wider text-[#f5f5f5]">
+                  {b.name}
+                </h3>
+                <div className="mt-3 space-y-1 text-xs uppercase tracking-widest">
+                  <div><span className="text-[#f5f5f5]/50">Weight</span> <span className="text-[#d4af37]">{b.weight}</span></div>
+                  <div><span className="text-[#f5f5f5]/50">Weapon</span> <span className="text-[#d4af37]">{b.weapon}</span></div>
+                </div>
+                <p className="mt-4 text-sm text-[#f5f5f5]/70">{b.desc}</p>
+                <button className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#d4af37] transition hover:gap-3">
+                  Specifications <ArrowRight className="h-3 w-3" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Achievements() {
+  return (
+    <section id="achievements" className="relative bg-[#0f0f0f] py-24 sm:py-32">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Legacy" title={<><span className="gold-gradient">Achievements</span></>} />
+        <div className="relative">
+          <div className="absolute left-4 top-0 h-full w-[2px] bg-gradient-to-b from-[#d4af37] via-[#d4af37]/50 to-transparent sm:left-1/2 sm:-translate-x-1/2" />
+          {ACHIEVEMENTS.map((a, i) => (
+            <div
+              key={i}
+              className={`reveal relative mb-10 flex items-start gap-6 sm:mb-14 sm:w-1/2 ${
+                i % 2 === 0 ? "sm:pr-12" : "sm:ml-auto sm:pl-12"
+              }`}
+            >
+              <div className="absolute left-4 top-2 h-4 w-4 -translate-x-1/2 rounded-full bg-[#d4af37] shadow-[0_0_20px_#d4af37] sm:left-auto sm:right-0 sm:top-4 sm:translate-x-1/2"
+                style={i % 2 === 1 ? { left: 0, right: "auto", transform: "translateX(-50%)" } : {}}
+              />
+              <div className="ml-10 flex-1 metallic-border rounded-md p-5 sm:ml-0">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{a.icon}</span>
+                  <span className="text-xs uppercase tracking-widest text-[#d4af37]">{a.year}</span>
+                </div>
+                <h3 className="mt-2 font-[Orbitron] text-base font-bold uppercase text-[#f5f5f5]">{a.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Sponsors() {
+  return (
+    <section id="sponsors" className="relative bg-[#0b0b0b] py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Backed By" title={<><span className="gold-gradient">Sponsors</span></>} />
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {SPONSORS.map((s) => (
+            <div
+              key={s.name}
+              className="reveal group flex aspect-square flex-col items-center justify-center metallic-border rounded-md p-4 transition hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+            >
+              <Award className="h-10 w-10 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
+              <div className="mt-3 text-[10px] uppercase tracking-widest text-[#f5f5f5]/60">{s.name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="reveal mt-16 text-center">
+          <p className="text-sm uppercase tracking-widest text-[#f5f5f5]/70">
+            Interested in sponsoring Team Black Diamond Robotics?
+          </p>
+          <a
+            href="#contact"
+            className="mt-6 inline-flex items-center gap-2 rounded-sm bg-[#d4af37] px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-black transition hover:bg-[#f0cf5a]"
+          >
+            Become a Sponsor <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Team() {
+  return (
+    <section id="team" className="relative bg-[#0f0f0f] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionHeader eyebrow="The Crew" title={<>Our <span className="gold-gradient">Team</span></>} />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {TEAM.map((m, i) => (
+            <div
+              key={i}
+              className="reveal group glass-card rounded-md p-6 text-center transition duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.35)]"
+            >
+              <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
+                <Users className="h-10 w-10 text-[#d4af37]/70" strokeWidth={1} />
+              </div>
+              <h3 className="mt-5 font-[Orbitron] text-base font-bold uppercase tracking-widest text-[#f5f5f5]">
+                {m.name}
+              </h3>
+              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#d4af37]">{m.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Enroll() {
+  return (
+    <section id="enroll" className="relative bg-[#0b0b0b] py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Recruitment" title={<>How To <span className="gold-gradient">Enroll</span></>} />
+        <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div key={i} className="reveal metallic-border rounded-md p-6 text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#d4af37]/10 gold-border">
+                  <Icon className="h-7 w-7 text-[#d4af37]" strokeWidth={1.5} />
+                </div>
+                <div className="mt-4 font-[Orbitron] text-xs uppercase tracking-widest text-[#d4af37]">Step {i + 1}</div>
+                <h3 className="mt-2 font-[Orbitron] text-sm font-bold uppercase tracking-wider text-[#f5f5f5]">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-xs text-[#f5f5f5]/60">{s.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="reveal mt-12 text-center">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-sm bg-[#d4af37] px-10 py-4 text-sm font-bold uppercase tracking-[0.25em] text-black transition hover:bg-[#f0cf5a] hover:shadow-[0_0_40px_rgba(212,175,55,0.6)]"
+          >
+            Apply Now <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Gallery() {
+  const items = [
+    { label: "Competition", h: 260 },
+    { label: "Robots", h: 340 },
+    { label: "Manufacturing", h: 220 },
+    { label: "CAD Design", h: 300 },
+    { label: "Testing", h: 260 },
+    { label: "Workshop", h: 320 },
+    { label: "Team Photo", h: 240 },
+    { label: "Arena", h: 280 },
+  ];
+  return (
+    <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Behind The Machines" title={<><span className="gold-gradient">Gallery</span></>} />
+        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [column-fill:_balance]">
+          {items.map((it, i) => (
+            <div
+              key={i}
+              style={{ height: it.h }}
+              className="reveal group mb-4 flex items-center justify-center break-inside-avoid metallic-border rounded-md bg-gradient-to-br from-[#1a1a1a] to-black transition hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+            >
+              <div className="text-center">
+                <Wrench className="mx-auto h-8 w-8 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
+                <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50">{it.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  const [sent, setSent] = useState(false);
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => setSent(false), 4000);
+  };
+  return (
+    <section id="contact" className="relative bg-[#0b0b0b] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionHeader eyebrow="Get In Touch" title={<><span className="gold-gradient">Contact</span></>} />
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="reveal metallic-border rounded-md overflow-hidden">
+            <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-[#1a1a1a] to-black flex items-center justify-center">
+              <div className="text-center">
+                <MapPin className="mx-auto h-12 w-12 text-[#d4af37]" strokeWidth={1} />
+                <div className="mt-3 font-[Orbitron] text-sm uppercase tracking-widest text-[#f5f5f5]">Find Us</div>
+                <div className="mt-1 text-xs text-[#f5f5f5]/60">Map placeholder</div>
+              </div>
+            </div>
+            <div className="border-t border-[#d4af37]/20 p-6 space-y-3 text-sm">
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Mail className="h-4 w-4 text-[#d4af37]" /> contact@blackdiamondrobotics.in</div>
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Phone className="h-4 w-4 text-[#d4af37]" /> +91 00000 00000</div>
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><MapPin className="h-4 w-4 text-[#d4af37]" /> India</div>
+              <div className="flex items-center gap-4 pt-3">
+                <a href="#" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
+                <a href="#" aria-label="LinkedIn" className="text-[#d4af37] hover:scale-110 transition"><Linkedin className="h-5 w-5" /></a>
+                <a href="#" aria-label="GitHub" className="text-[#d4af37] hover:scale-110 transition"><Github className="h-5 w-5" /></a>
+              </div>
+            </div>
+          </div>
+          <form onSubmit={submit} className="reveal metallic-border rounded-md p-8 space-y-4">
+            {["Name", "Email", "Phone"].map((f) => (
+              <div key={f}>
+                <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">{f}</label>
+                <input
+                  required
+                  type={f === "Email" ? "email" : "text"}
+                  className="mt-2 w-full rounded-sm border border-[#d4af37]/20 bg-black/60 px-4 py-3 text-sm text-[#f5f5f5] outline-none focus:border-[#d4af37]"
+                />
+              </div>
+            ))}
+            <div>
+              <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">Message</label>
+              <textarea
+                required rows={5}
+                className="mt-2 w-full rounded-sm border border-[#d4af37]/20 bg-black/60 px-4 py-3 text-sm text-[#f5f5f5] outline-none focus:border-[#d4af37]"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full inline-flex items-center justify-center gap-2 rounded-sm bg-[#d4af37] px-6 py-4 text-xs font-bold uppercase tracking-[0.25em] text-black transition hover:bg-[#f0cf5a]"
+            >
+              {sent ? "Message Sent" : "Send Message"} <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="relative bg-black pt-16 pb-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
+        <div className="grid gap-10 md:grid-cols-4">
+          <div>
+            <div className="flex items-center gap-3">
+              <Logo size={44} />
+              <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+                BLACK <span className="text-[#d4af37]">DIAMOND</span>
+              </span>
+            </div>
+            <p className="mt-4 text-xs text-[#f5f5f5]/60">Forging machines that refuse to lose.</p>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Quick Links</div>
+            <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
+              {NAV.slice(0, 5).map((n) => (
+                <li key={n.href}><a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Sponsors</div>
+            <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
+              <li><a href="#sponsors" className="hover:text-[#d4af37] transition">Our Partners</a></li>
+              <li><a href="#contact" className="hover:text-[#d4af37] transition">Become a Sponsor</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Social</div>
+            <div className="flex items-center gap-4">
+              <a href="#" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
+              <a href="#" aria-label="LinkedIn" className="text-[#d4af37] hover:scale-110 transition"><Linkedin className="h-5 w-5" /></a>
+              <a href="#" aria-label="GitHub" className="text-[#d4af37] hover:scale-110 transition"><Github className="h-5 w-5" /></a>
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 border-t border-[#d4af37]/15 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#f5f5f5]/50">
+          <div>© {new Date().getFullYear()} Black Diamond Robotics. All rights reserved.</div>
+          <div>Made with <span className="text-[#d4af37]">♦</span> by Team Black Diamond Robotics</div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const total = h.scrollHeight - h.clientHeight;
+      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="fixed top-0 left-0 z-[60] h-[2px] bg-gradient-to-r from-[#d4af37] via-[#f0cf5a] to-[#d4af37] transition-[width]"
+      style={{ width: `${p}%` }}
+    />
+  );
+}
+
+function ScrollTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!show) return null;
+  return (
+    <button
+      aria-label="Scroll to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4af37] text-black shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:bg-[#f0cf5a] transition"
+    >
+      <ChevronUp className="h-5 w-5" />
+    </button>
+  );
+}
+
+function Loader({ done }: { done: boolean }) {
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-700 ${
+        done ? "pointer-events-none opacity-0" : "opacity-100"
+      }`}
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <div className="text-center">
+        <div className="animate-fade-up">
+          <Logo size={110} />
+        </div>
+        <div className="mt-6 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
+          Igniting Arena
+        </div>
+        <div className="mx-auto mt-4 h-[2px] w-40 overflow-hidden bg-[#d4af37]/20">
+          <div className="h-full w-1/3 bg-[#d4af37] animate-[bd-shimmer_1.2s_ease-in-out_infinite]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BlackDiamondSite() {
+  const [loaded, setLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  useReveal();
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+  return (
+    <div className="min-h-screen bg-[#0b0b0b] text-[#f5f5f5]">
+      <Loader done={loaded} />
+      <ScrollProgress />
+      <Nav open={menuOpen} setOpen={setMenuOpen} />
+      <main>
+        <Hero />
+        <About />
+        <Bots />
+        <Achievements />
+        <Sponsors />
+        <Team />
+        <Enroll />
+        <Gallery />
+        <Contact />
+      </main>
+      <Footer />
+      <ScrollTop />
     </div>
   );
 }
