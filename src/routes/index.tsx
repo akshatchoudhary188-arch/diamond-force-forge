@@ -228,14 +228,6 @@ function Hero() {
         <div className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <Logo size={90} />
         </div>
-        <h1
-          className="mt-8 font-[Orbitron] text-4xl font-black leading-tight tracking-[0.15em] text-[#f5f5f5] sm:text-6xl md:text-7xl animate-fade-up"
-          style={{ animationDelay: "0.3s" }}
-        >
-          BLACK <span className="gold-gradient">DIAMOND</span>
-          <br />
-          ROBOTICS
-        </h1>
         <p
           className="mt-6 max-w-2xl text-base font-light tracking-widest text-[#f5f5f5]/80 sm:text-lg animate-fade-up"
           style={{ animationDelay: "0.6s" }}
