@@ -195,6 +195,17 @@ function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
       </div>
+      <div
+        aria-hidden
+        className="hero-glow pointer-events-none absolute inset-0"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          boxShadow: "inset 0 0 140px rgba(212, 175, 55, 0.12), inset 0 0 50px rgba(212, 175, 55, 0.18)",
+        }}
+      />
     </section>
   );
 }

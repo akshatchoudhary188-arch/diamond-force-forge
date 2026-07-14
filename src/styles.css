@@ -195,7 +195,15 @@
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
+@keyframes bd-glow-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.04); }
+}
 .animate-fade-up { animation: bd-fade-up 0.9s ease-out both; }
+.hero-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.35) 0%, rgba(212, 175, 55, 0.06) 42%, transparent 72%);
+  animation: bd-glow-pulse 5s ease-in-out infinite;
+}
 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.in { opacity: 1; transform: translateY(0); }
