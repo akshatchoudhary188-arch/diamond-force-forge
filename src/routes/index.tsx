@@ -115,34 +115,6 @@ function Logo({ size = 48 }: { size?: number }) {
   );
 }
 
-function Sparks() {
-  const sparks = Array.from({ length: 24 });
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      {sparks.map((_, i) => {
-        const left = Math.random() * 100;
-        const delay = Math.random() * 6;
-        const dur = 4 + Math.random() * 5;
-        const size = 2 + Math.random() * 3;
-        return (
-          <span
-            key={i}
-            style={{
-              left: `${left}%`,
-              bottom: `-10px`,
-              width: size,
-              height: size,
-              animation: `bd-spark ${dur}s linear ${delay}s infinite`,
-              background: "radial-gradient(circle, #f0cf5a, #d4af37 40%, transparent 70%)",
-              boxShadow: "0 0 8px #d4af37",
-            }}
-            className="absolute rounded-full"
-          />
-        );
-      })}
-    </div>
-  );
-}
 
 function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false);
