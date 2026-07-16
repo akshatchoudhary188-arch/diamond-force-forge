@@ -67,9 +67,14 @@ const BOTS = [
   {
     name: "POLARIS",
     weight: "8 kg",
-    weapon: "Drum Spinner",
-    desc: "Heavyweight artillery — kinetic energy that reshapes arenas.",
-    specs: [],
+    weapon: "Vertical Spinner",
+    desc: "A powerful 8 kg combat robot engineered for RoboWar competitions.",
+    specs: [
+      "Reinforced metal chassis designed to absorb heavy impacts while maintaining structural strength during intense battles.",
+      "High-speed vertical spinner weapon capable of delivering devastating upward strikes to flip, damage, and destabilize opponent robots.",
+      "Compact, low-profile design with high-traction wheels for rapid acceleration, agile maneuverability, and precise arena control.",
+      "Built for aggressive performance, exceptional durability, and consistent high-impact combat power in the arena.",
+    ],
     icon: Shield,
     image: polarisAsset.url,
   },
