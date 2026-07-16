@@ -29,9 +29,9 @@ const NAV = [
 ];
 
 const STATS = [
-  { label: "Robots Built", value: 5 },
-  { label: "Competitions", value: 29 },
-  { label: "Team Members", value: 20 },
+  { label: "Robots Built", value: 12 },
+  { label: "Competitions", value: 18 },
+  { label: "Team Members", value: 24 },
   { label: "Years Active", value: 5 },
 ];
 
