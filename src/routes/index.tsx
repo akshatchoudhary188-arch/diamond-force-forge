@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
+import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
+import scarletAsset from "@/assets/scarlet.png.asset.json";
+import polarisAsset from "@/assets/polaris.jpeg.asset.json";
+import lucianAsset from "@/assets/lucian.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
@@ -44,6 +48,7 @@ const BOTS = [
       "Boxy design engineered for high power, precision attacks, and strong defense in combat situations.",
     ],
     icon: Zap,
+    image: hyperionAsset.url,
   },
   {
     name: "SCARLET",
@@ -57,6 +62,7 @@ const BOTS = [
       "Curved unibody built for aggressive performance, durability, and high-impact combat power.",
     ],
     icon: Cog,
+    image: scarletAsset.url,
   },
   {
     name: "POLARIS",
@@ -65,6 +71,7 @@ const BOTS = [
     desc: "Heavyweight artillery — kinetic energy that reshapes arenas.",
     specs: [],
     icon: Shield,
+    image: polarisAsset.url,
   },
   {
     name: "LUCIAN",
@@ -78,6 +85,7 @@ const BOTS = [
       "Curvy body engineered to absorb damage for durability and competitive performance in RoboWar events.",
     ],
     icon: Cpu,
+    image: lucianAsset.url,
   },
 ];
 
@@ -319,8 +327,19 @@ function Bots() {
                 key={b.name}
                 className="reveal group metallic-border rounded-md p-6 transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(212,175,55,0.4)]"
               >
-                <div className="mb-6 flex aspect-square items-center justify-center rounded-sm bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
-                  <Icon className="h-16 w-16 text-[#d4af37]/70 transition group-hover:text-[#d4af37] group-hover:scale-110" strokeWidth={1} />
+                <div className="mb-6 relative aspect-square overflow-hidden rounded-sm bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
+                  {b.image ? (
+                    <img
+                      src={b.image}
+                      alt={b.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <Icon className="h-16 w-16 text-[#d4af37]/70 transition group-hover:text-[#d4af37] group-hover:scale-110" strokeWidth={1} />
+                    </div>
+                  )}
                 </div>
                 <h3 className="font-[Orbitron] text-lg font-bold uppercase tracking-wider text-[#f5f5f5]">
                   {b.name}
