@@ -32,10 +32,53 @@ const STATS = [
 ];
 
 const BOTS = [
-  { name: "HYPERION", weight: "15 kg", weapon: "Vertical Spinner", desc: "Our flagship destroyer — a titanium-armored beast built to overwhelm.", icon: Zap },
-  { name: "SCARLET", weight: "8 kg", weapon: "Horizontal Bar", desc: "Fast, agile, and unforgiving. Precision-machined chassis, brutal impact.", icon: Cog },
-  { name: "POLARIS", weight: "8 kg", weapon: "Drum Spinner", desc: "Heavyweight artillery — kinetic energy that reshapes arenas.", icon: Shield },
-  { name: "LUCIAN", weight: "15 kg", weapon: "Lifter / Flipper", desc: "Silent, strategic, surgical. The control-bot that pins opponents.", icon: Cpu },
+  {
+    name: "HYPERION",
+    weight: "15 kg",
+    weapon: "Vertical Spinner",
+    desc: "A powerful 15 kg combat robot designed for RoboWar competitions.",
+    specs: [
+      "Strong metal chassis for durability and stability during intense battles.",
+      "High-impact vertical spinner weapon to damage and disable opponent robots.",
+      "Fast brushless drive system with solid wheels for quick movement and excellent arena control.",
+      "Boxy design engineered for high power, precision attacks, and strong defense in combat situations.",
+    ],
+    icon: Zap,
+  },
+  {
+    name: "SCARLET",
+    weight: "8 kg",
+    weapon: "Drum Spinner",
+    desc: "A powerful 8 kg combat robot built for RoboWar competitions.",
+    specs: [
+      "Strong metal chassis designed to withstand heavy impacts during battles.",
+      "High-speed drum spinner weapon that delivers strong attacks to damage opponent robots.",
+      "Low-profile design and sturdy wheels provide stability, fast movement, and precise control in the arena.",
+      "Curved unibody built for aggressive performance, durability, and high-impact combat power.",
+    ],
+    icon: Cog,
+  },
+  {
+    name: "POLARIS",
+    weight: "8 kg",
+    weapon: "Drum Spinner",
+    desc: "Heavyweight artillery — kinetic energy that reshapes arenas.",
+    specs: [],
+    icon: Shield,
+  },
+  {
+    name: "LUCIAN",
+    weight: "15 kg",
+    weapon: "Drum Spinner",
+    desc: "A powerful 15 kg RoboWar combat robot built for intense robot battles.",
+    specs: [
+      "Strong and durable metal chassis designed to handle heavy impacts in the arena.",
+      "High-speed drum spinner weapon that delivers powerful strikes to damage and disable opponent robots.",
+      "Curvy design with a strong brushless drive system for excellent stability, fast movement, and precise control.",
+      "Curvy body engineered to absorb damage for durability and competitive performance in RoboWar events.",
+    ],
+    icon: Cpu,
+  },
 ];
 
 const ACHIEVEMENTS = [
@@ -287,9 +330,16 @@ function Bots() {
                   <div><span className="text-[#f5f5f5]/50">Weapon</span> <span className="text-[#d4af37]">{b.weapon}</span></div>
                 </div>
                 <p className="mt-4 text-sm text-[#f5f5f5]/70">{b.desc}</p>
-                <button className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#d4af37] transition hover:gap-3">
-                  Specifications <ArrowRight className="h-3 w-3" />
-                </button>
+                {b.specs.length > 0 && (
+                  <ul className="mt-4 space-y-2 text-xs text-[#f5f5f5]/70">
+                    {b.specs.map((s, i) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-[#d4af37]" />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             );
           })}
