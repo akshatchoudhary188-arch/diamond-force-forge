@@ -32,10 +32,10 @@ const STATS = [
 ];
 
 const BOTS = [
-  { name: "Diamond Strike", weight: "15 kg", weapon: "Vertical Spinner", desc: "Our flagship destroyer — a titanium-armored beast built to overwhelm.", icon: Zap },
-  { name: "Carbon Fury", weight: "8 kg", weapon: "Horizontal Bar", desc: "Fast, agile, and unforgiving. Precision-machined chassis, brutal impact.", icon: Cog },
-  { name: "Obsidian", weight: "30 kg", weapon: "Drum Spinner", desc: "Heavyweight artillery — kinetic energy that reshapes arenas.", icon: Shield },
-  { name: "Black Phantom", weight: "3 kg", weapon: "Lifter / Flipper", desc: "Silent, strategic, surgical. The control-bot that pins opponents.", icon: Cpu },
+  { name: "HYPERION", weight: "15 kg", weapon: "Vertical Spinner", desc: "Our flagship destroyer — a titanium-armored beast built to overwhelm.", icon: Zap },
+  { name: "SCARLET", weight: "8 kg", weapon: "Horizontal Bar", desc: "Fast, agile, and unforgiving. Precision-machined chassis, brutal impact.", icon: Cog },
+  { name: "POLARIS", weight: "8 kg", weapon: "Drum Spinner", desc: "Heavyweight artillery — kinetic energy that reshapes arenas.", icon: Shield },
+  { name: "LUCIAN", weight: "15 kg", weapon: "Lifter / Flipper", desc: "Silent, strategic, surgical. The control-bot that pins opponents.", icon: Cpu },
 ];
 
 const ACHIEVEMENTS = [
