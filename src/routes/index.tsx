@@ -7,6 +7,10 @@ import scarletAsset from "@/assets/scarlet.png.asset.json";
 import polarisAsset from "@/assets/polaris.jpeg.asset.json";
 import lucianAsset from "@/assets/lucian.jpeg.asset.json";
 import founderAsset from "@/assets/founder.jpeg.asset.json";
+import auroAsset from "@/assets/auro.jpeg.asset.json";
+import prathameshAsset from "@/assets/prathamesh.jpeg.asset.json";
+import arjunAsset from "@/assets/arjun.jpeg.asset.json";
+import sanketAsset from "@/assets/sanket.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
@@ -111,9 +115,9 @@ const SPONSORS = [
 
 const TEAM = [
   { name: "Akshay Khanke", role: "Founder", image: founderAsset.url },
-  { name: "Aurobinda Maharana", role: "" },
-  { name: "Prathamesh Wadaskar", role: "" },
-  { name: "Arjun Sathewad", role: "" },
+  { name: "Aurobinda Maharana", role: "", image: auroAsset.url },
+  { name: "Prathamesh Wadaskar", role: "", image: prathameshAsset.url },
+  { name: "Arjun Sathewad", role: "", image: arjunAsset.url },
   { name: "Prayas", role: "" },
   { name: "Chetan", role: "" },
   { name: "Narayani", role: "" },
@@ -121,7 +125,7 @@ const TEAM = [
   { name: "Yash Pardhi", role: "" },
   { name: "Tushar Waghmare", role: "" },
   { name: "Harsh Channe", role: "" },
-  { name: "Sanket Giripunje", role: "" },
+  { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
   { name: "Sumeet Pal", role: "" },
   { name: "Akshat", role: "" },
 ];
