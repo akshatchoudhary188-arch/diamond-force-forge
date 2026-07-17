@@ -6,6 +6,7 @@ import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
 import scarletAsset from "@/assets/scarlet.png.asset.json";
 import polarisAsset from "@/assets/polaris.jpeg.asset.json";
 import lucianAsset from "@/assets/lucian.jpeg.asset.json";
+import founderAsset from "@/assets/founder.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
