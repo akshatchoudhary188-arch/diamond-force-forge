@@ -109,7 +109,7 @@ const SPONSORS = [
 ];
 
 const TEAM = [
-  { name: "Team Member", role: "Captain" },
+  { name: "Akshay Khanke", role: "Captain" },
   { name: "Team Member", role: "Mechanical Lead" },
   { name: "Team Member", role: "Electronics Lead" },
   { name: "Team Member", role: "CAD Designer" },
