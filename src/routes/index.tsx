@@ -31,7 +31,7 @@ const NAV = [
 const STATS = [
   { label: "Robots Built", value: 4 },
   { label: "Competitions", value: 29 },
-  { label: "Team Members", value: 20 },
+  { label: "Team Members", value: 14 },
   { label: "Years Active", value: 5 },
 ];
 
@@ -109,13 +109,20 @@ const SPONSORS = [
 ];
 
 const TEAM = [
-  { name: "Akshay Khanke", role: "Captain" },
-  { name: "Team Member", role: "Mechanical Lead" },
-  { name: "Team Member", role: "Electronics Lead" },
-  { name: "Team Member", role: "CAD Designer" },
-  { name: "Team Member", role: "Programming Lead" },
-  { name: "Team Member", role: "Manufacturing Lead" },
-  { name: "Team Member", role: "Media Lead" },
+  { name: "Akshay Khanke", role: "Founder" },
+  { name: "Aurobinda Maharana", role: "" },
+  { name: "Prathamesh Wadaskar", role: "" },
+  { name: "Arjun Sathewad", role: "" },
+  { name: "Prayas", role: "" },
+  { name: "Chetan", role: "" },
+  { name: "Narayani", role: "" },
+  { name: "Aryan", role: "" },
+  { name: "Yash Pardhi", role: "" },
+  { name: "Tushar Waghmare", role: "" },
+  { name: "Harsh Channe", role: "" },
+  { name: "Sanket Giripunje", role: "" },
+  { name: "Sumeet Pal", role: "" },
+  { name: "Akshat", role: "" },
 ];
 
 const STEPS = [
