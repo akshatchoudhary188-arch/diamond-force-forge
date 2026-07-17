@@ -110,7 +110,7 @@ const SPONSORS = [
 ];
 
 const TEAM = [
-  { name: "Akshay Khanke", role: "Founder" },
+  { name: "Akshay Khanke", role: "Founder", image: founderAsset.url },
   { name: "Aurobinda Maharana", role: "" },
   { name: "Prathamesh Wadaskar", role: "" },
   { name: "Arjun Sathewad", role: "" },
