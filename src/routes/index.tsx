@@ -460,7 +460,7 @@ function Team() {
               key={i}
               className="reveal group glass-card rounded-md p-6 text-center transition duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.35)]"
             >
-              <div className="mx-auto flex h-28 w-28 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
+              <div className="mx-auto flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
                 {m.image ? (
                   <img
                     src={m.image}
