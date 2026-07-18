@@ -17,6 +17,8 @@ import narayaniAsset from "@/assets/narayni.jpeg.asset.json";
 import yashAsset from "@/assets/yash_pardhi.jpeg.asset.json";
 import tusharAsset from "@/assets/tushar.jpeg.asset.json";
 import harshAsset from "@/assets/harsh.jpeg.asset.json";
+import aryanAsset from "@/assets/aryan.jpeg.asset.json";
+import akshatAsset from "@/assets/akshat.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
@@ -127,13 +129,13 @@ const TEAM = [
   { name: "Prayas", role: "", image: prayasAsset.url },
   { name: "Chetan", role: "", image: chetanAsset.url },
   { name: "Narayani", role: "", image: narayaniAsset.url },
-  { name: "Aryan", role: "" },
+  { name: "Aryan", role: "", image: aryanAsset.url },
   { name: "Yash Pardhi", role: "", image: yashAsset.url },
   { name: "Tushar Waghmare", role: "", image: tusharAsset.url },
   { name: "Harsh Channe", role: "", image: harshAsset.url },
   { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
   { name: "Sumeet Pal", role: "" },
-  { name: "Akshat", role: "" },
+  { name: "Akshat", role: "", image: akshatAsset.url },
 ];
 
 const STEPS = [
