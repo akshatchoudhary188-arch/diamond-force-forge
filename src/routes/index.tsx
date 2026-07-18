@@ -120,9 +120,9 @@ const ACHIEVEMENTS = [
 ];
 
 const SPONSORS = [
-  { name: "Roll n Drive", image: rollndriveAsset.url },
-  { name: "RAVYO AUTOTECH", image: ravvoAsset.url },
-  { name: "Virtual Simutech", image: virtualSimutechAsset.url },
+  { name: "Roll n Drive", image: rollndriveAsset.url, url: "https://www.rollndrive.com/" },
+  { name: "RAVYO AUTOTECH", image: ravvoAsset.url, url: "https://www.ravyostore.com/" },
+  { name: "Virtual Simutech", image: virtualSimutechAsset.url, url: "https://virtualsimutech.com/" },
 ];
 
 const TEAM = [
@@ -436,13 +436,16 @@ function Sponsors() {
         <SectionHeader eyebrow="Backed By" title={<><span className="gold-gradient">Sponsors</span></>} />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {SPONSORS.map((s) => (
-            <div
+            <a
               key={s.name}
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="reveal group flex aspect-square flex-col items-center justify-center metallic-border rounded-md bg-black p-6 transition hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
             >
               <img src={s.image} alt={s.name} className="max-h-[78%] max-w-[92%] object-contain" />
               <div className="mt-4 text-[10px] uppercase tracking-widest text-[#f5f5f5]/60">{s.name}</div>
-            </div>
+            </a>
           ))}
         </div>
         <div className="reveal mt-16 text-center">
