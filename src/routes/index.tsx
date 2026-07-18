@@ -121,7 +121,7 @@ const ACHIEVEMENTS = [
 
 const SPONSORS = [
   { name: "Roll n Drive", image: rollndriveAsset.url },
-  { name: "Ravvo", image: ravvoAsset.url },
+  { name: "RAVYO AUTOTECH", image: ravvoAsset.url },
   { name: "Virtual Simutech", image: virtualSimutechAsset.url },
 ];
 
