@@ -440,7 +440,7 @@ function Sponsors() {
               key={s.name}
               className="reveal group flex aspect-square flex-col items-center justify-center metallic-border rounded-md bg-black p-6 transition hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
             >
-              <img src={s.image} alt={s.name} className="max-h-[60%] max-w-[80%] object-contain" />
+              <img src={s.image} alt={s.name} className="max-h-[78%] max-w-[92%] object-contain" />
               <div className="mt-4 text-[10px] uppercase tracking-widest text-[#f5f5f5]/60">{s.name}</div>
             </div>
           ))}
