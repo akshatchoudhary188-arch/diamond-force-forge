@@ -11,6 +11,12 @@ import auroAsset from "@/assets/auro.jpeg.asset.json";
 import prathameshAsset from "@/assets/prathamesh.jpeg.asset.json";
 import arjunAsset from "@/assets/arjun.jpeg.asset.json";
 import sanketAsset from "@/assets/sanket.jpeg.asset.json";
+import prayasAsset from "@/assets/prayas.jpeg.asset.json";
+import chetanAsset from "@/assets/chetan.jpeg.asset.json";
+import narayaniAsset from "@/assets/narayni.jpeg.asset.json";
+import yashAsset from "@/assets/yash_pardhi.jpeg.asset.json";
+import tusharAsset from "@/assets/tushar.jpeg.asset.json";
+import harshAsset from "@/assets/harsh.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
@@ -118,13 +124,13 @@ const TEAM = [
   { name: "Aurobinda Maharana", role: "", image: auroAsset.url },
   { name: "Prathamesh Wadaskar", role: "", image: prathameshAsset.url },
   { name: "Arjun Sathewad", role: "", image: arjunAsset.url },
-  { name: "Prayas", role: "" },
-  { name: "Chetan", role: "" },
-  { name: "Narayani", role: "" },
+  { name: "Prayas", role: "", image: prayasAsset.url },
+  { name: "Chetan", role: "", image: chetanAsset.url },
+  { name: "Narayani", role: "", image: narayaniAsset.url },
   { name: "Aryan", role: "" },
-  { name: "Yash Pardhi", role: "" },
-  { name: "Tushar Waghmare", role: "" },
-  { name: "Harsh Channe", role: "" },
+  { name: "Yash Pardhi", role: "", image: yashAsset.url },
+  { name: "Tushar Waghmare", role: "", image: tusharAsset.url },
+  { name: "Harsh Channe", role: "", image: harshAsset.url },
   { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
   { name: "Sumeet Pal", role: "" },
   { name: "Akshat", role: "" },
