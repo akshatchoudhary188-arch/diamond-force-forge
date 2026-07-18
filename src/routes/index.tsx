@@ -19,6 +19,9 @@ import tusharAsset from "@/assets/tushar.jpeg.asset.json";
 import harshAsset from "@/assets/harsh.jpeg.asset.json";
 import aryanAsset from "@/assets/aryan.jpeg.asset.json";
 import akshatAsset from "@/assets/akshat.jpeg.asset.json";
+import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
+import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
+import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
@@ -117,8 +120,9 @@ const ACHIEVEMENTS = [
 ];
 
 const SPONSORS = [
-  { name: "Sponsor One" }, { name: "Sponsor Two" }, { name: "Sponsor Three" },
-  { name: "Sponsor Four" }, { name: "Sponsor Five" }, { name: "Sponsor Six" },
+  { name: "Roll n Drive", image: rollndriveAsset.url },
+  { name: "Ravvo", image: ravvoAsset.url },
+  { name: "Virtual Simutech", image: virtualSimutechAsset.url },
 ];
 
 const TEAM = [
@@ -430,14 +434,14 @@ function Sponsors() {
     <section id="sponsors" className="relative bg-[#0b0b0b] py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader eyebrow="Backed By" title={<><span className="gold-gradient">Sponsors</span></>} />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {SPONSORS.map((s) => (
             <div
               key={s.name}
-              className="reveal group flex aspect-square flex-col items-center justify-center metallic-border rounded-md p-4 transition hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+              className="reveal group flex aspect-square flex-col items-center justify-center metallic-border rounded-md bg-black p-6 transition hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
             >
-              <Award className="h-10 w-10 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
-              <div className="mt-3 text-[10px] uppercase tracking-widest text-[#f5f5f5]/60">{s.name}</div>
+              <img src={s.image} alt={s.name} className="max-h-[60%] max-w-[80%] object-contain" />
+              <div className="mt-4 text-[10px] uppercase tracking-widest text-[#f5f5f5]/60">{s.name}</div>
             </div>
           ))}
         </div>
