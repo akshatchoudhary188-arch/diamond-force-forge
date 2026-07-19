@@ -633,9 +633,12 @@ function Footer() {
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
-              BLACK <span className="text-[#d4af37]">DIAMOND</span>
-            </span>
+            <div className="flex items-center gap-3">
+              <Logo className="h-10 w-auto rounded-sm gold-border" />
+              <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+                BLACK <span className="text-[#d4af37]">DIAMOND</span>
+              </span>
+            </div>
             <p className="mt-4 text-xs text-[#f5f5f5]/60">Forging machines that refuse to lose.</p>
           </div>
           <div>
