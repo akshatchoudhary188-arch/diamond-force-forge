@@ -183,20 +183,6 @@ function useCounter(target: number, start: boolean, duration = 1600) {
 
 /* ---------- Components ---------- */
 
-function Logo({ size = 48 }: { size?: number }) {
-  return (
-    <img
-      src={logoAsset.url}
-      alt="Black Diamond Robotics logo"
-      width={size}
-      height={size}
-      style={{ width: size, height: size }}
-      className="rounded-md object-cover gold-border"
-    />
-  );
-}
-
-
 function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
