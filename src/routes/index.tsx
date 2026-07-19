@@ -663,9 +663,7 @@ function Footer() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Social</div>
             <div className="flex items-center gap-4">
-              <a href="#" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
-              <a href="#" aria-label="LinkedIn" className="text-[#d4af37] hover:scale-110 transition"><Linkedin className="h-5 w-5" /></a>
-              <a href="#" aria-label="GitHub" className="text-[#d4af37] hover:scale-110 transition"><Github className="h-5 w-5" /></a>
+              <a href="https://www.instagram.com/teamblack_diamond/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
