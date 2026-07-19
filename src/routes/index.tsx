@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
-import logoAsset from "@/assets/logo.jpeg.asset.json";
 import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
 import scarletAsset from "@/assets/scarlet.png.asset.json";
 import polarisAsset from "@/assets/polaris.jpeg.asset.json";
@@ -25,7 +24,7 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
-  Instagram, Linkedin, Github, Mail, Phone, MapPin, ArrowRight,
+  Instagram, Mail, Phone, MapPin, ArrowRight,
   ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
 } from "lucide-react";
 
@@ -184,20 +183,6 @@ function useCounter(target: number, start: boolean, duration = 1600) {
 
 /* ---------- Components ---------- */
 
-function Logo({ size = 48 }: { size?: number }) {
-  return (
-    <img
-      src={logoAsset.url}
-      alt="Black Diamond Robotics logo"
-      width={size}
-      height={size}
-      style={{ width: size, height: size }}
-      className="rounded-md object-cover gold-border"
-    />
-  );
-}
-
-
 function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -214,8 +199,7 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <a href="#home" aria-label="Home" className="flex items-center gap-3 shrink-0">
-          <Logo size={50} />
-          <span className="hidden sm:block font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+          <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
             BLACK <span className="text-[#d4af37]">DIAMOND</span>
           </span>
         </a>
@@ -591,13 +575,11 @@ function Contact() {
               </div>
             </div>
             <div className="border-t border-[#d4af37]/20 p-6 space-y-3 text-sm">
-              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Mail className="h-4 w-4 text-[#d4af37]" /> contact@blackdiamondrobotics.in</div>
-              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Phone className="h-4 w-4 text-[#d4af37]" /> +91 00000 00000</div>
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Mail className="h-4 w-4 text-[#d4af37]" /> Teamblackdiamond034@gmail.com</div>
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Phone className="h-4 w-4 text-[#d4af37]" /> +91 95955 07035</div>
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><MapPin className="h-4 w-4 text-[#d4af37]" /> India</div>
               <div className="flex items-center gap-4 pt-3">
-                <a href="#" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
-                <a href="#" aria-label="LinkedIn" className="text-[#d4af37] hover:scale-110 transition"><Linkedin className="h-5 w-5" /></a>
-                <a href="#" aria-label="GitHub" className="text-[#d4af37] hover:scale-110 transition"><Github className="h-5 w-5" /></a>
+                <a href="https://www.instagram.com/teamblack_diamond/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
               </div>
             </div>
           </div>
@@ -639,12 +621,9 @@ function Footer() {
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <div className="flex items-center gap-3">
-              <Logo size={44} />
-              <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
-                BLACK <span className="text-[#d4af37]">DIAMOND</span>
-              </span>
-            </div>
+            <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+              BLACK <span className="text-[#d4af37]">DIAMOND</span>
+            </span>
             <p className="mt-4 text-xs text-[#f5f5f5]/60">Forging machines that refuse to lose.</p>
           </div>
           <div>
@@ -665,9 +644,7 @@ function Footer() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Social</div>
             <div className="flex items-center gap-4">
-              <a href="#" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
-              <a href="#" aria-label="LinkedIn" className="text-[#d4af37] hover:scale-110 transition"><Linkedin className="h-5 w-5" /></a>
-              <a href="#" aria-label="GitHub" className="text-[#d4af37] hover:scale-110 transition"><Github className="h-5 w-5" /></a>
+              <a href="https://www.instagram.com/teamblack_diamond/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
             </div>
           </div>
         </div>
@@ -726,8 +703,8 @@ function Loader({ done }: { done: boolean }) {
       }`}
     >
       <div className="text-center">
-        <div className="animate-fade-up">
-          <Logo size={110} />
+        <div className="animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
+          BLACK <span className="text-[#d4af37]">DIAMOND</span>
         </div>
         <div className="mt-6 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
           Igniting Arena
