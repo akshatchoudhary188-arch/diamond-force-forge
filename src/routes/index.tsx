@@ -22,6 +22,7 @@ import khushiAsset from "@/assets/khushi.jpeg.asset.json";
 import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
 import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Mail, Phone, MapPin, ArrowRight,
@@ -183,6 +184,16 @@ function useCounter(target: number, start: boolean, duration = 1600) {
 
 /* ---------- Components ---------- */
 
+function Logo({ className = "" }: { className?: string }) {
+  return (
+    <img
+      src={logoAsset.url}
+      alt="Black Diamond Robotics logo"
+      className={`object-contain ${className}`}
+    />
+  );
+}
+
 function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -199,6 +210,7 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <a href="#home" aria-label="Home" className="flex items-center gap-3 shrink-0">
+          <Logo className="h-10 w-auto rounded-sm gold-border" />
           <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
             BLACK <span className="text-[#d4af37]">DIAMOND</span>
           </span>
@@ -621,9 +633,12 @@ function Footer() {
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
         <div className="grid gap-10 md:grid-cols-4">
           <div>
-            <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
-              BLACK <span className="text-[#d4af37]">DIAMOND</span>
-            </span>
+            <div className="flex items-center gap-3">
+              <Logo className="h-10 w-auto rounded-sm gold-border" />
+              <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
+                BLACK <span className="text-[#d4af37]">DIAMOND</span>
+              </span>
+            </div>
             <p className="mt-4 text-xs text-[#f5f5f5]/60">Forging machines that refuse to lose.</p>
           </div>
           <div>
@@ -703,10 +718,11 @@ function Loader({ done }: { done: boolean }) {
       }`}
     >
       <div className="text-center">
-        <div className="animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
+        <Logo className="mx-auto h-20 w-auto rounded-sm gold-border animate-fade-up" />
+        <div className="mt-6 animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
           BLACK <span className="text-[#d4af37]">DIAMOND</span>
         </div>
-        <div className="mt-6 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
+        <div className="mt-4 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
           Igniting Arena
         </div>
         <div className="mx-auto mt-4 h-[2px] w-40 overflow-hidden bg-[#d4af37]/20">
