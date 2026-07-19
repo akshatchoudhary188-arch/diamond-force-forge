@@ -120,9 +120,9 @@ const ACHIEVEMENTS = [
 ];
 
 const SPONSORS = [
+  { name: "Virtual Simutech", image: virtualSimutechAsset.url, url: "https://virtualsimutech.com/" },
   { name: "Roll n Drive", image: rollndriveAsset.url, url: "https://www.rollndrive.com/" },
   { name: "RAVYO AUTOTECH", image: ravvoAsset.url, url: "https://www.ravyostore.com/" },
-  { name: "Virtual Simutech", image: virtualSimutechAsset.url, url: "https://virtualsimutech.com/" },
 ];
 
 const TEAM = [
