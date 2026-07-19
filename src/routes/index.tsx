@@ -210,6 +210,7 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <a href="#home" aria-label="Home" className="flex items-center gap-3 shrink-0">
+          <Logo className="h-10 w-auto rounded-sm gold-border" />
           <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
             BLACK <span className="text-[#d4af37]">DIAMOND</span>
           </span>
