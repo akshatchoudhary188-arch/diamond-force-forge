@@ -19,6 +19,7 @@ import tusharAsset from "@/assets/tushar.jpeg.asset.json";
 import harshAsset from "@/assets/harsh.jpeg.asset.json";
 import aryanAsset from "@/assets/aryan.jpeg.asset.json";
 import akshatAsset from "@/assets/akshat.jpeg.asset.json";
+import khushiAsset from "@/assets/khushi.jpeg.asset.json";
 import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
 import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
@@ -47,7 +48,7 @@ const NAV = [
 const STATS = [
   { label: "Robots Built", value: 4 },
   { label: "Competitions", value: 29 },
-  { label: "Team Members", value: 14 },
+  { label: "Team Members", value: 15 },
   { label: "Years Active", value: 5 },
 ];
 
@@ -140,6 +141,7 @@ const TEAM = [
   { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
   { name: "Sumeet Pal", role: "" },
   { name: "Akshat", role: "", image: akshatAsset.url },
+  { name: "Khushi Khade", role: "", image: khushiAsset.url },
 ];
 
 const STEPS = [
