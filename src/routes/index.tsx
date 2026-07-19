@@ -718,10 +718,11 @@ function Loader({ done }: { done: boolean }) {
       }`}
     >
       <div className="text-center">
-        <div className="animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
+        <Logo className="mx-auto h-20 w-auto rounded-sm gold-border animate-fade-up" />
+        <div className="mt-6 animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
           BLACK <span className="text-[#d4af37]">DIAMOND</span>
         </div>
-        <div className="mt-6 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
+        <div className="mt-4 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
           Igniting Arena
         </div>
         <div className="mx-auto mt-4 h-[2px] w-40 overflow-hidden bg-[#d4af37]/20">
