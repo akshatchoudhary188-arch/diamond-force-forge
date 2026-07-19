@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
-import logoAsset from "@/assets/logo.jpeg.asset.json";
 import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
 import scarletAsset from "@/assets/scarlet.png.asset.json";
 import polarisAsset from "@/assets/polaris.jpeg.asset.json";
