@@ -22,6 +22,7 @@ import khushiAsset from "@/assets/khushi.jpeg.asset.json";
 import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
 import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
+import logoAsset from "@/assets/logo.jpeg.asset.json";
 import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Mail, Phone, MapPin, ArrowRight,
