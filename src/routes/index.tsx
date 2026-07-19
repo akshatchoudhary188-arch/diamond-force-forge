@@ -718,8 +718,8 @@ function Loader({ done }: { done: boolean }) {
       }`}
     >
       <div className="text-center">
-        <div className="animate-fade-up">
-          <Logo size={110} />
+        <div className="animate-fade-up font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5]">
+          BLACK <span className="text-[#d4af37]">DIAMOND</span>
         </div>
         <div className="mt-6 font-[Orbitron] text-xs uppercase tracking-[0.5em] text-[#d4af37]">
           Igniting Arena
