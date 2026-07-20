@@ -644,15 +644,15 @@ function Contact() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Get In Touch" title={<><span className="gold-gradient">Contact</span></>} />
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="reveal metallic-border rounded-md overflow-hidden">
-            <div className="relative aspect-[4/3] w-full bg-gradient-to-br from-[#1a1a1a] to-black flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="mx-auto h-12 w-12 text-[#d4af37]" strokeWidth={1} />
-                <div className="mt-3 font-[Orbitron] text-sm uppercase tracking-widest text-[#f5f5f5]">Find Us</div>
-                <div className="mt-1 text-xs text-[#f5f5f5]/60">Map placeholder</div>
-              </div>
+          <div className="reveal metallic-border rounded-md p-8 flex flex-col justify-center">
+            <div className="mb-6">
+              <div className="font-[Orbitron] text-xs uppercase tracking-[0.3em] text-[#d4af37]">Direct Line</div>
+              <h3 className="mt-2 font-[Orbitron] text-2xl font-bold uppercase tracking-widest text-[#f5f5f5]">Let's Build Together</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#f5f5f5]/60">
+                Reach out for sponsorships, collaborations, or to join the team. We're always forging ahead.
+              </p>
             </div>
-            <div className="border-t border-[#d4af37]/20 p-6 space-y-3 text-sm">
+            <div className="space-y-3 text-sm">
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Mail className="h-4 w-4 text-[#d4af37]" /> Teamblackdiamond034@gmail.com</div>
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Phone className="h-4 w-4 text-[#d4af37]" /> +91 95955 07035</div>
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><MapPin className="h-4 w-4 text-[#d4af37]" /> GEC, Chandrapur, Maharashtra, India</div>
