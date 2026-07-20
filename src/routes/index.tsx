@@ -821,6 +821,7 @@ function BlackDiamondSite() {
         <Team />
         <Enroll />
         <Gallery />
+        <FindUs />
         <Contact />
       </main>
       <Footer />
