@@ -536,15 +536,17 @@ function Enroll() {
 }
 
 function Gallery() {
+  const [fullscreen, setFullscreen] = useState(false);
+  const videoUrl = teamVideoAsset.url;
   const items = [
-    { label: "Competition", h: 260 },
-    { label: "Robots", h: 340 },
-    { label: "Manufacturing", h: 220 },
-    { label: "CAD Design", h: 300 },
-    { label: "Testing", h: 260 },
-    { label: "Workshop", h: 320 },
-    { label: "Team Photo", h: 240 },
-    { label: "Arena", h: 280 },
+    { type: "video" as const, label: "Team Video", h: 320 },
+    { type: "placeholder" as const, label: "Competition", h: 260 },
+    { type: "placeholder" as const, label: "Robots", h: 340 },
+    { type: "placeholder" as const, label: "Manufacturing", h: 220 },
+    { type: "placeholder" as const, label: "CAD Design", h: 300 },
+    { type: "placeholder" as const, label: "Testing", h: 260 },
+    { type: "placeholder" as const, label: "Workshop", h: 320 },
+    { type: "placeholder" as const, label: "Team Photo", h: 240 },
   ];
   return (
     <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
@@ -555,16 +557,60 @@ function Gallery() {
             <div
               key={i}
               style={{ height: it.h }}
-              className="reveal group mb-4 flex items-center justify-center break-inside-avoid metallic-border rounded-md bg-gradient-to-br from-[#1a1a1a] to-black transition hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+              className="reveal group relative mb-4 break-inside-avoid overflow-hidden metallic-border rounded-md bg-gradient-to-br from-[#1a1a1a] to-black transition hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
             >
-              <div className="text-center">
-                <Wrench className="mx-auto h-8 w-8 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
-                <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50">{it.label}</div>
-              </div>
+              {it.type === "video" ? (
+                <>
+                  <video
+                    src={videoUrl}
+                    controls
+                    playsInline
+                    className="h-full w-full object-cover"
+                    aria-label="Team video"
+                  />
+                  <button
+                    onClick={() => setFullscreen(true)}
+                    className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/70 text-[#d4af37] opacity-0 transition hover:bg-[#d4af37] hover:text-black group-hover:opacity-100"
+                    aria-label="Maximize video"
+                  >
+                    <Maximize2 className="h-4 w-4" />
+                  </button>
+                </>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center">
+                  <div className="text-center">
+                    <Wrench className="mx-auto h-8 w-8 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50">{it.label}</div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
+      {fullscreen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4"
+          onClick={() => setFullscreen(false)}
+        >
+          <div className="relative w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+            <video
+              src={videoUrl}
+              controls
+              autoPlay
+              playsInline
+              className="h-full max-h-[80vh] w-full rounded-md"
+              aria-label="Team video fullscreen"
+            />
+            <button
+              onClick={() => setFullscreen(false)}
+              className="absolute -top-10 right-0 text-xs uppercase tracking-widest text-[#f5f5f5]/70 hover:text-[#d4af37]"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
