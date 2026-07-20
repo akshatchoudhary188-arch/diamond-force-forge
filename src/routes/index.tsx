@@ -655,7 +655,7 @@ function Contact() {
             <div className="border-t border-[#d4af37]/20 p-6 space-y-3 text-sm">
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Mail className="h-4 w-4 text-[#d4af37]" /> Teamblackdiamond034@gmail.com</div>
               <div className="flex items-center gap-3 text-[#f5f5f5]/80"><Phone className="h-4 w-4 text-[#d4af37]" /> +91 95955 07035</div>
-              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><MapPin className="h-4 w-4 text-[#d4af37]" /> India</div>
+              <div className="flex items-center gap-3 text-[#f5f5f5]/80"><MapPin className="h-4 w-4 text-[#d4af37]" /> GEC, Chandrapur, Maharashtra, India</div>
               <div className="flex items-center gap-4 pt-3">
                 <a href="https://www.instagram.com/teamblack_diamond/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
               </div>
