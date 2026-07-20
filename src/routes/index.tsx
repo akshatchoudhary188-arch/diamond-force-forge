@@ -42,6 +42,7 @@ const NAV = [
   { label: "Achievements", href: "#achievements" },
   { label: "Sponsors", href: "#sponsors" },
   { label: "Enroll", href: "#enroll" },
+  { label: "Find Us", href: "#findus" },
   { label: "Contact", href: "#contact" },
 ];
 
