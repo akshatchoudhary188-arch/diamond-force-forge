@@ -543,10 +543,6 @@ function Gallery() {
     { type: "placeholder" as const, label: "Competition", h: 260 },
     { type: "placeholder" as const, label: "Robots", h: 340 },
     { type: "placeholder" as const, label: "Manufacturing", h: 220 },
-    { type: "placeholder" as const, label: "CAD Design", h: 300 },
-    { type: "placeholder" as const, label: "Testing", h: 260 },
-    { type: "placeholder" as const, label: "Workshop", h: 320 },
-    { type: "placeholder" as const, label: "Team Photo", h: 240 },
   ];
   return (
     <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
