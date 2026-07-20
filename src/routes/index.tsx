@@ -27,7 +27,9 @@ import {
   Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Mail, Phone, MapPin, ArrowRight,
   ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
+  Maximize2,
 } from "lucide-react";
+import teamVideoAsset from "@/assets/team-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: BlackDiamondSite,
