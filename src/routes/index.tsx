@@ -24,7 +24,7 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import {
-  Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
+  Menu, X, Cpu, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Mail, Phone, MapPin, ArrowRight,
   ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
   Maximize2,
