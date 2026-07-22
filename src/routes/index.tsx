@@ -24,7 +24,7 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import {
-  Menu, X, Cpu, Wrench, Users, Trophy, Zap, Shield, Cog, Award,
+  Menu, X, Cpu, Users, Trophy, Zap, Shield, Cog, Award,
   Instagram, Mail, Phone, MapPin, ArrowRight,
   ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
   Maximize2,
@@ -546,9 +546,6 @@ function Gallery() {
     { type: "image" as const, label: "Team & Bots", src: galleryTeamBotsAsset.url, h: 300 },
     { type: "image" as const, label: "Y Robo C", src: galleryYroboAsset.url, h: 260 },
     { type: "image" as const, label: "Competition Arena", src: galleryTeamArenaAsset.url, h: 300 },
-    { type: "placeholder" as const, label: "Competition", h: 260 },
-    { type: "placeholder" as const, label: "Robots", h: 340 },
-    { type: "placeholder" as const, label: "Manufacturing", h: 220 },
   ];
   return (
     <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
@@ -578,20 +575,13 @@ function Gallery() {
                     <Maximize2 className="h-4 w-4" />
                   </button>
                 </>
-              ) : it.type === "image" ? (
+              ) : (
                 <img
                   src={it.src}
                   alt={it.label}
                   loading="lazy"
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center">
-                  <div className="text-center">
-                    <Wrench className="mx-auto h-8 w-8 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
-                    <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50">{it.label}</div>
-                  </div>
-                </div>
               )}
             </div>
           ))}
