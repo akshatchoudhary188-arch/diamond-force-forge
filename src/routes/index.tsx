@@ -120,10 +120,10 @@ const BOTS = [
 const ACHIEVEMENTS = [
   { icon: "🥈", title: "Runner Up — Y ROBO C, Malaysia", year: "" },
   { icon: "🏆", title: "Winner — BITS Quark", year: "" },
-  { icon: "🏅", title: "AXIS VNIT", year: "" },
+  { icon: "🏆", title: "Winner — AXIS VNIT (15 KG & 8 KG)", year: "" },
   { icon: "🏆", title: "Winner — NIT Karnataka", year: "" },
-  { icon: "🏆", title: "Winner — MINDBEND SVNIT", year: "" },
-  { icon: "🥈", title: "Runner Up — IIT Bombay", year: "2022" },
+  { icon: "🏆", title: "Winner — MINDBEND SVNIT (15 KG)", year: "" },
+  { icon: "🥈", title: "Runner Up — IIT Bombay (15 KG)", year: "2022" },
 ];
 
 const SPONSORS = [
