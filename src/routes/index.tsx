@@ -546,9 +546,6 @@ function Gallery() {
     { type: "image" as const, label: "Team & Bots", src: galleryTeamBotsAsset.url, h: 300 },
     { type: "image" as const, label: "Y Robo C", src: galleryYroboAsset.url, h: 260 },
     { type: "image" as const, label: "Competition Arena", src: galleryTeamArenaAsset.url, h: 300 },
-    { type: "placeholder" as const, label: "Competition", h: 260 },
-    { type: "placeholder" as const, label: "Robots", h: 340 },
-    { type: "placeholder" as const, label: "Manufacturing", h: 220 },
   ];
   return (
     <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
