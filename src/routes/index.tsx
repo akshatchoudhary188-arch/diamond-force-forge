@@ -575,20 +575,13 @@ function Gallery() {
                     <Maximize2 className="h-4 w-4" />
                   </button>
                 </>
-              ) : it.type === "image" ? (
+              ) : (
                 <img
                   src={it.src}
                   alt={it.label}
                   loading="lazy"
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center">
-                  <div className="text-center">
-                    <Wrench className="mx-auto h-8 w-8 text-[#d4af37]/60 transition group-hover:text-[#d4af37]" strokeWidth={1} />
-                    <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50">{it.label}</div>
-                  </div>
-                </div>
               )}
             </div>
           ))}
