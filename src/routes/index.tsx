@@ -791,8 +791,14 @@ function Footer() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Quick Links</div>
             <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
-              {NAV.slice(0, 7).map((n) => (
-                <li key={n.href}><a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a></li>
+              {NAV.map((n) => (
+                <li key={n.href}>
+                  {n.href.startsWith("/") ? (
+                    <Link to={n.href} className="hover:text-[#d4af37] transition">{n.label}</Link>
+                  ) : (
+                    <a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
