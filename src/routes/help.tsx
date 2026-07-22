@@ -93,9 +93,9 @@ function HelpPage() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      <main className="mx-auto max-w-3xl px-6 py-20 md:py-28">
         {/* Title */}
-        <div className="mb-10 text-center">
+        <div className="mb-12 text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/20 bg-[#d4af37]/5 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
             <HelpCircle className="h-3.5 w-3.5" />
             Ask the Team
@@ -110,7 +110,7 @@ function HelpPage() {
         </div>
 
         {/* Help topics */}
-        <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div className="glass-card rounded-lg p-4 text-center">
             <Bot className="mx-auto mb-2 h-6 w-6 text-[#d4af37]" />
             <div className="text-sm font-semibold text-[#f5f5f5]">Robot Design</div>
@@ -131,7 +131,7 @@ function HelpPage() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="glass-card gold-glow rounded-xl border border-[#d4af37]/10 p-6 md:p-8"
+          className="glass-card gold-glow rounded-xl border border-[#d4af37]/10 p-8 md:p-10"
           noValidate
         >
           <div className="mb-6">
