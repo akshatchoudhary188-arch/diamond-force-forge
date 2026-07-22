@@ -118,12 +118,12 @@ const BOTS = [
 ];
 
 const ACHIEVEMENTS = [
-  { icon: "🏆", title: "Winner — Competition Name", year: "2025" },
-  { icon: "🥈", title: "Runner-Up — Competition Name", year: "2024" },
-  { icon: "🏅", title: "Best Design Award", year: "2024" },
-  { icon: "⚙", title: "Innovation Award", year: "2023" },
-  { icon: "🏆", title: "Winner — Regional Championship", year: "2023" },
-  { icon: "🥈", title: "Runner-Up — National Robowars", year: "2022" },
+  { icon: "🥈", title: "Runner Up — Y ROBO C, Malaysia", year: "" },
+  { icon: "🏆", title: "Winner — BITS Quark", year: "" },
+  { icon: "🏅", title: "AXIS VNIT", year: "" },
+  { icon: "🏆", title: "Winner — NIT Karnataka", year: "" },
+  { icon: "🏆", title: "Winner — MINDBEND SVNIT", year: "" },
+  { icon: "🥈", title: "Runner Up — IIT Bombay", year: "2022" },
 ];
 
 const SPONSORS = [
