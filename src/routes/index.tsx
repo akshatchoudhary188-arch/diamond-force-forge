@@ -210,6 +210,25 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const NavItem = (n: { label: string; href: string; className: string; onClick?: () => void }) => {
+    if (n.href.startsWith("/")) {
+      return (
+        <Link
+          to={n.href}
+          onClick={n.onClick}
+          className={n.className}
+        >
+          {n.label}
+        </Link>
+      );
+    }
+    return (
+      <a href={n.href} onClick={n.onClick} className={n.className}>
+        {n.label}
+      </a>
+    );
+  };
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
