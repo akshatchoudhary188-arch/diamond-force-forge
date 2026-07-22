@@ -245,12 +245,10 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
         <ul className="hidden lg:flex items-center gap-8">
           {NAV.map((n) => (
             <li key={n.href}>
-              <a
-                href={n.href}
+              <NavItem
+                {...n}
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5f5f5]/80 transition hover:text-[#d4af37]"
-              >
-                {n.label}
-              </a>
+              />
             </li>
           ))}
         </ul>
