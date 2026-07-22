@@ -891,6 +891,64 @@ function BlackDiamondSite() {
       </main>
       <Footer />
       <ScrollTop />
+      <UpcomingEvent />
+    </div>
+  );
+}
+
+function UpcomingEvent() {
+  const [open, setOpen] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setOpen(true), 2500);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (dismissed) return null;
+
+  return (
+    <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-start gap-3">
+      {open && (
+        <div className="glass-card gold-glow relative w-72 rounded-lg p-4 animate-fade-up">
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            className="absolute right-2 top-2 text-[#d4af37]/70 hover:text-[#f0cf5a]"
+          >
+            <X className="h-4 w-4" />
+          </button>
+          <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
+            <Calendar className="h-3.5 w-3.5" />
+            Upcoming Event
+          </div>
+          <div className="font-[Orbitron] text-lg leading-tight gold-gradient">
+            TECHNEX 2026
+          </div>
+          <div className="mt-1 text-xs text-[#f5f5f5]/80">
+            IIT (BHU) Varanasi
+          </div>
+          <div className="mt-2 text-[11px] text-[#f5f5f5]/60">
+            Team Black Diamond enters the arena — 15 KG & 8 KG combat classes.
+          </div>
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[#f0cf5a] hover:text-[#d4af37]"
+          >
+            Cheer for us <ArrowRight className="h-3 w-3" />
+          </a>
+        </div>
+      )}
+      <button
+        onClick={() => (open ? setDismissed(true) : setOpen(true))}
+        className="group relative flex items-center gap-2 rounded-full bg-gradient-to-br from-[#b8912d] via-[#f0cf5a] to-[#b8912d] px-4 py-3 text-xs font-bold uppercase tracking-widest text-[#0b0b0b] shadow-[0_0_24px_-4px_rgba(212,175,55,0.6)] transition-transform hover:scale-105"
+        aria-label={open ? "Dismiss upcoming event" : "Show upcoming event"}
+      >
+        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#d4af37]/40" />
+        <Calendar className="h-4 w-4" />
+        {open ? "Dismiss" : "Upcoming Event"}
+      </button>
     </div>
   );
 }
