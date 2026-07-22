@@ -19,6 +19,7 @@ import harshAsset from "@/assets/harsh.jpeg.asset.json";
 import aryanAsset from "@/assets/aryan.jpeg.asset.json";
 import akshatAsset from "@/assets/akshat.jpeg.asset.json";
 import khushiAsset from "@/assets/khushi.jpeg.asset.json";
+import sumeetAsset from "@/assets/sumeet.jpg.asset.json";
 import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
 import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
@@ -147,7 +148,7 @@ const TEAM = [
   { name: "Tushar Waghmare", role: "", image: tusharAsset.url },
   { name: "Harsh Channe", role: "", image: harshAsset.url },
   { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
-  { name: "Sumeet Pal", role: "" },
+  { name: "Sumeet Pal", role: "", image: sumeetAsset.url },
   { name: "Akshat", role: "", image: akshatAsset.url },
   { name: "Khushi Khade", role: "", image: khushiAsset.url },
 ];
