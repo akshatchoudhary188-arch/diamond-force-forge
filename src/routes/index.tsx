@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
 import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
