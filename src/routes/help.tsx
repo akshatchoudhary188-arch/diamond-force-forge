@@ -196,7 +196,7 @@ function HelpPage() {
           )}
         </form>
 
-        {/* Direct contact */}
+        {/* Direct contact — number is embedded in the WhatsApp send link only */}
         <div className="mt-10 text-center text-xs text-[#f5f5f5]/50">
           Prefer direct contact?{" "}
           <a
@@ -205,7 +205,7 @@ function HelpPage() {
             rel="noopener noreferrer"
             className="text-[#d4af37] hover:text-[#f0cf5a]"
           >
-            WhatsApp +91 95955 07035
+            Open WhatsApp
           </a>
         </div>
       </main>
