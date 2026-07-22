@@ -914,7 +914,21 @@ function BlackDiamondSite() {
       <Footer />
       <ScrollTop />
       <UpcomingEvent />
+      <FloatingAskUs />
     </div>
+  );
+}
+
+function FloatingAskUs() {
+  return (
+    <Link
+      to="/help"
+      className="fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full bg-[#0a0a0a] px-5 py-3 text-xs font-bold uppercase tracking-widest text-[#d4af37] shadow-[0_0_24px_-4px_rgba(212,175,55,0.4)] ring-1 ring-[#d4af37]/40 transition-transform hover:scale-105 hover:ring-[#d4af37]/70"
+      aria-label="Ask us a question"
+    >
+      <MessageSquare className="h-4 w-4" />
+      Ask Us
+    </Link>
   );
 }
 
