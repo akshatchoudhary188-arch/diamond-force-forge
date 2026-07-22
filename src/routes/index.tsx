@@ -910,7 +910,7 @@ function UpcomingEvent() {
   return (
     <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-start gap-3">
       {open && (
-        <div className="glass-card gold-glow relative w-72 rounded-lg p-4 animate-fade-up">
+        <div className="glass-card gold-glow relative w-64 rounded-lg p-4 animate-fade-up">
           <button
             onClick={() => setOpen(false)}
             aria-label="Close"
@@ -918,26 +918,13 @@ function UpcomingEvent() {
           >
             <X className="h-4 w-4" />
           </button>
-          <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
             <Calendar className="h-3.5 w-3.5" />
             Upcoming Event
           </div>
-          <div className="font-[Orbitron] text-lg leading-tight gold-gradient">
-            TECHNEX 2026
+          <div className="mt-3 text-xs text-[#f5f5f5]/70">
+            Event details will be updated soon.
           </div>
-          <div className="mt-1 text-xs text-[#f5f5f5]/80">
-            IIT (BHU) Varanasi
-          </div>
-          <div className="mt-2 text-[11px] text-[#f5f5f5]/60">
-            Team Black Diamond enters the arena — 15 KG & 8 KG combat classes.
-          </div>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[#f0cf5a] hover:text-[#d4af37]"
-          >
-            Cheer for us <ArrowRight className="h-3 w-3" />
-          </a>
         </div>
       )}
       <button
