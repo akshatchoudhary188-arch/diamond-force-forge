@@ -678,11 +678,20 @@ function FindUs() {
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+
   const submit = (e: FormEvent) => {
     e.preventDefault();
+    const text = encodeURIComponent(
+      `Hi Team Black Diamond!\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`
+    );
+    const whatsappUrl = `https://wa.me/919595507035?text=${text}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setSent(true);
+    setForm({ name: "", email: "", phone: "", message: "" });
     setTimeout(() => setSent(false), 4000);
   };
+
   return (
     <section id="contact" className="relative bg-[#0b0b0b] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -706,12 +715,18 @@ function Contact() {
             </div>
           </div>
           <form onSubmit={submit} className="reveal metallic-border rounded-md p-8 space-y-4">
-            {["Name", "Email", "Phone"].map((f) => (
-              <div key={f}>
-                <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">{f}</label>
+            {[
+              { key: "name", label: "Name", type: "text" },
+              { key: "email", label: "Email", type: "email" },
+              { key: "phone", label: "Phone", type: "tel" },
+            ].map((f) => (
+              <div key={f.key}>
+                <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">{f.label}</label>
                 <input
                   required
-                  type={f === "Email" ? "email" : "text"}
+                  type={f.type}
+                  value={form[f.key as keyof typeof form]}
+                  onChange={(e) => setForm((s) => ({ ...s, [f.key]: e.target.value }))}
                   className="mt-2 w-full rounded-sm border border-[#d4af37]/20 bg-black/60 px-4 py-3 text-sm text-[#f5f5f5] outline-none focus:border-[#d4af37]"
                 />
               </div>
@@ -720,6 +735,8 @@ function Contact() {
               <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">Message</label>
               <textarea
                 required rows={5}
+                value={form.message}
+                onChange={(e) => setForm((s) => ({ ...s, message: e.target.value }))}
                 className="mt-2 w-full rounded-sm border border-[#d4af37]/20 bg-black/60 px-4 py-3 text-sm text-[#f5f5f5] outline-none focus:border-[#d4af37]"
               />
             </div>
@@ -727,7 +744,7 @@ function Contact() {
               type="submit"
               className="w-full inline-flex items-center justify-center gap-2 rounded-sm bg-[#d4af37] px-6 py-4 text-xs font-bold uppercase tracking-[0.25em] text-black transition hover:bg-[#f0cf5a]"
             >
-              {sent ? "Message Sent" : "Send Message"} <ArrowRight className="h-4 w-4" />
+              {sent ? "Opening WhatsApp" : "Send Message"} <ArrowRight className="h-4 w-4" />
             </button>
           </form>
         </div>
