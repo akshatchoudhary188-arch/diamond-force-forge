@@ -28,6 +28,7 @@ import {
   Instagram, Mail, Phone, MapPin, ArrowRight,
   ClipboardList, MessageSquare, FlaskConical, CheckCircle2, ChevronUp,
   Maximize2,
+  Calendar,
 } from "lucide-react";
 import teamVideoAsset from "@/assets/team-video.mp4.asset.json";
 import galleryTeamArenaAsset from "@/assets/gallery-team-arena.jpg.asset.json";
