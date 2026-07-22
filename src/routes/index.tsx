@@ -30,6 +30,9 @@ import {
   Maximize2,
 } from "lucide-react";
 import teamVideoAsset from "@/assets/team-video.mp4.asset.json";
+import galleryTeamArenaAsset from "@/assets/gallery-team-arena.jpg.asset.json";
+import galleryTeamBotsAsset from "@/assets/gallery-team-bots.png.asset.json";
+import galleryYroboAsset from "@/assets/gallery-yrobo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: BlackDiamondSite,
@@ -540,6 +543,9 @@ function Gallery() {
   const videoUrl = teamVideoAsset.url;
   const items = [
     { type: "video" as const, label: "Team Video", h: 320 },
+    { type: "image" as const, label: "Team & Bots", src: galleryTeamBotsAsset.url, h: 300 },
+    { type: "image" as const, label: "Y Robo C", src: galleryYroboAsset.url, h: 260 },
+    { type: "image" as const, label: "Competition Arena", src: galleryTeamArenaAsset.url, h: 300 },
     { type: "placeholder" as const, label: "Competition", h: 260 },
     { type: "placeholder" as const, label: "Robots", h: 340 },
     { type: "placeholder" as const, label: "Manufacturing", h: 220 },
@@ -572,6 +578,13 @@ function Gallery() {
                     <Maximize2 className="h-4 w-4" />
                   </button>
                 </>
+              ) : it.type === "image" ? (
+                <img
+                  src={it.src}
+                  alt={it.label}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
               ) : (
                 <div className="flex h-full w-full items-center justify-center">
                   <div className="text-center">
