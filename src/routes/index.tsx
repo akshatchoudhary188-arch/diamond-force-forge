@@ -271,13 +271,11 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
           <ul className="flex flex-col px-6 py-4">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a
-                  href={n.href}
+                <NavItem
+                  {...n}
                   onClick={() => setOpen(false)}
                   className="block py-3 text-sm font-semibold uppercase tracking-widest text-[#f5f5f5] hover:text-[#d4af37]"
-                >
-                  {n.label}
-                </a>
+                />
               </li>
             ))}
           </ul>
