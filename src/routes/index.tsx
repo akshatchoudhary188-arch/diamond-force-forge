@@ -50,6 +50,7 @@ const NAV = [
   { label: "Enroll", href: "#enroll" },
   { label: "Find Us", href: "#findus" },
   { label: "Contact", href: "#contact" },
+  { label: "Ask Us", href: "/help" },
 ];
 
 const STATS = [
