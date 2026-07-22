@@ -135,7 +135,7 @@ const SPONSORS = [
 ];
 
 const TEAM = [
-  { name: "Akshay Khanke", role: "Founder", image: founderAsset.url },
+  { name: "Akshay Khanke", role: "", image: founderAsset.url },
   { name: "Aurobinda Maharana", role: "", image: auroAsset.url },
   { name: "Prathamesh Wadaskar", role: "", image: prathameshAsset.url },
   { name: "Arjun Sathewad", role: "", image: arjunAsset.url },
@@ -511,7 +511,9 @@ function Team() {
               <h3 className="mt-5 font-[Orbitron] text-base font-bold uppercase tracking-widest text-[#f5f5f5]">
                 {m.name}
               </h3>
-              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#d4af37]">{m.role}</div>
+              {m.role && (
+                <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#d4af37]">{m.role}</div>
+              )}
             </div>
           ))}
         </div>
