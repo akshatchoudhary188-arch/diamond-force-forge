@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
 import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
@@ -50,6 +50,7 @@ const NAV = [
   { label: "Enroll", href: "#enroll" },
   { label: "Find Us", href: "#findus" },
   { label: "Contact", href: "#contact" },
+  { label: "Ask Us", href: "/help" },
 ];
 
 const STATS = [
@@ -209,6 +210,25 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const NavItem = (n: { label: string; href: string; className: string; onClick?: () => void }) => {
+    if (n.href.startsWith("/")) {
+      return (
+        <Link
+          to={n.href}
+          onClick={n.onClick}
+          className={n.className}
+        >
+          {n.label}
+        </Link>
+      );
+    }
+    return (
+      <a href={n.href} onClick={n.onClick} className={n.className}>
+        {n.label}
+      </a>
+    );
+  };
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -225,12 +245,10 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
         <ul className="hidden lg:flex items-center gap-8">
           {NAV.map((n) => (
             <li key={n.href}>
-              <a
-                href={n.href}
+              <NavItem
+                {...n}
                 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5f5f5]/80 transition hover:text-[#d4af37]"
-              >
-                {n.label}
-              </a>
+              />
             </li>
           ))}
         </ul>
@@ -253,13 +271,11 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
           <ul className="flex flex-col px-6 py-4">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a
-                  href={n.href}
+                <NavItem
+                  {...n}
                   onClick={() => setOpen(false)}
                   className="block py-3 text-sm font-semibold uppercase tracking-widest text-[#f5f5f5] hover:text-[#d4af37]"
-                >
-                  {n.label}
-                </a>
+                />
               </li>
             ))}
           </ul>
@@ -775,8 +791,14 @@ function Footer() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Quick Links</div>
             <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
-              {NAV.slice(0, 7).map((n) => (
-                <li key={n.href}><a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a></li>
+              {NAV.map((n) => (
+                <li key={n.href}>
+                  {n.href.startsWith("/") ? (
+                    <Link to={n.href} className="hover:text-[#d4af37] transition">{n.label}</Link>
+                  ) : (
+                    <a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
