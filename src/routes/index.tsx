@@ -30,6 +30,9 @@ import {
   Maximize2,
 } from "lucide-react";
 import teamVideoAsset from "@/assets/team-video.mp4.asset.json";
+import galleryTeamArenaAsset from "@/assets/gallery-team-arena.jpg.asset.json";
+import galleryTeamBotsAsset from "@/assets/gallery-team-bots.png.asset.json";
+import galleryYroboAsset from "@/assets/gallery-yrobo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: BlackDiamondSite,
