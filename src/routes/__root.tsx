@@ -80,10 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Black Diamond Robotics — Forging Machines That Refuse To Lose" },
       { name: "description", content: "Team Black Diamond Robotics — India's premier student combat robotics team. We design, build and battle world-class combat robots." },
       { name: "author", content: "Black Diamond Robotics" },
-      { property: "og:title", content: "Black Diamond Robotics" },
-      { property: "og:description", content: "Forging machines that refuse to lose. India's premier combat robotics team." },
+      { property: "og:title", content: "Black Diamond Robotics — Forging Machines That Refuse To Lose" },
+      { property: "og:description", content: "Team Black Diamond Robotics — India's premier student combat robotics team. We design, build and battle world-class combat robots." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Black Diamond Robotics — Forging Machines That Refuse To Lose" },
+      { name: "twitter:description", content: "Team Black Diamond Robotics — India's premier student combat robotics team. We design, build and battle world-class combat robots." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/61ee51a4-40a2-40db-b6be-3976c10e157c/id-preview-bb03b958--65acdd94-35f8-4214-9b84-1071f0c94057.lovable.app-1784715052499.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/61ee51a4-40a2-40db-b6be-3976c10e157c/id-preview-bb03b958--65acdd94-35f8-4214-9b84-1071f0c94057.lovable.app-1784715052499.png" },
     ],
     links: [
       {
