@@ -243,12 +243,12 @@ function Nav({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }
             BLACK <span className="text-[#d4af37]">DIAMOND</span>
           </span>
         </a>
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-6">
           {NAV.map((n) => (
             <li key={n.href}>
               <NavItem
                 {...n}
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5f5f5]/80 transition hover:text-[#d4af37]"
+                className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#f5f5f5]/80 transition hover:text-[#d4af37]"
               />
             </li>
           ))}
@@ -314,12 +314,12 @@ function Hero() {
 
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: React.ReactNode }) {
   return (
-    <div className="reveal mb-14 text-center">
-      <div className="text-[10px] uppercase tracking-[0.5em] text-[#d4af37]">{eyebrow}</div>
-      <h2 className="mt-3 font-[Orbitron] text-3xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-5xl">
+    <div className="reveal mb-16 text-center">
+      <div className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">{eyebrow}</div>
+      <h2 className="mt-4 font-[Orbitron] text-3xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-5xl">
         {title}
       </h2>
-      <div className="mx-auto mt-4 h-[2px] w-20 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+      <div className="mx-auto mt-5 h-[2px] w-24 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
     </div>
   );
 }
@@ -370,13 +370,13 @@ function Bots() {
     <section id="bots" className="relative bg-[#0b0b0b] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Our Arsenal" title={<>Our <span className="gold-gradient">Bots</span></>} />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {BOTS.map((b) => {
             const Icon = b.icon;
             return (
               <div
                 key={b.name}
-                className="reveal group metallic-border rounded-md p-6 transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(212,175,55,0.4)]"
+                className="reveal group metallic-border flex h-full flex-col rounded-md p-7 transition duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(212,175,55,0.4)]"
               >
                 <div className="mb-6 relative aspect-square overflow-hidden rounded-sm bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
                   {b.image ? (
@@ -401,7 +401,7 @@ function Bots() {
                 </div>
                 <p className="mt-4 text-sm text-[#f5f5f5]/70">{b.desc}</p>
                 {b.specs.length > 0 && (
-                  <ul className="mt-4 space-y-2 text-xs text-[#f5f5f5]/70">
+                  <ul className="mt-auto space-y-2 pt-5 text-xs text-[#f5f5f5]/70">
                     {b.specs.map((s, i) => (
                       <li key={i} className="flex gap-2">
                         <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-[#d4af37]" />
@@ -429,14 +429,14 @@ function Achievements() {
           {ACHIEVEMENTS.map((a, i) => (
             <div
               key={i}
-              className={`reveal relative mb-10 flex items-start gap-6 sm:mb-14 sm:w-1/2 ${
+              className={`reveal relative mb-12 flex items-start gap-6 sm:mb-16 sm:w-1/2 ${
                 i % 2 === 0 ? "sm:pr-12" : "sm:ml-auto sm:pl-12"
               }`}
             >
               <div className="absolute left-4 top-2 h-4 w-4 -translate-x-1/2 rounded-full bg-[#d4af37] shadow-[0_0_20px_#d4af37] sm:left-auto sm:right-0 sm:top-4 sm:translate-x-1/2"
                 style={i % 2 === 1 ? { left: 0, right: "auto", transform: "translateX(-50%)" } : {}}
               />
-              <div className="ml-10 flex-1 metallic-border rounded-md p-5 sm:ml-0">
+              <div className="ml-10 flex-1 metallic-border rounded-md p-6 sm:ml-0">
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{a.icon}</span>
                   <span className="text-xs uppercase tracking-widest text-[#d4af37]">{a.year}</span>
@@ -456,7 +456,7 @@ function Sponsors() {
     <section id="sponsors" className="relative bg-[#0b0b0b] py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader eyebrow="Backed By" title={<><span className="gold-gradient">Sponsors</span></>} />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
           {SPONSORS.map((s) => (
             <a
               key={s.name}
@@ -491,11 +491,11 @@ function Team() {
     <section id="team" className="relative bg-[#0f0f0f] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="The Crew" title={<>Our <span className="gold-gradient">Team</span></>} />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((m, i) => (
             <div
               key={i}
-              className="reveal group glass-card rounded-md p-6 text-center transition duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.35)]"
+              className="reveal group glass-card rounded-md p-7 text-center transition duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.35)]"
             >
               <div className="mx-auto flex h-32 w-32 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#1a1a1a] to-black gold-border">
                 {m.image ? (
@@ -571,12 +571,11 @@ function Gallery() {
     <section id="gallery" className="relative bg-[#0f0f0f] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader eyebrow="Behind The Machines" title={<><span className="gold-gradient">Gallery</span></>} />
-        <div className="columns-2 gap-4 md:columns-3 lg:columns-4 [column-fill:_balance]">
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
           {items.map((it, i) => (
             <div
               key={i}
-              style={{ height: it.h }}
-              className="reveal group relative mb-4 break-inside-avoid overflow-hidden metallic-border rounded-md bg-gradient-to-br from-[#1a1a1a] to-black transition hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+              className="reveal group relative aspect-[4/3] overflow-hidden metallic-border rounded-md bg-gradient-to-br from-[#1a1a1a] to-black transition hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
             >
               {it.type === "video" ? (
                 <>
@@ -737,7 +736,7 @@ function Contact() {
               </div>
             </div>
           </div>
-          <form onSubmit={submit} className="reveal metallic-border rounded-md p-8 space-y-4">
+          <form onSubmit={submit} className="reveal metallic-border rounded-md p-8 space-y-5">
             {[
               { key: "name", label: "Name", type: "text" },
               { key: "email", label: "Email", type: "email" },
@@ -780,7 +779,7 @@ function Footer() {
   return (
     <footer className="relative bg-black pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-12" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="flex items-center gap-3">
@@ -859,7 +858,7 @@ function ScrollTop() {
     <button
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4af37] text-black shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:bg-[#f0cf5a] transition"
+      className="fixed bottom-20 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4af37] text-black shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:bg-[#f0cf5a] transition"
     >
       <ChevronUp className="h-5 w-5" />
     </button>
