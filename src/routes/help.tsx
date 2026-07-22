@@ -131,7 +131,7 @@ function HelpPage() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="glass-card gold-glow rounded-xl border border-[#d4af37]/10 p-6 md:p-8"
+          className="glass-card gold-glow rounded-xl border border-[#d4af37]/10 p-8 md:p-10"
           noValidate
         >
           <div className="mb-6">
