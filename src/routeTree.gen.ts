@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as BotsRouteImport } from './routes/bots'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
   '/help': typeof HelpRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
   '/help': typeof HelpRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bots': typeof BotsRoute
   '/help': typeof HelpRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bots' | '/help'
+  fullPaths: '/' | '/bots' | '/help' | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bots' | '/help'
-  id: '__root__' | '/' | '/bots' | '/help'
+  to: '/' | '/bots' | '/help' | '/team'
+  id: '__root__' | '/' | '/bots' | '/help' | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BotsRoute: typeof BotsRoute
   HelpRoute: typeof HelpRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/help': {
       id: '/help'
       path: '/help'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BotsRoute: BotsRoute,
   HelpRoute: HelpRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
