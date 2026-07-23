@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
   MessageCircle,
-  ArrowLeft,
   Send,
   HelpCircle,
   Bot,
@@ -76,24 +75,8 @@ function HelpPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f5f5f5]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[#d4af37]/10 bg-[#0a0a0a]/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#d4af37] transition-colors hover:text-[#f0cf5a]"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-          <div className="font-[Orbitron] text-lg font-bold tracking-wider gold-gradient">
-            BLACK DIAMOND
-          </div>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+    <div className="pt-24 sm:pt-28">
+      <div className="mx-auto max-w-3xl px-6 py-12 md:py-20">
         {/* Title */}
         <div className="mb-12 text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/20 bg-[#d4af37]/5 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
@@ -208,7 +191,7 @@ function HelpPage() {
             Open WhatsApp
           </a>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
