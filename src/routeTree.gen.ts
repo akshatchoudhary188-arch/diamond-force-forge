@@ -9,60 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TeamRouteImport } from './routes/team'
-import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as HelpRouteImport } from './routes/help'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as FindUsRouteImport } from './routes/find-us'
-import { Route as EnrollRouteImport } from './routes/enroll'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BotsRouteImport } from './routes/bots'
-import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as IndexRouteImport } from './routes/index'
 
-const TeamRoute = TeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SponsorsRoute = SponsorsRouteImport.update({
-  id: '/sponsors',
-  path: '/sponsors',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FindUsRoute = FindUsRouteImport.update({
-  id: '/find-us',
-  path: '/find-us',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnrollRoute = EnrollRouteImport.update({
-  id: '/enroll',
-  path: '/enroll',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BotsRoute = BotsRouteImport.update({
-  id: '/bots',
-  path: '/bots',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AchievementsRoute = AchievementsRouteImport.update({
-  id: '/achievements',
-  path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -73,156 +25,37 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/achievements': typeof AchievementsRoute
-  '/bots': typeof BotsRoute
-  '/contact': typeof ContactRoute
-  '/enroll': typeof EnrollRoute
-  '/find-us': typeof FindUsRoute
-  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
-  '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/achievements': typeof AchievementsRoute
-  '/bots': typeof BotsRoute
-  '/contact': typeof ContactRoute
-  '/enroll': typeof EnrollRoute
-  '/find-us': typeof FindUsRoute
-  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
-  '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/achievements': typeof AchievementsRoute
-  '/bots': typeof BotsRoute
-  '/contact': typeof ContactRoute
-  '/enroll': typeof EnrollRoute
-  '/find-us': typeof FindUsRoute
-  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
-  '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/achievements'
-    | '/bots'
-    | '/contact'
-    | '/enroll'
-    | '/find-us'
-    | '/gallery'
-    | '/help'
-    | '/sponsors'
-    | '/team'
+  fullPaths: '/' | '/help'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/achievements'
-    | '/bots'
-    | '/contact'
-    | '/enroll'
-    | '/find-us'
-    | '/gallery'
-    | '/help'
-    | '/sponsors'
-    | '/team'
-  id:
-    | '__root__'
-    | '/'
-    | '/achievements'
-    | '/bots'
-    | '/contact'
-    | '/enroll'
-    | '/find-us'
-    | '/gallery'
-    | '/help'
-    | '/sponsors'
-    | '/team'
+  to: '/' | '/help'
+  id: '__root__' | '/' | '/help'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AchievementsRoute: typeof AchievementsRoute
-  BotsRoute: typeof BotsRoute
-  ContactRoute: typeof ContactRoute
-  EnrollRoute: typeof EnrollRoute
-  FindUsRoute: typeof FindUsRoute
-  GalleryRoute: typeof GalleryRoute
   HelpRoute: typeof HelpRoute
-  SponsorsRoute: typeof SponsorsRoute
-  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/team': {
-      id: '/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sponsors': {
-      id: '/sponsors'
-      path: '/sponsors'
-      fullPath: '/sponsors'
-      preLoaderRoute: typeof SponsorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/help': {
       id: '/help'
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/find-us': {
-      id: '/find-us'
-      path: '/find-us'
-      fullPath: '/find-us'
-      preLoaderRoute: typeof FindUsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/enroll': {
-      id: '/enroll'
-      path: '/enroll'
-      fullPath: '/enroll'
-      preLoaderRoute: typeof EnrollRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bots': {
-      id: '/bots'
-      path: '/bots'
-      fullPath: '/bots'
-      preLoaderRoute: typeof BotsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/achievements': {
-      id: '/achievements'
-      path: '/achievements'
-      fullPath: '/achievements'
-      preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -237,15 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AchievementsRoute: AchievementsRoute,
-  BotsRoute: BotsRoute,
-  ContactRoute: ContactRoute,
-  EnrollRoute: EnrollRoute,
-  FindUsRoute: FindUsRoute,
-  GalleryRoute: GalleryRoute,
   HelpRoute: HelpRoute,
-  SponsorsRoute: SponsorsRoute,
-  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
