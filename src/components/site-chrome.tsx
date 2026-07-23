@@ -83,23 +83,39 @@ export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => v
       <div className="flex flex-1 items-center overflow-y-auto">
         <ul className="mx-auto w-full max-w-3xl px-6 py-8 space-y-1">
           {NAV.map((n, i) => {
-            const active = pathname === n.href;
+            const isHash = n.href.startsWith("/#");
+            const active = !isHash && pathname === n.href;
             return (
               <li key={n.href} className="border-b border-[#d4af37]/10">
-                <Link
-                  to={n.href as never}
-                  onClick={onClose}
-                  className={`group flex items-baseline gap-6 py-4 sm:py-5 transition ${
-                    active ? "text-[#d4af37]" : "text-[#f5f5f5]/80 hover:text-[#d4af37]"
-                  }`}
-                >
+                {isHash ? (
+                  <a
+                    href={n.href}
+                    onClick={onClose}
+                    className={`group flex items-baseline gap-6 py-4 sm:py-5 transition text-[#f5f5f5]/80 hover:text-[#d4af37]`}
+                  >
+                    <span className="w-10 font-[Orbitron] text-xs tracking-widest text-[#d4af37]/70">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-[Orbitron] text-3xl font-black uppercase tracking-widest sm:text-5xl">
+                      {n.label}
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    to={n.href as never}
+                    onClick={onClose}
+                    className={`group flex items-baseline gap-6 py-4 sm:py-5 transition ${
+                      active ? "text-[#d4af37]" : "text-[#f5f5f5]/80 hover:text-[#d4af37]"
+                    }`}
+                  >
                   <span className="w-10 font-[Orbitron] text-xs tracking-widest text-[#d4af37]/70">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-[Orbitron] text-3xl font-black uppercase tracking-widest sm:text-5xl">
                     {n.label}
                   </span>
-                </Link>
+                  </Link>
+                )}
               </li>
             );
           })}
@@ -235,7 +251,11 @@ export function SiteFooter() {
             <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <Link to={n.href as never} className="hover:text-[#d4af37] transition">{n.label}</Link>
+                  {n.href.startsWith("/#") ? (
+                    <a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a>
+                  ) : (
+                    <Link to={n.href as never} className="hover:text-[#d4af37] transition">{n.label}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -243,8 +263,8 @@ export function SiteFooter() {
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Sponsors</div>
             <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
-              <li><Link to="/sponsors" className="hover:text-[#d4af37] transition">Our Partners</Link></li>
-              <li><Link to="/contact" className="hover:text-[#d4af37] transition">Become a Sponsor</Link></li>
+              <li><a href="/#sponsors" className="hover:text-[#d4af37] transition">Our Partners</a></li>
+              <li><a href="/#contact" className="hover:text-[#d4af37] transition">Become a Sponsor</a></li>
             </ul>
           </div>
           <div>
