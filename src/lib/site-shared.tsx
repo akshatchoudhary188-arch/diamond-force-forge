@@ -30,16 +30,16 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 
 export const NAV = [
-  { label: "Home", href: "/" },
-  { label: "Our Bots", href: "/bots" },
-  { label: "Our Team", href: "/team" },
-  { label: "Achievements", href: "/achievements" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Sponsors", href: "/sponsors" },
-  { label: "Enroll", href: "/enroll" },
-  { label: "Find Us", href: "/find-us" },
-  { label: "Contact", href: "/contact" },
-  { label: "Ask Us", href: "/help" },
+  { label: "Home", href: "/#home", hash: "home" },
+  { label: "Our Bots", href: "/#bots", hash: "bots" },
+  { label: "Our Team", href: "/#team", hash: "team" },
+  { label: "Achievements", href: "/#achievements", hash: "achievements" },
+  { label: "Gallery", href: "/#gallery", hash: "gallery" },
+  { label: "Sponsors", href: "/#sponsors", hash: "sponsors" },
+  { label: "Enroll", href: "/#enroll", hash: "enroll" },
+  { label: "Find Us", href: "/#find-us", hash: "find-us" },
+  { label: "Contact", href: "/#contact", hash: "contact" },
+  { label: "Ask Us", href: "/help", hash: "" },
 ] as const;
 
 export const STATS = [
