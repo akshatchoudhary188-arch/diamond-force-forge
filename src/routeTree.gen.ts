@@ -9,15 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BotsIndexRouteImport } from './routes/bots.index'
 import { Route as BotsSlugRouteImport } from './routes/bots.$slug'
 
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -44,14 +56,18 @@ const BotsSlugRoute = BotsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/help': typeof HelpRoute
+  '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/help': typeof HelpRoute
+  '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots': typeof BotsIndexRoute
 }
@@ -59,33 +75,73 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
   '/help': typeof HelpRoute
+  '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/help' | '/bots/$slug' | '/bots/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/help'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/help' | '/bots/$slug' | '/bots'
-  id: '__root__' | '/' | '/about' | '/help' | '/bots/$slug' | '/bots/'
+  to:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/help'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/help'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AchievementsRoute: typeof AchievementsRoute
   HelpRoute: typeof HelpRoute
+  SponsorsRoute: typeof SponsorsRoute
   BotsSlugRoute: typeof BotsSlugRoute
   BotsIndexRoute: typeof BotsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/help': {
       id: '/help'
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -122,7 +178,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AchievementsRoute: AchievementsRoute,
   HelpRoute: HelpRoute,
+  SponsorsRoute: SponsorsRoute,
   BotsSlugRoute: BotsSlugRoute,
   BotsIndexRoute: BotsIndexRoute,
 }
