@@ -1,167 +1,145 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import {
-  Menu, X, ChevronUp, Instagram, MessageSquare, Calendar,
-} from "lucide-react";
-import { Logo, NAV } from "@/lib/site-shared";
+import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
+import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
 
-export function TopBar({ onOpenMenu }: { onOpenMenu: () => void }) {
+function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [botsOpen, setBotsOpen] = useState(false);
+
+  return (
+    <ul className={vertical ? "space-y-1" : "flex items-center gap-1"}>
+      {NAV.map((n) => {
+        const active = n.href === "/" ? pathname === "/" : pathname.startsWith(n.href);
+        const base = vertical
+          ? "block border-b border-[#d4af37]/10 py-3 font-[Orbitron] text-sm font-bold uppercase tracking-[0.2em]"
+          : "relative px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.18em]";
+        const color = active ? "text-[#d4af37]" : "text-[#f5f5f5]/75 hover:text-[#d4af37]";
+
+        if (n.href === "/bots") {
+          return (
+            <li
+              key={n.href}
+              className={vertical ? "" : "relative"}
+              onMouseEnter={() => !vertical && setBotsOpen(true)}
+              onMouseLeave={() => !vertical && setBotsOpen(false)}
+            >
+              <div className={vertical ? "" : "flex items-center"}>
+                <Link to="/bots" onClick={onNavigate} className={`${base} ${color} transition-colors`}>
+                  {n.label}
+                </Link>
+                {!vertical && <ChevronDown className="h-3 w-3 text-[#d4af37]/70" />}
+                {active && !vertical && (
+                  <span className="absolute inset-x-3 -bottom-[1px] h-[2px] bg-[#d4af37]" />
+                )}
+              </div>
+              {vertical ? (
+                <ul className="mb-2 space-y-1 pl-4">
+                  {BOTS.map((b) => (
+                    <li key={b.slug}>
+                      <Link
+                        to="/bots/$slug"
+                        params={{ slug: b.slug }}
+                        onClick={onNavigate}
+                        className="block py-1.5 text-xs uppercase tracking-[0.2em] text-[#f5f5f5]/60 transition-colors hover:text-[#d4af37]"
+                      >
+                        {b.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                botsOpen && (
+                  <div className="absolute left-0 top-full z-50 w-52 border border-[#d4af37]/25 bg-[#0b0b0b]/98 p-2 shadow-xl">
+                    {BOTS.map((b) => (
+                      <Link
+                        key={b.slug}
+                        to="/bots/$slug"
+                        params={{ slug: b.slug }}
+                        onClick={onNavigate}
+                        className="block px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#f5f5f5]/75 transition-colors hover:bg-[#d4af37]/10 hover:text-[#d4af37]"
+                      >
+                        {b.name}
+                      </Link>
+                    ))}
+                  </div>
+                )
+              )}
+            </li>
+          );
+        }
+
+        return (
+          <li key={n.href} className={vertical ? "" : "relative"}>
+            <Link to={n.href as never} onClick={onNavigate} className={`${base} ${color} transition-colors`}>
+              {n.label}
+            </Link>
+            {active && !vertical && <span className="absolute inset-x-3 -bottom-[1px] h-[2px] bg-[#d4af37]" />}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export function TopBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => setOpen(false), [pathname]);
+
   return (
     <nav
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0b0b0b]/95 backdrop-blur-md border-b border-[#d4af37]/20"
-          : "bg-gradient-to-b from-black/70 to-transparent"
+      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${
+        scrolled || open
+          ? "border-[#d4af37]/20 bg-[#0b0b0b]/95 backdrop-blur-md"
+          : "border-transparent bg-gradient-to-b from-black/80 to-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link to="/" aria-label="Home" className="flex items-center gap-3 shrink-0">
+        <Link to="/" aria-label="Home" className="flex shrink-0 items-center gap-3">
           <Logo className="h-10 w-auto rounded-sm gold-border" />
           <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
             BLACK <span className="text-[#d4af37]">DIAMOND</span>
           </span>
         </Link>
+
+        <div className="hidden lg:block">
+          <NavLinks />
+        </div>
+
         <button
-          onClick={onOpenMenu}
-          aria-label="Open menu"
-          className="group flex items-center gap-2 rounded-sm border border-[#d4af37]/60 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex items-center gap-2 border border-[#d4af37]/60 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black lg:hidden"
         >
-          <Menu className="h-4 w-4" />
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           Menu
         </button>
       </div>
-    </nav>
-  );
-}
 
-export function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      className="fixed inset-0 z-[80] flex flex-col bg-[#0a0a0a]/98 backdrop-blur-md animate-fade-up"
-    >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        <div className="flex items-center gap-3">
-          <Logo className="h-10 w-auto rounded-sm gold-border" />
-          <span className="font-[Orbitron] text-sm font-bold tracking-widest text-[#f5f5f5]">
-            BLACK <span className="text-[#d4af37]">DIAMOND</span>
-          </span>
+      {open && (
+        <div className="max-h-[75vh] overflow-y-auto border-t border-[#d4af37]/15 bg-[#0b0b0b] px-4 pb-6 sm:px-6 lg:hidden">
+          <NavLinks vertical onNavigate={() => setOpen(false)} />
         </div>
-        <button
-          onClick={onClose}
-          aria-label="Close menu"
-          className="flex items-center gap-2 rounded-sm border border-[#d4af37]/60 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.3em] text-[#d4af37] transition hover:bg-[#d4af37] hover:text-black"
-        >
-          <X className="h-4 w-4" />
-          Close
-        </button>
-      </div>
-
-      <div className="flex flex-1 items-center overflow-y-auto">
-        <ul className="mx-auto w-full max-w-3xl px-6 py-8 space-y-1">
-          {NAV.map((n, i) => {
-            const isHash = n.href.startsWith("/#");
-            const active = !isHash && pathname === n.href;
-            return (
-              <li key={n.href} className="border-b border-[#d4af37]/10">
-                {isHash ? (
-                  <a
-                    href={n.href}
-                    onClick={onClose}
-                    className={`group flex items-baseline gap-6 py-4 sm:py-5 transition text-[#f5f5f5]/80 hover:text-[#d4af37]`}
-                  >
-                    <span className="w-10 font-[Orbitron] text-xs tracking-widest text-[#d4af37]/70">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-[Orbitron] text-3xl font-black uppercase tracking-widest sm:text-5xl">
-                      {n.label}
-                    </span>
-                  </a>
-                ) : (
-                  <Link
-                    to={n.href as never}
-                    onClick={onClose}
-                    className={`group flex items-baseline gap-6 py-4 sm:py-5 transition ${
-                      active ? "text-[#d4af37]" : "text-[#f5f5f5]/80 hover:text-[#d4af37]"
-                    }`}
-                  >
-                  <span className="w-10 font-[Orbitron] text-xs tracking-widest text-[#d4af37]/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-[Orbitron] text-3xl font-black uppercase tracking-widest sm:text-5xl">
-                    {n.label}
-                  </span>
-                  </Link>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 text-[10px] uppercase tracking-[0.3em] text-[#f5f5f5]/50 sm:px-6">
-        <span>© {new Date().getFullYear()} Black Diamond Robotics</span>
-        <a
-          href="https://www.instagram.com/teamblack_diamond/"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Instagram"
-          className="text-[#d4af37] transition hover:scale-110"
-        >
-          <Instagram className="h-5 w-5" />
-        </a>
-      </div>
-    </div>
-  );
-}
-
-export function ScrollProgress() {
-  const [p, setP] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const h = document.documentElement;
-      const total = h.scrollHeight - h.clientHeight;
-      setP(total > 0 ? (h.scrollTop / total) * 100 : 0);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div
-      className="fixed top-0 left-0 z-[60] h-[2px] bg-gradient-to-r from-[#d4af37] via-[#f0cf5a] to-[#d4af37] transition-[width]"
-      style={{ width: `${p}%` }}
-    />
+      )}
+    </nav>
   );
 }
 
 export function ScrollTop() {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
+    const onScroll = () => setShow(window.scrollY > 700);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -170,62 +148,31 @@ export function ScrollTop() {
     <button
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-24 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#d4af37] text-black shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:bg-[#f0cf5a] transition"
+      className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black"
     >
       <ChevronUp className="h-5 w-5" />
     </button>
   );
 }
 
-export function FloatingAskUs() {
-  return (
-    <Link
-      to="/help"
-      className="fixed bottom-6 right-6 z-[60] flex items-center gap-2 rounded-full bg-[#0a0a0a] px-5 py-3 text-xs font-bold uppercase tracking-widest text-[#d4af37] shadow-[0_0_24px_-4px_rgba(212,175,55,0.4)] ring-1 ring-[#d4af37]/40 transition-transform hover:scale-105 hover:ring-[#d4af37]/70"
-      aria-label="Ask us a question"
-    >
-      <MessageSquare className="h-4 w-4" />
-      Ask Us
-    </Link>
-  );
-}
-
 export function UpcomingEvent() {
   const [open, setOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setOpen(true), 2500);
-    return () => clearTimeout(t);
-  }, []);
-  if (dismissed) return null;
   return (
-    <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-start gap-3">
+    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
       {open && (
-        <div className="glass-card gold-glow relative w-64 rounded-lg p-4 animate-fade-up">
-          <button
-            onClick={() => setOpen(false)}
-            aria-label="Close"
-            className="absolute right-2 top-2 text-[#d4af37]/70 hover:text-[#f0cf5a]"
-          >
-            <X className="h-4 w-4" />
-          </button>
+        <div className="w-64 rounded-sm border border-[#d4af37]/30 bg-[#0b0b0b] p-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
-            <Calendar className="h-3.5 w-3.5" />
-            Upcoming Event
+            <Calendar className="h-3.5 w-3.5" /> Upcoming Event
           </div>
-          <div className="mt-3 text-xs text-[#f5f5f5]/70">
-            Event details will be updated soon.
-          </div>
+          <p className="mt-3 text-xs text-[#f5f5f5]/70">Event details will be updated soon.</p>
         </div>
       )}
       <button
-        onClick={() => (open ? setDismissed(true) : setOpen(true))}
-        className="group relative flex items-center gap-2 rounded-full bg-gradient-to-br from-[#b8912d] via-[#f0cf5a] to-[#b8912d] px-4 py-3 text-xs font-bold uppercase tracking-widest text-[#0b0b0b] shadow-[0_0_24px_-4px_rgba(212,175,55,0.6)] transition-transform hover:scale-105"
-        aria-label={open ? "Dismiss upcoming event" : "Show upcoming event"}
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-2 rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black"
       >
-        <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#d4af37]/40" />
         <Calendar className="h-4 w-4" />
-        {open ? "Dismiss" : "Upcoming Event"}
+        {open ? "Close" : "Upcoming Event"}
       </button>
     </div>
   );
@@ -233,9 +180,8 @@ export function UpcomingEvent() {
 
 export function SiteFooter() {
   return (
-    <footer className="relative bg-black pt-16 pb-8">
+    <footer className="relative border-t border-[#d4af37]/15 bg-black pt-14 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-10" />
         <div className="grid gap-10 md:grid-cols-4">
           <div>
             <div className="flex items-center gap-3">
@@ -244,39 +190,75 @@ export function SiteFooter() {
                 BLACK <span className="text-[#d4af37]">DIAMOND</span>
               </span>
             </div>
-            <p className="mt-4 text-xs text-[#f5f5f5]/60">Forging machines that refuse to lose.</p>
+            <p className="mt-4 text-xs leading-relaxed text-[#f5f5f5]/60">
+              Student-led combat robotics team from GEC Chandrapur. Designing, building and
+              competing with world-class machines.
+            </p>
           </div>
+
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Explore</div>
+            <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">Quick Links</div>
             <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  {n.href.startsWith("/#") ? (
-                    <a href={n.href} className="hover:text-[#d4af37] transition">{n.label}</a>
-                  ) : (
-                    <Link to={n.href as never} className="hover:text-[#d4af37] transition">{n.label}</Link>
-                  )}
+                  <Link to={n.href as never} className="transition-colors hover:text-[#d4af37]">
+                    {n.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
+
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Sponsors</div>
-            <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
-              <li><a href="/#sponsors" className="hover:text-[#d4af37] transition">Our Partners</a></li>
-              <li><a href="/#contact" className="hover:text-[#d4af37] transition">Become a Sponsor</a></li>
-            </ul>
+            <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">Our Sponsors</div>
+            <div className="flex flex-wrap items-center gap-3">
+              {SPONSORS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-14 w-20 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-[#0e0e0e] p-2 transition-colors hover:border-[#d4af37]/60"
+                >
+                  <img src={s.image} alt={s.name} loading="lazy" className="max-h-full max-w-full object-contain" />
+                </a>
+              ))}
+            </div>
+            <Link
+              to="/sponsors"
+              className="mt-4 inline-block text-xs uppercase tracking-[0.2em] text-[#d4af37] hover:underline"
+            >
+              Become a Sponsor
+            </Link>
           </div>
+
           <div>
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] mb-4">Social</div>
-            <div className="flex items-center gap-4">
-              <a href="https://www.instagram.com/teamblack_diamond/" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-[#d4af37] hover:scale-110 transition"><Instagram className="h-5 w-5" /></a>
+            <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">Connect</div>
+            <ul className="space-y-2 text-sm text-[#f5f5f5]/70">
+              <li>
+                <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-[#d4af37]">
+                  {CONTACT.email}
+                </a>
+              </li>
+              <li>{CONTACT.phone}</li>
+            </ul>
+            <div className="mt-4 flex items-center gap-4">
+              <a
+                href={CONTACT.instagram}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="text-[#d4af37] transition-colors hover:text-[#f0cf5a]"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
             </div>
           </div>
         </div>
-        <div className="mt-12 border-t border-[#d4af37]/15 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#f5f5f5]/50">
-          <div>© {new Date().getFullYear()} Black Diamond Robotics. All rights reserved.</div>
-          <div>Made with <span className="text-[#d4af37]">♦</span> by Team Black Diamond Robotics</div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[#d4af37]/15 pt-6 text-xs text-[#f5f5f5]/50 sm:flex-row">
+          <div>© {new Date().getFullYear()} Team Black Diamond Robotics. All rights reserved.</div>
+          <div>GEC Chandrapur, Maharashtra, India</div>
         </div>
       </div>
     </footer>
@@ -284,17 +266,13 @@ export function SiteFooter() {
 }
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
-  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[#0b0b0b] text-[#f5f5f5]">
-      <ScrollProgress />
-      <TopBar onOpenMenu={() => setMenuOpen(true)} />
-      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <TopBar />
       <main>{children}</main>
       <SiteFooter />
       <ScrollTop />
       <UpcomingEvent />
-      <FloatingAskUs />
     </div>
   );
 }
