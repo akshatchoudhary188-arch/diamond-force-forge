@@ -9,12 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SponsorsRouteImport } from './routes/sponsors'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BotsIndexRouteImport } from './routes/bots.index'
+import { Route as BotsSlugRouteImport } from './routes/bots.$slug'
 
+const SponsorsRoute = SponsorsRouteImport.update({
+  id: '/sponsors',
+  path: '/sponsors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +60,155 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BotsIndexRoute = BotsIndexRouteImport.update({
+  id: '/bots/',
+  path: '/bots/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BotsSlugRoute = BotsSlugRouteImport.update({
+  id: '/bots/$slug',
+  path: '/bots/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
+  '/sponsors': typeof SponsorsRoute
+  '/bots/$slug': typeof BotsSlugRoute
+  '/bots/': typeof BotsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
+  '/sponsors': typeof SponsorsRoute
+  '/bots/$slug': typeof BotsSlugRoute
+  '/bots': typeof BotsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
+  '/sponsors': typeof SponsorsRoute
+  '/bots/$slug': typeof BotsSlugRoute
+  '/bots/': typeof BotsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/help'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/contact'
+    | '/gallery'
+    | '/help'
+    | '/join'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/help'
-  id: '__root__' | '/' | '/help'
+  to:
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/contact'
+    | '/gallery'
+    | '/help'
+    | '/join'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/achievements'
+    | '/contact'
+    | '/gallery'
+    | '/help'
+    | '/join'
+    | '/sponsors'
+    | '/bots/$slug'
+    | '/bots/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AchievementsRoute: typeof AchievementsRoute
+  ContactRoute: typeof ContactRoute
+  GalleryRoute: typeof GalleryRoute
   HelpRoute: typeof HelpRoute
+  JoinRoute: typeof JoinRoute
+  SponsorsRoute: typeof SponsorsRoute
+  BotsSlugRoute: typeof BotsSlugRoute
+  BotsIndexRoute: typeof BotsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sponsors': {
+      id: '/sponsors'
+      path: '/sponsors'
+      fullPath: '/sponsors'
+      preLoaderRoute: typeof SponsorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/help': {
       id: '/help'
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,12 +218,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bots/': {
+      id: '/bots/'
+      path: '/bots'
+      fullPath: '/bots/'
+      preLoaderRoute: typeof BotsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bots/$slug': {
+      id: '/bots/$slug'
+      path: '/bots/$slug'
+      fullPath: '/bots/$slug'
+      preLoaderRoute: typeof BotsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AchievementsRoute: AchievementsRoute,
+  ContactRoute: ContactRoute,
+  GalleryRoute: GalleryRoute,
   HelpRoute: HelpRoute,
+  JoinRoute: JoinRoute,
+  SponsorsRoute: SponsorsRoute,
+  BotsSlugRoute: BotsSlugRoute,
+  BotsIndexRoute: BotsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

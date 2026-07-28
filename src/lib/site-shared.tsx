@@ -30,16 +30,15 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 
 export const NAV = [
-  { label: "Home", href: "/#home", hash: "home" },
-  { label: "Our Bots", href: "/#bots", hash: "bots" },
-  { label: "Our Team", href: "/#team", hash: "team" },
-  { label: "Achievements", href: "/#achievements", hash: "achievements" },
-  { label: "Gallery", href: "/#gallery", hash: "gallery" },
-  { label: "Sponsors", href: "/#sponsors", hash: "sponsors" },
-  { label: "Enroll", href: "/#enroll", hash: "enroll" },
-  { label: "Find Us", href: "/#find-us", hash: "find-us" },
-  { label: "Contact", href: "/#contact", hash: "contact" },
-  { label: "Ask Us", href: "/help", hash: "" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Bots", href: "/bots" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Sponsors", href: "/sponsors" },
+  { label: "Join Team", href: "/join" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
+  { label: "Ask Us", href: "/help" },
 ] as const;
 
 export const STATS = [
@@ -52,8 +51,13 @@ export const STATS = [
 export const BOTS = [
   {
     name: "HYPERION",
+    slug: "hyperion",
     weight: "15 kg",
     weapon: "Vertical Spinner",
+    drive: "4WD brushless direct drive",
+    materials: "HARDOX weapon, mild-steel frame, HDPE armour panels",
+    performance: "High-impact vertical strikes with strong arena control",
+    history: ["AXIS VNIT — Winner (15 kg)", "MINDBEND SVNIT — Winner (15 kg)", "IIT Bombay — Runner Up (15 kg)"],
     desc: "A powerful 15 kg combat robot designed for RoboWar competitions.",
     specs: [
       "Strong metal chassis for durability and stability during intense battles.",
@@ -66,8 +70,13 @@ export const BOTS = [
   },
   {
     name: "SCARLET",
+    slug: "scarlet",
     weight: "8 kg",
     weapon: "Drum Spinner",
+    drive: "2WD brushless drive with high-traction wheels",
+    materials: "Hardened steel drum, metal chassis, polycarbonate covers",
+    performance: "Fast, low-profile aggression with sustained drum energy",
+    history: ["AXIS VNIT — Winner (8 kg)", "BITS Quark — Winner"],
     desc: "A powerful 8 kg combat robot built for RoboWar competitions.",
     specs: [
       "Strong metal chassis designed to withstand heavy impacts during battles.",
@@ -80,8 +89,13 @@ export const BOTS = [
   },
   {
     name: "POLARIS",
+    slug: "polaris",
     weight: "8 kg",
     weapon: "Vertical Spinner",
+    drive: "Brushless drive, high-traction wheels, rapid acceleration",
+    materials: "Reinforced metal chassis with impact-absorbing armour",
+    performance: "Devastating upward strikes that flip and destabilise rivals",
+    history: ["NIT Karnataka — Winner", "Y ROBO C Malaysia — Runner Up"],
     desc: "A powerful 8 kg combat robot engineered for RoboWar competitions.",
     specs: [
       "Reinforced metal chassis designed to absorb heavy impacts while maintaining structural strength during intense battles.",
@@ -94,8 +108,13 @@ export const BOTS = [
   },
   {
     name: "LUCIAN",
+    slug: "lucian",
     weight: "15 kg",
     weapon: "Drum Spinner",
+    drive: "Brushless drive system tuned for stability and control",
+    materials: "Curved unibody metal shell built to absorb damage",
+    performance: "Heavy drum energy with consistent uptime across matches",
+    history: ["BITS Quark — Winner", "AXIS VNIT — Winner (15 kg)"],
     desc: "A powerful 15 kg RoboWar combat robot built for intense robot battles.",
     specs: [
       "Strong and durable metal chassis designed to handle heavy impacts in the arena.",
@@ -149,6 +168,38 @@ export const STEPS = [
 ];
 
 export const LOGO_URL = logoAsset.url;
+
+export const CONTACT = {
+  email: "Teamblackdiamond034@gmail.com",
+  phone: "+91 95955 07035",
+  whatsapp: "919595507035",
+  instagram: "https://www.instagram.com/teamblack_diamond/",
+  address: "Government Engineering College, Ballarpur Road, Chandrapur, Maharashtra 442404, India",
+  mapEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15000!2d79.319513!3d19.9217856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd2d4719e5cbe07%3A0xb8c55b177f1c18f2!2sGEC!5e0!3m2!1sen!2sin!4v1",
+};
+
+export const VALUES = [
+  { title: "Engineering First", desc: "Every design decision is backed by analysis, testing and iteration." },
+  { title: "Reliability", desc: "A bot that survives the full event beats a bot that peaks once." },
+  { title: "Teamwork", desc: "Mechanical, electronics and drive crews work as one unit." },
+  { title: "Mentorship", desc: "Senior members train juniors so knowledge stays in the team." },
+];
+
+export const TIMELINE = [
+  { year: "2021", title: "Team Founded", desc: "A small group of GEC Chandrapur students started building their first combat robot." },
+  { year: "2022", title: "First National Podium", desc: "Runner Up at IIT Bombay in the 15 kg category." },
+  { year: "2023", title: "Fleet Expansion", desc: "Two new machines join the roster across 8 kg and 15 kg classes." },
+  { year: "2024", title: "Multi-Title Season", desc: "Wins at AXIS VNIT, NIT Karnataka and MINDBEND SVNIT." },
+  { year: "2025", title: "International Debut", desc: "Runner Up at Y ROBO C, Malaysia." },
+];
+
+export const FAQS = [
+  { q: "Who can apply?", a: "Any enrolled student with genuine interest in mechanical design, electronics, fabrication, media or management." },
+  { q: "Do I need prior robotics experience?", a: "No. We train fundamentals — what we look for is commitment and willingness to learn." },
+  { q: "How much time does it take?", a: "Expect a few hours a week, increasing during build season and competition weeks." },
+  { q: "Is there a fee?", a: "No membership fee. Build costs are covered by the team and our sponsors." },
+];
 
 /* ---------- Shared UI ---------- */
 
@@ -227,9 +278,34 @@ export function SectionHeader({ eyebrow, title }: { eyebrow: string; title: Reac
 export function PageShell({ children }: { children: React.ReactNode }) {
   useReveal();
   return (
-    <div className="min-h-screen bg-[#0b0b0b] pt-24 pb-24 text-[#f5f5f5] sm:pt-28">
+    <div className="min-h-screen bg-[#0b0b0b] pt-28 pb-24 text-[#f5f5f5] sm:pt-32">
       {children}
     </div>
+  );
+}
+
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  subtitle?: string;
+}) {
+  return (
+    <header className="mx-auto max-w-7xl px-4 pb-14 sm:px-6">
+      <div className="reveal">
+        <div className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">{eyebrow}</div>
+        <h1 className="mt-4 font-[Orbitron] text-3xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-5xl">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#f5f5f5]/70 sm:text-base">{subtitle}</p>
+        )}
+        <div className="mt-6 h-[2px] w-24 bg-gradient-to-r from-[#d4af37] to-transparent" />
+      </div>
+    </header>
   );
 }
 
