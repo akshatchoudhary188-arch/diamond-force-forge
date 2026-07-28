@@ -278,9 +278,34 @@ export function SectionHeader({ eyebrow, title }: { eyebrow: string; title: Reac
 export function PageShell({ children }: { children: React.ReactNode }) {
   useReveal();
   return (
-    <div className="min-h-screen bg-[#0b0b0b] pt-24 pb-24 text-[#f5f5f5] sm:pt-28">
+    <div className="min-h-screen bg-[#0b0b0b] pt-28 pb-24 text-[#f5f5f5] sm:pt-32">
       {children}
     </div>
+  );
+}
+
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  subtitle?: string;
+}) {
+  return (
+    <header className="mx-auto max-w-7xl px-4 pb-14 sm:px-6">
+      <div className="reveal">
+        <div className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">{eyebrow}</div>
+        <h1 className="mt-4 font-[Orbitron] text-3xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-5xl">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#f5f5f5]/70 sm:text-base">{subtitle}</p>
+        )}
+        <div className="mt-6 h-[2px] w-24 bg-gradient-to-r from-[#d4af37] to-transparent" />
+      </div>
+    </header>
   );
 }
 
