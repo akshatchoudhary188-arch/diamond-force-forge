@@ -30,16 +30,15 @@ import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
 import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 
 export const NAV = [
-  { label: "Home", href: "/#home", hash: "home" },
-  { label: "Our Bots", href: "/#bots", hash: "bots" },
-  { label: "Our Team", href: "/#team", hash: "team" },
-  { label: "Achievements", href: "/#achievements", hash: "achievements" },
-  { label: "Gallery", href: "/#gallery", hash: "gallery" },
-  { label: "Sponsors", href: "/#sponsors", hash: "sponsors" },
-  { label: "Enroll", href: "/#enroll", hash: "enroll" },
-  { label: "Find Us", href: "/#find-us", hash: "find-us" },
-  { label: "Contact", href: "/#contact", hash: "contact" },
-  { label: "Ask Us", href: "/help", hash: "" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Bots", href: "/bots" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Sponsors", href: "/sponsors" },
+  { label: "Join Team", href: "/join" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
+  { label: "Ask Us", href: "/help" },
 ] as const;
 
 export const STATS = [
@@ -52,8 +51,13 @@ export const STATS = [
 export const BOTS = [
   {
     name: "HYPERION",
+    slug: "hyperion",
     weight: "15 kg",
     weapon: "Vertical Spinner",
+    drive: "4WD brushless direct drive",
+    materials: "HARDOX weapon, mild-steel frame, HDPE armour panels",
+    performance: "High-impact vertical strikes with strong arena control",
+    history: ["AXIS VNIT — Winner (15 kg)", "MINDBEND SVNIT — Winner (15 kg)", "IIT Bombay — Runner Up (15 kg)"],
     desc: "A powerful 15 kg combat robot designed for RoboWar competitions.",
     specs: [
       "Strong metal chassis for durability and stability during intense battles.",
@@ -66,8 +70,13 @@ export const BOTS = [
   },
   {
     name: "SCARLET",
+    slug: "scarlet",
     weight: "8 kg",
     weapon: "Drum Spinner",
+    drive: "2WD brushless drive with high-traction wheels",
+    materials: "Hardened steel drum, metal chassis, polycarbonate covers",
+    performance: "Fast, low-profile aggression with sustained drum energy",
+    history: ["AXIS VNIT — Winner (8 kg)", "BITS Quark — Winner"],
     desc: "A powerful 8 kg combat robot built for RoboWar competitions.",
     specs: [
       "Strong metal chassis designed to withstand heavy impacts during battles.",
@@ -80,8 +89,13 @@ export const BOTS = [
   },
   {
     name: "POLARIS",
+    slug: "polaris",
     weight: "8 kg",
     weapon: "Vertical Spinner",
+    drive: "Brushless drive, high-traction wheels, rapid acceleration",
+    materials: "Reinforced metal chassis with impact-absorbing armour",
+    performance: "Devastating upward strikes that flip and destabilise rivals",
+    history: ["NIT Karnataka — Winner", "Y ROBO C Malaysia — Runner Up"],
     desc: "A powerful 8 kg combat robot engineered for RoboWar competitions.",
     specs: [
       "Reinforced metal chassis designed to absorb heavy impacts while maintaining structural strength during intense battles.",
@@ -94,8 +108,13 @@ export const BOTS = [
   },
   {
     name: "LUCIAN",
+    slug: "lucian",
     weight: "15 kg",
     weapon: "Drum Spinner",
+    drive: "Brushless drive system tuned for stability and control",
+    materials: "Curved unibody metal shell built to absorb damage",
+    performance: "Heavy drum energy with consistent uptime across matches",
+    history: ["BITS Quark — Winner", "AXIS VNIT — Winner (15 kg)"],
     desc: "A powerful 15 kg RoboWar combat robot built for intense robot battles.",
     specs: [
       "Strong and durable metal chassis designed to handle heavy impacts in the arena.",
