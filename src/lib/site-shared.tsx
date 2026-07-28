@@ -169,6 +169,38 @@ export const STEPS = [
 
 export const LOGO_URL = logoAsset.url;
 
+export const CONTACT = {
+  email: "Teamblackdiamond034@gmail.com",
+  phone: "+91 95955 07035",
+  whatsapp: "919595507035",
+  instagram: "https://www.instagram.com/teamblack_diamond/",
+  address: "Government Engineering College, Ballarpur Road, Chandrapur, Maharashtra 442404, India",
+  mapEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15000!2d79.319513!3d19.9217856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd2d4719e5cbe07%3A0xb8c55b177f1c18f2!2sGEC!5e0!3m2!1sen!2sin!4v1",
+};
+
+export const VALUES = [
+  { title: "Engineering First", desc: "Every design decision is backed by analysis, testing and iteration." },
+  { title: "Reliability", desc: "A bot that survives the full event beats a bot that peaks once." },
+  { title: "Teamwork", desc: "Mechanical, electronics and drive crews work as one unit." },
+  { title: "Mentorship", desc: "Senior members train juniors so knowledge stays in the team." },
+];
+
+export const TIMELINE = [
+  { year: "2021", title: "Team Founded", desc: "A small group of GEC Chandrapur students started building their first combat robot." },
+  { year: "2022", title: "First National Podium", desc: "Runner Up at IIT Bombay in the 15 kg category." },
+  { year: "2023", title: "Fleet Expansion", desc: "Two new machines join the roster across 8 kg and 15 kg classes." },
+  { year: "2024", title: "Multi-Title Season", desc: "Wins at AXIS VNIT, NIT Karnataka and MINDBEND SVNIT." },
+  { year: "2025", title: "International Debut", desc: "Runner Up at Y ROBO C, Malaysia." },
+];
+
+export const FAQS = [
+  { q: "Who can apply?", a: "Any enrolled student with genuine interest in mechanical design, electronics, fabrication, media or management." },
+  { q: "Do I need prior robotics experience?", a: "No. We train fundamentals — what we look for is commitment and willingness to learn." },
+  { q: "How much time does it take?", a: "Expect a few hours a week, increasing during build season and competition weeks." },
+  { q: "Is there a fee?", a: "No membership fee. Build costs are covered by the team and our sponsors." },
+];
+
 /* ---------- Shared UI ---------- */
 
 export function Logo({ className = "" }: { className?: string }) {
