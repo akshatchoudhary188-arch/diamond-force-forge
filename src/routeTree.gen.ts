@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as HelpRouteImport } from './routes/help'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -22,9 +25,24 @@ const SponsorsRoute = SponsorsRouteImport.update({
   path: '/sponsors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AchievementsRoute = AchievementsRouteImport.update({
@@ -57,7 +75,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
@@ -66,7 +87,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots': typeof BotsIndexRoute
@@ -76,7 +100,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
+  '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/help': typeof HelpRoute
+  '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
@@ -87,7 +114,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/contact'
+    | '/gallery'
     | '/help'
+    | '/join'
     | '/sponsors'
     | '/bots/$slug'
     | '/bots/'
@@ -96,7 +126,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/contact'
+    | '/gallery'
     | '/help'
+    | '/join'
     | '/sponsors'
     | '/bots/$slug'
     | '/bots'
@@ -105,7 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/achievements'
+    | '/contact'
+    | '/gallery'
     | '/help'
+    | '/join'
     | '/sponsors'
     | '/bots/$slug'
     | '/bots/'
@@ -115,7 +151,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
+  ContactRoute: typeof ContactRoute
+  GalleryRoute: typeof GalleryRoute
   HelpRoute: typeof HelpRoute
+  JoinRoute: typeof JoinRoute
   SponsorsRoute: typeof SponsorsRoute
   BotsSlugRoute: typeof BotsSlugRoute
   BotsIndexRoute: typeof BotsIndexRoute
@@ -130,11 +169,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SponsorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/help': {
       id: '/help'
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/achievements': {
@@ -179,7 +239,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
+  ContactRoute: ContactRoute,
+  GalleryRoute: GalleryRoute,
   HelpRoute: HelpRoute,
+  JoinRoute: JoinRoute,
   SponsorsRoute: SponsorsRoute,
   BotsSlugRoute: BotsSlugRoute,
   BotsIndexRoute: BotsIndexRoute,
@@ -187,3 +250,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
