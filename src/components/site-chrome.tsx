@@ -159,7 +159,7 @@ export function ScrollTop() {
 export function UpcomingEvent() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
+    <div className="fixed bottom-16 left-6 z-50 flex flex-col items-start gap-3">
       {open && (
         <div className="w-64 rounded-sm border border-[#d4af37]/30 bg-[#0b0b0b] p-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
