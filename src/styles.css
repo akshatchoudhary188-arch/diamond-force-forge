@@ -225,3 +225,21 @@
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* Infinite sponsor ticker (news channel lower-third) */
+@keyframes sponsor-ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.sponsor-ticker-track {
+  animation: sponsor-ticker-scroll 28s linear infinite;
+  will-change: transform;
+}
+.sponsor-ticker:hover .sponsor-ticker-track {
+  animation-play-state: paused;
+}
+
+/* Utility helper for consistent gold text shadows */
+.text-glow {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}

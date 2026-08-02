@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
 import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
+import { SponsorTicker } from "@/components/sponsor-ticker";
 
 function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -148,7 +149,7 @@ export function ScrollTop() {
     <button
       aria-label="Scroll to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black"
+      className="fixed bottom-16 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black"
     >
       <ChevronUp className="h-5 w-5" />
     </button>
@@ -158,7 +159,7 @@ export function ScrollTop() {
 export function UpcomingEvent() {
   const [open, setOpen] = useState(false);
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-3">
+    <div className="fixed bottom-16 left-6 z-50 flex flex-col items-start gap-3">
       {open && (
         <div className="w-64 rounded-sm border border-[#d4af37]/30 bg-[#0b0b0b] p-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
@@ -267,12 +268,13 @@ export function SiteFooter() {
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0b0b0b] text-[#f5f5f5]">
+    <div className="min-h-screen bg-[#0b0b0b] pb-16 text-[#f5f5f5]">
       <TopBar />
       <main>{children}</main>
       <SiteFooter />
       <ScrollTop />
       <UpcomingEvent />
+      <SponsorTicker />
     </div>
   );
 }
