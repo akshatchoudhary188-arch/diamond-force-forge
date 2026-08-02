@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
-import { ACHIEVEMENTS, BOTS, LOGO_URL, SPONSORS, STATS, StatItem, useReveal } from "@/lib/site-shared";
+import heroVideo from "@/assets/hero-video.mp4.asset.json";
+import { ACHIEVEMENTS, BOTS, SPONSORS, STATS, StatItem, useReveal } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,31 +25,16 @@ function HomePage() {
 
   return (
     <>
-      <section className="relative flex min-h-[88vh] w-full items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroAsset.url} alt="Black Diamond Robotics combat robot in the arena" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-[#0b0b0b]" />
-        </div>
-        <div className="relative mx-auto w-full max-w-7xl px-4 pt-28 pb-20 sm:px-6">
-          <div className="max-w-2xl">
-            <img src={LOGO_URL} alt="Team Black Diamond Robotics logo" className="h-16 w-auto rounded-sm gold-border" />
-            <h1 className="mt-8 font-[Orbitron] text-3xl font-black uppercase leading-tight tracking-widest text-[#f5f5f5] sm:text-5xl">
-              Team Black <span className="gold-gradient">Diamond</span> Robotics
-            </h1>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-[#f5f5f5]/75 sm:text-base">
-              A student-led combat robotics team engineering machines that refuse to lose — from
-              CAD and fabrication to the arena floor.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/bots" className="inline-flex items-center gap-2 rounded-sm bg-[#d4af37] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]">
-                Explore Our Bots <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link to="/join" className="inline-flex items-center gap-2 rounded-sm border border-[#d4af37]/60 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-black">
-                Join the Team
-              </Link>
-            </div>
-          </div>
-        </div>
+      <section className="relative min-h-[88vh] w-full overflow-hidden bg-black">
+        <video
+          src={heroVideo.url}
+          poster={heroAsset.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       </section>
 
       <section className="border-y border-[#d4af37]/15 bg-[#0e0e0e] py-14">
