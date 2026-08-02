@@ -21,7 +21,6 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   useReveal();
-  const featured = BOTS.slice(0, 3);
 
   return (
     <>
