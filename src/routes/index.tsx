@@ -82,30 +82,6 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-[#d4af37]/10 py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="reveal flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">Our Machines</div>
-              <h2 className="mt-3 font-[Orbitron] text-2xl font-black uppercase tracking-widest sm:text-3xl">Featured Bots</h2>
-            </div>
-            <Link to="/bots" className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#d4af37] hover:underline">View all bots</Link>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((b) => (
-              <Link key={b.slug} to="/bots/$slug" params={{ slug: b.slug }} className="reveal group block overflow-hidden rounded-sm border border-[#d4af37]/20 bg-[#0e0e0e] transition-colors hover:border-[#d4af37]/60">
-                <img src={b.image} alt={b.name} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                <div className="p-5">
-                  <h3 className="font-[Orbitron] text-base font-bold uppercase tracking-widest">{b.name}</h3>
-                  <div className="mt-2 text-xs uppercase tracking-widest text-[#f5f5f5]/55">
-                    {b.weight} · {b.weapon}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="border-t border-[#d4af37]/10 bg-[#0e0e0e] py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
