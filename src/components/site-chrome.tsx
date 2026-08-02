@@ -267,12 +267,13 @@ export function SiteFooter() {
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0b0b0b] text-[#f5f5f5]">
+    <div className="min-h-screen bg-[#0b0b0b] pb-16 text-[#f5f5f5]">
       <TopBar />
       <main>{children}</main>
       <SiteFooter />
       <ScrollTop />
       <UpcomingEvent />
+      <SponsorTicker />
     </div>
   );
 }
