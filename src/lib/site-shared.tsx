@@ -128,12 +128,31 @@ export const BOTS = [
 ];
 
 export const ACHIEVEMENTS = [
-  { icon: "🥈", title: "Runner Up — Y ROBO C, Malaysia", year: "" },
-  { icon: "🏆", title: "Winner — BITS Quark", year: "" },
-  { icon: "🏆", title: "Winner — AXIS VNIT (15 KG & 8 KG)", year: "" },
-  { icon: "🏆", title: "Winner — NIT Karnataka", year: "" },
-  { icon: "🏆", title: "Winner — MINDBEND SVNIT (15 KG)", year: "" },
-  { icon: "🥈", title: "Runner Up — IIT Bombay (15 KG)", year: "2022" },
+  { icon: "🏆", title: "First — REC Chennai (Titanium), 15 KG", year: "2026" },
+  { icon: "🏆", title: "First — Symbiosis Pune (Kurukshetra), 15 KG & 8 KG", year: "2026" },
+  { icon: "🥈", title: "Second — IIT Madras (Shastra), 15 KG", year: "2025" },
+  { icon: "🏆", title: "First — Geetanjali, Telangana, 15 KG & 8 KG", year: "2025" },
+  { icon: "🏆", title: "First — IIIT Nagpur (TantraFiesta), 15 KG & 8 KG", year: "2025" },
+  { icon: "🏆", title: "First — SRM Chennai (Robofest), 8 KG", year: "2025" },
+  { icon: "🥈", title: "Second — VIT Vellore (Robotica), 15 KG", year: "2025" },
+  { icon: "🥈", title: "Second — SGGS Nanded (Rmageddon), 15 KG & 8 KG", year: "2025" },
+  { icon: "🥈", title: "Second — IIT Bombay (Techfest), 15 KG", year: "2024" },
+  { icon: "🥈", title: "Second — COEP Pune (MindSpark), 15 KG", year: "2024" },
+  { icon: "🏆", title: "First — VNIT Nagpur (Axis), 15 KG & 8 KG · Second, 15 KG", year: "2024" },
+  { icon: "🏆", title: "First — BIT Goa (Quark), 8 KG", year: "2024" },
+  { icon: "🥉", title: "Third — IIT Gandhinagar, 15 KG", year: "2023" },
+  { icon: "🥈", title: "Second — IIT Bombay (Techfest), 30 KG", year: "2023" },
+  { icon: "🥈", title: "Second — TechnoXian Delhi, 60 KG", year: "2023" },
+  { icon: "🥈", title: "Second — NIT Surat (Engineering), 15 KG", year: "2023" },
+  { icon: "🥈", title: "Second — VNIT Nagpur (Axis), 15 KG", year: "2023" },
+  { icon: "🏆", title: "First — SVNIT Surat (Mindspark), 15 KG", year: "2023" },
+  { icon: "🏆", title: "First — BIT Goa (Quark), 15 KG", year: "2023" },
+  { icon: "🏆", title: "First — COEP Pune (Mindspark), 15 KG · Second, 15 KG", year: "2023" },
+  { icon: "🥈", title: "Second — IIT Bombay (Techfest), 15 KG", year: "2022" },
+  { icon: "🏆", title: "First — SNIST Hyderabad (Roboveda), 15 KG", year: "2022" },
+  { icon: "🏆", title: "First — BIT Hyderabad (Atmos), 15 KG · Second, 8 KG", year: "2022" },
+  { icon: "🥈", title: "Second — NIT Calicut (Tatva), 15 KG", year: "2022" },
+  { icon: "🏆", title: "First — Parul University (Projections), 15 KG", year: "2022" },
 ];
 
 export const SPONSORS = [
