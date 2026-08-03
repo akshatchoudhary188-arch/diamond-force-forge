@@ -128,6 +128,11 @@ export const BOTS = [
 ];
 
 export const ACHIEVEMENTS = [
+  { icon: "🥈", title: "Runner Up — Y ROBO C, Malaysia", year: "" },
+  { icon: "🏆", title: "Winner — BITS Quark", year: "" },
+  { icon: "🏆", title: "Winner — AXIS VNIT (15 KG & 8 KG)", year: "" },
+  { icon: "🏆", title: "Winner — NIT Karnataka", year: "" },
+  { icon: "🏆", title: "Winner — MINDBEND SVNIT (15 KG)", year: "" },
   { icon: "🏆", title: "First — REC Chennai (Titanium), 15 KG", year: "2026" },
   { icon: "🏆", title: "First — Symbiosis Pune (Kurukshetra), 15 KG & 8 KG", year: "2026" },
   { icon: "🥈", title: "Second — IIT Madras (Shastra), 15 KG", year: "2025" },
