@@ -8,7 +8,7 @@ import {
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import hyperionAsset from "@/assets/hyperion.jpeg.asset.json";
 import scarletAsset from "@/assets/scarlet.png.asset.json";
-import polarisAsset from "@/assets/polaris.jpeg.asset.json";
+import polarisAsset from "@/assets/polaris.jpg.asset.json";
 import lucianAsset from "@/assets/lucian.jpeg.asset.json";
 import founderAsset from "@/assets/founder.jpeg.asset.json";
 import auroAsset from "@/assets/auro.jpeg.asset.json";
