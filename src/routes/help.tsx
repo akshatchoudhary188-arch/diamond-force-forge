@@ -7,12 +7,15 @@ import {
   HelpCircle,
   Bot,
   Wrench,
+  Clock,
+  CheckCircle2,
 } from "lucide-react";
+import { CONTACT, PageHero, PageShell } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/help")({
   head: () => ({
     meta: [
-      { title: "Get Help — Black Diamond Robotics" },
+      { title: "Ask Us — Team Black Diamond Robotics" },
       {
         name: "description",
         content:
@@ -20,7 +23,7 @@ export const Route = createFileRoute("/help")({
       },
       {
         property: "og:title",
-        content: "Get Help — Black Diamond Robotics",
+        content: "Ask Us — Team Black Diamond Robotics",
       },
       {
         property: "og:description",
@@ -30,6 +33,7 @@ export const Route = createFileRoute("/help")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
+    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/help" }],
   }),
   component: HelpPage,
 });
@@ -40,6 +44,11 @@ const helpSchema = z.object({
     .trim()
     .min(2, { message: "Name must be at least 2 characters" })
     .max(100, { message: "Name must be less than 100 characters" }),
+  email: z
+    .string()
+    .trim()
+    .max(100, { message: "Email must be less than 100 characters" })
+    .email({ message: "Please enter a valid email address" }),
   details: z
     .string()
     .trim()
@@ -47,8 +56,27 @@ const helpSchema = z.object({
     .max(2000, { message: "Details must be less than 2000 characters" }),
 });
 
+const TOPICS = [
+  {
+    icon: Bot,
+    title: "Robot Design",
+    desc: "Questions about weapon selection, drive systems, chassis layout, or combat strategy.",
+  },
+  {
+    icon: Wrench,
+    title: "Components",
+    desc: "Motors, ESCs, batteries, transmitters, receivers, or where to source parts.",
+  },
+  {
+    icon: MessageCircle,
+    title: "General Enquiry",
+    desc: "Events, workshops, team visits, media requests, sponsorships, or collaboration.",
+  },
+];
+
 function HelpPage() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [details, setDetails] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -57,7 +85,7 @@ function HelpPage() {
     e.preventDefault();
     setErrors({});
 
-    const result = helpSchema.safeParse({ name, details });
+    const result = helpSchema.safeParse({ name, email, details });
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
       result.error.issues.forEach((issue) => {
@@ -68,130 +96,174 @@ function HelpPage() {
       return;
     }
 
-    const text = `Hi Team Black Diamond,\n\nName: ${result.data.name}\nQuery: ${result.data.details}`;
-    const url = `https://wa.me/919595507035?text=${encodeURIComponent(text)}`;
+    const text = `Hi Team Black Diamond,\n\nName: ${result.data.name}\nEmail: ${result.data.email}\nQuery: ${result.data.details}`;
+    const url = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   };
 
+  const input =
+    "w-full rounded-sm border border-[#d4af37]/25 bg-black px-4 py-3 text-sm text-[#f5f5f5] outline-none transition-colors focus:border-[#d4af37]";
+
   return (
-    <div className="pt-24 sm:pt-28">
-      <div className="mx-auto max-w-3xl px-6 py-12 md:py-20">
-        {/* Title */}
-        <div className="mb-12 text-center">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/20 bg-[#d4af37]/5 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
-            <HelpCircle className="h-3.5 w-3.5" />
-            Ask the Team
-          </div>
-          <h1 className="font-[Orbitron] text-3xl font-bold leading-tight md:text-4xl gold-gradient">
-            How Can We Help You?
-          </h1>
-          <p className="mt-3 text-sm text-[#f5f5f5]/70 md:text-base">
-            Have a question about combat robotics, need a component, or want to
-            collaborate? Drop your query and we will get back on WhatsApp.
-          </p>
-        </div>
+    <PageShell>
+      <PageHero
+        eyebrow="Support"
+        title={<>Ask <span className="gold-gradient">Us</span></>}
+        subtitle="Have a question about combat robotics, need a component, or want to collaborate? Send us a message and we will respond as soon as possible."
+      />
 
-        {/* Help topics */}
-        <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          <div className="glass-card rounded-lg p-4 text-center">
-            <Bot className="mx-auto mb-2 h-6 w-6 text-[#d4af37]" />
-            <div className="text-sm font-semibold text-[#f5f5f5]">Robot Design</div>
-            <div className="text-xs text-[#f5f5f5]/60">Weapon, drive, chassis</div>
-          </div>
-          <div className="glass-card rounded-lg p-4 text-center">
-            <Wrench className="mx-auto mb-2 h-6 w-6 text-[#d4af37]" />
-            <div className="text-sm font-semibold text-[#f5f5f5]">Components</div>
-            <div className="text-xs text-[#f5f5f5]/60">Motors, ESCs, batteries</div>
-          </div>
-          <div className="glass-card rounded-lg p-4 text-center">
-            <MessageCircle className="mx-auto mb-2 h-6 w-6 text-[#d4af37]" />
-            <div className="text-sm font-semibold text-[#f5f5f5]">General Query</div>
-            <div className="text-xs text-[#f5f5f5]/60">Events, workshops, team</div>
-          </div>
-        </div>
-
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="glass-card gold-glow rounded-xl border border-[#d4af37]/10 p-8 md:p-10"
-          noValidate
-        >
-          <div className="mb-6">
-            <label
-              htmlFor="name"
-              className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#d4af37]"
-            >
-              Your Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
-              maxLength={100}
-              className="w-full rounded-lg border border-[#d4af37]/20 bg-[#0a0a0a]/60 px-4 py-3 text-sm text-[#f5f5f5] placeholder:text-[#f5f5f5]/30 focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]/50"
-            />
-            {errors.name && (
-              <p className="mt-2 text-xs text-red-400">{errors.name}</p>
-            )}
-          </div>
-
-          <div className="mb-6">
-            <label
-              htmlFor="details"
-              className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[#d4af37]"
-            >
-              Details / Query
-            </label>
-            <textarea
-              id="details"
-              name="details"
-              value={details}
-              onChange={(e) => setDetails(e.target.value)}
-              placeholder="Describe your question, the robotic component you need, or anything you want to ask..."
-              maxLength={2000}
-              rows={6}
-              className="w-full resize-none rounded-lg border border-[#d4af37]/20 bg-[#0a0a0a]/60 px-4 py-3 text-sm text-[#f5f5f5] placeholder:text-[#f5f5f5]/30 focus:border-[#d4af37] focus:outline-none focus:ring-1 focus:ring-[#d4af37]/50"
-            />
-            {errors.details && (
-              <p className="mt-2 text-xs text-red-400">{errors.details}</p>
-            )}
-            <div className="mt-1 text-right text-[10px] text-[#f5f5f5]/40">
-              {details.length}/2000
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-8 lg:grid-cols-5">
+          {/* Topics */}
+          <section className="reveal space-y-4 lg:col-span-2">
+            <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">
+              What We Can Help With
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {TOPICS.map((topic) => {
+                const Icon = topic.icon;
+                return (
+                  <div
+                    key={topic.title}
+                    className="rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e] p-5 transition-colors hover:border-[#d4af37]/35"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-[#0a0a0a]">
+                        <Icon className="h-5 w-5 text-[#d4af37]" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <h3 className="font-[Orbitron] text-sm font-bold uppercase tracking-wider text-[#f5f5f5]">
+                          {topic.title}
+                        </h3>
+                        <p className="mt-1 text-xs leading-relaxed text-[#f5f5f5]/60">
+                          {topic.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          </div>
 
-          <button
-            type="submit"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#b8912d] via-[#f0cf5a] to-[#b8912d] px-6 py-3.5 text-sm font-bold uppercase tracking-widest text-[#0a0a0a] shadow-[0_0_24px_-4px_rgba(212,175,55,0.5)] transition-transform hover:scale-[1.02]"
-          >
-            <Send className="h-4 w-4" />
-            Send on WhatsApp
-          </button>
+            <div className="rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e] p-5">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-[#0a0a0a]">
+                  <Clock className="h-5 w-5 text-[#d4af37]" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h3 className="font-[Orbitron] text-sm font-bold uppercase tracking-wider text-[#f5f5f5]">
+                    Response Time
+                  </h3>
+                  <p className="mt-1 text-xs leading-relaxed text-[#f5f5f5]/60">
+                    We usually reply within 24–48 hours. For urgent queries during events, we respond faster on WhatsApp.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-          {submitted && (
-            <p className="mt-4 text-center text-xs text-[#d4af37]">
-              WhatsApp chat opened. If it did not open, check your pop-up blocker.
-            </p>
-          )}
-        </form>
+          {/* Form */}
+          <section className="reveal lg:col-span-3">
+            <div className="rounded-sm border border-[#d4af37]/20 bg-[#0e0e0e] p-6 sm:p-8">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-[#0a0a0a]">
+                  <HelpCircle className="h-5 w-5 text-[#d4af37]" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">
+                    Send a Message
+                  </h2>
+                  <p className="text-xs text-[#f5f5f5]/50">
+                    All fields are required. Your message will be sent via WhatsApp.
+                  </p>
+                </div>
+              </div>
 
-        {/* Direct contact — number is embedded in the WhatsApp send link only */}
-        <div className="mt-10 text-center text-xs text-[#f5f5f5]/50">
-          Prefer direct contact?{" "}
-          <a
-            href="https://wa.me/919595507035"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#d4af37] hover:text-[#f0cf5a]"
-          >
-            Open WhatsApp
-          </a>
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                <div>
+                  <label htmlFor="name" className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your full name"
+                    maxLength={100}
+                    className={input}
+                  />
+                  {errors.name && (
+                    <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    maxLength={100}
+                    className={input}
+                  />
+                  {errors.email && (
+                    <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="details" className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4af37]">
+                    Query / Details
+                  </label>
+                  <textarea
+                    id="details"
+                    name="details"
+                    value={details}
+                    onChange={(e) => setDetails(e.target.value)}
+                    placeholder="Describe your question, the robotic component you need, or anything you want to ask..."
+                    maxLength={2000}
+                    rows={6}
+                    className={`${input} resize-none`}
+                  />
+                  <div className="mt-1 flex items-center justify-between">
+                    {errors.details ? (
+                      <p className="text-xs text-red-400">{errors.details}</p>
+                    ) : (
+                      <span />
+                    )}
+                    <span className="text-[10px] text-[#f5f5f5]/40">
+                      {details.length}/2000
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-[#d4af37] px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]"
+                >
+                  <Send className="h-4 w-4" />
+                  Send on WhatsApp
+                </button>
+
+                {submitted && (
+                  <div className="flex items-center justify-center gap-2 rounded-sm border border-[#d4af37]/20 bg-[#d4af37]/10 p-3 text-xs text-[#d4af37]">
+                    <CheckCircle2 className="h-4 w-4" />
+                    WhatsApp opened. If the chat did not appear, check your pop-up blocker.
+                  </div>
+                )}
+              </form>
+            </div>
+          </section>
         </div>
       </div>
-    </div>
+    </PageShell>
   );
 }
