@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Filter } from "lucide-react";
+import { useState } from "react";
 import { BOTS, PageHero, PageShell } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/bots/")({
@@ -17,16 +18,51 @@ export const Route = createFileRoute("/bots/")({
 });
 
 function BotsPage() {
+  const [activeClass, setActiveClass] = useState<"all" | "8" | "15">("all");
+
+  const filters = [
+    { value: "all" as const, label: "All" },
+    { value: "8" as const, label: "8 kg" },
+    { value: "15" as const, label: "15 kg" },
+  ];
+
+  const filteredBots = activeClass === "all"
+    ? BOTS
+    : BOTS.filter((b) => b.weightClass === Number(activeClass));
+
   return (
     <PageShell>
       <PageHero
         eyebrow="Our Arsenal"
         title={<>Our <span className="gold-gradient">Bots</span></>}
-        subtitle="Four competition-ready machines across the 8 kg and 15 kg classes. Select a robot for full specifications and competition history."
+        subtitle="Four competition-ready machines across the 8 kg and 15 kg classes. Filter by weight class and select a robot for full specifications and competition history."
       />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="reveal mb-10 flex flex-wrap items-center justify-center gap-3">
+          <span className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[#f5f5f5]/50">
+            <Filter className="h-3.5 w-3.5" /> Filter by class
+          </span>
+          {filters.map((f) => {
+            const isActive = activeClass === f.value;
+            return (
+              <button
+                key={f.value}
+                onClick={() => setActiveClass(f.value)}
+                className={[
+                  "rounded-full border px-5 py-2 text-[11px] font-bold uppercase tracking-[0.25em] transition-all",
+                  isActive
+                    ? "border-transparent bg-[#d4af37] text-[#0b0b0b]"
+                    : "border-[#d4af37]/40 text-[#d4af37] hover:border-[#d4af37] hover:bg-[#d4af37]/10",
+                ].join(" ")}
+              >
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          {BOTS.map((b) => (
+          {filteredBots.map((b) => (
             <Link
               key={b.slug}
               to="/bots/$slug"
@@ -48,6 +84,12 @@ function BotsPage() {
             </Link>
           ))}
         </div>
+
+        {filteredBots.length === 0 && (
+          <div className="reveal py-16 text-center text-sm text-[#f5f5f5]/60">
+            No robots found in this weight class.
+          </div>
+        )}
 
         <div className="reveal mt-10 rounded-sm border border-dashed border-[#d4af37]/25 bg-[#0e0e0e] p-8 text-center">
           <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Future Bots</h2>
