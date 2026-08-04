@@ -36,25 +36,35 @@ function ContactPage() {
   const INBOX = "akshatchoudhary188@gmail.com";
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [waUrl, setWaUrl] = useState<string | null>(null);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const body = `Hi Team Black Diamond!\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`;
-    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
-
-    // Internal inbox copy (address intentionally not displayed anywhere in the UI)
-    const mail = document.createElement("a");
-    mail.href = `mailto:${INBOX}?subject=${encodeURIComponent(
+    const wa = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${INBOX}?subject=${encodeURIComponent(
       `Website enquiry from ${form.name || "visitor"}`,
     )}&body=${encodeURIComponent(body)}`;
-    mail.style.display = "none";
-    document.body.appendChild(mail);
-    mail.click();
-    document.body.removeChild(mail);
+
+    // WhatsApp opens first, in the same user gesture, so it is not treated as a pop-up.
+    const win = window.open(wa, "_blank", "noopener,noreferrer");
+    setWaUrl(win ? null : wa);
+
+    // Email copy is deferred so the two navigations do not cancel each other.
+    window.setTimeout(() => {
+      const mail = document.createElement("a");
+      mail.href = mailto;
+      mail.target = "_blank";
+      mail.rel = "noopener noreferrer";
+      mail.style.display = "none";
+      document.body.appendChild(mail);
+      mail.click();
+      document.body.removeChild(mail);
+    }, 600);
 
     setSent(true);
     setForm({ name: "", email: "", phone: "", message: "" });
-    setTimeout(() => setSent(false), 4000);
+    window.setTimeout(() => setSent(false), 8000);
   };
 
   const input = "w-full rounded-sm border border-[#d4af37]/25 bg-black px-4 py-3 text-sm text-[#f5f5f5] outline-none transition-colors focus:border-[#d4af37]";
@@ -78,7 +88,19 @@ function ContactPage() {
               <button type="submit" className="rounded-sm bg-[#d4af37] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]">
                 Send Message
               </button>
-              {sent && <span className="ml-4 text-xs uppercase tracking-widest text-[#d4af37]">Sending via WhatsApp & email…</span>}
+              {sent && (
+                <div className="mt-3 space-y-2 text-xs uppercase tracking-widest text-[#d4af37]">
+                  <p>Sending via WhatsApp &amp; email…</p>
+                  {waUrl && (
+                    <p className="normal-case tracking-normal text-[#f5f5f5]/70">
+                      Pop-up blocked?{" "}
+                      <a href={waUrl} target="_blank" rel="noreferrer" className="underline hover:text-[#d4af37]">
+                        Open WhatsApp manually
+                      </a>
+                    </p>
+                  )}
+                </div>
+              )}
             </form>
           </section>
 
