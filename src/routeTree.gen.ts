@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as HelpRouteImport } from './routes/help'
@@ -20,6 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BotsIndexRouteImport } from './routes/bots.index'
 import { Route as BotsSlugRouteImport } from './routes/bots.$slug'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/help': typeof HelpRoute
   '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
+  '/team': typeof TeamRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/help': typeof HelpRoute
   '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
+  '/team': typeof TeamRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots': typeof BotsIndexRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/help': typeof HelpRoute
   '/join': typeof JoinRoute
   '/sponsors': typeof SponsorsRoute
+  '/team': typeof TeamRoute
   '/bots/$slug': typeof BotsSlugRoute
   '/bots/': typeof BotsIndexRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/join'
     | '/sponsors'
+    | '/team'
     | '/bots/$slug'
     | '/bots/'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/join'
     | '/sponsors'
+    | '/team'
     | '/bots/$slug'
     | '/bots'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/join'
     | '/sponsors'
+    | '/team'
     | '/bots/$slug'
     | '/bots/'
   fileRoutesById: FileRoutesById
@@ -156,12 +168,20 @@ export interface RootRouteChildren {
   HelpRoute: typeof HelpRoute
   JoinRoute: typeof JoinRoute
   SponsorsRoute: typeof SponsorsRoute
+  TeamRoute: typeof TeamRoute
   BotsSlugRoute: typeof BotsSlugRoute
   BotsIndexRoute: typeof BotsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sponsors': {
       id: '/sponsors'
       path: '/sponsors'
@@ -244,9 +264,20 @@ const rootRouteChildren: RootRouteChildren = {
   HelpRoute: HelpRoute,
   JoinRoute: JoinRoute,
   SponsorsRoute: SponsorsRoute,
+  TeamRoute: TeamRoute,
   BotsSlugRoute: BotsSlugRoute,
   BotsIndexRoute: BotsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

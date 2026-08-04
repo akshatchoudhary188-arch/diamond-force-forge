@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Users } from "lucide-react";
 import galleryTeamBotsAsset from "@/assets/gallery-team-bots.png.asset.json";
 import galleryTeamArenaAsset from "@/assets/gallery-team-arena.jpg.asset.json";
-import { PageHero, PageShell, TEAM, TIMELINE, VALUES } from "@/lib/site-shared";
+import { PageHero, PageShell, TIMELINE, VALUES } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
