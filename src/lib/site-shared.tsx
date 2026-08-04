@@ -54,6 +54,7 @@ export const BOTS = [
     name: "HYPERION",
     slug: "hyperion",
     weight: "15 kg",
+    weightClass: 15,
     weapon: "Vertical Spinner",
     drive: "4WD brushless direct drive",
     materials: "HARDOX weapon, mild-steel frame, HDPE armour panels",
