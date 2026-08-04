@@ -32,6 +32,7 @@ import virtualSimutechAsset from "@/assets/virtual-simutech.jpeg.asset.json";
 export const NAV = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
+  { label: "Our Team", href: "/team" },
   { label: "Our Bots", href: "/bots" },
   { label: "Achievements", href: "/achievements" },
   { label: "Sponsors", href: "/sponsors" },
