@@ -92,24 +92,6 @@ function AboutPage() {
           </ol>
         </section>
 
-        <section>
-          <h2 className="reveal font-[Orbitron] text-xl font-black uppercase tracking-widest text-[#d4af37]">Meet the Team</h2>
-          <div className="mt-8 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-            {TEAM.map((m) => (
-              <div key={m.name} className="reveal group rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e] p-5 text-center transition-colors hover:border-[#d4af37]/50">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-[#d4af37]/40 bg-black">
-                  {m.image ? (
-                    <img src={m.image} alt={m.name} loading="lazy" className="h-full w-full object-cover" />
-                  ) : (
-                    <Users className="h-8 w-8 text-[#d4af37]/70" strokeWidth={1} />
-                  )}
-                </div>
-                <h3 className="mt-4 font-[Orbitron] text-xs font-bold uppercase tracking-widest">{m.name}</h3>
-                {m.role && <div className="mt-1 text-[10px] uppercase tracking-[0.3em] text-[#d4af37]">{m.role}</div>}
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </PageShell>
   );
