@@ -33,15 +33,25 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const INBOX = "akshatchoudhary188@gmail.com";
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    const text = encodeURIComponent(
-      `Hi Team Black Diamond!\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`,
-    );
-    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${text}`, "_blank", "noopener,noreferrer");
+    const body = `Hi Team Black Diamond!\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMessage:\n${form.message}`;
+    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`, "_blank", "noopener,noreferrer");
+
+    // Internal inbox copy (address intentionally not displayed anywhere in the UI)
+    const mail = document.createElement("a");
+    mail.href = `mailto:${INBOX}?subject=${encodeURIComponent(
+      `Website enquiry from ${form.name || "visitor"}`,
+    )}&body=${encodeURIComponent(body)}`;
+    mail.style.display = "none";
+    document.body.appendChild(mail);
+    mail.click();
+    document.body.removeChild(mail);
+
     setSent(true);
     setForm({ name: "", email: "", phone: "", message: "" });
     setTimeout(() => setSent(false), 4000);
