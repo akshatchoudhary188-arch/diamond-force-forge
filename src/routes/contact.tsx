@@ -78,7 +78,7 @@ function ContactPage() {
               <button type="submit" className="rounded-sm bg-[#d4af37] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]">
                 Send Message
               </button>
-              {sent && <span className="ml-4 text-xs uppercase tracking-widest text-[#d4af37]">Opening WhatsApp…</span>}
+              {sent && <span className="ml-4 text-xs uppercase tracking-widest text-[#d4af37]">Sending via WhatsApp & email…</span>}
             </form>
           </section>
 
