@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, PageShell, CONTACT } from "@/lib/site-shared";
+import print1 from "@/assets/print-3d1.jpeg.asset.json";
+import print2 from "@/assets/print-3d4.jpeg.asset.json";
+import print3 from "@/assets/print-3d.jpeg.asset.json";
+import print4 from "@/assets/print-3d3.jpeg.asset.json";
+
+const GALLERY = [
+  { src: print1.url, alt: "Red PLA Ganesha idol printed on a Bambu Lab printer bed" },
+  { src: print2.url, alt: "Ganesha idol and lotus bowl printed in red filament" },
+  { src: print3.url, alt: "Articulated dinosaur and duck keychains fresh off the print bed" },
+  { src: print4.url, alt: "Multi-colour penguin keychain printed on a textured PEI plate" },
+];
 
 const SERVICES = [
   { title: "FDM Printing", desc: "PLA, PLA+, PETG, ABS and TPU parts printed at 0.1–0.3 mm layer heights on calibrated machines." },
@@ -67,7 +78,29 @@ function PrintingPage() {
         subtitle="Our in-house 3D printing venture — precision FDM parts, CAD design and rapid prototyping, built by the same crew that fabricates our combat robots."
       />
 
+      <div className="mx-auto max-w-6xl px-4 pb-4 sm:px-6">
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block rounded-sm bg-[#d4af37] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]"
+        >
+          Enquire on WhatsApp
+        </a>
+      </div>
+
       <div className="mx-auto max-w-6xl space-y-16 px-4 pb-4 sm:px-6">
+        <section>
+          <h2 className="reveal font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Our Prints</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {GALLERY.map((g) => (
+              <div key={g.src} className="reveal overflow-hidden rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e]">
+                <img src={g.src} alt={g.alt} loading="lazy" className="aspect-[3/4] w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section>
           <h2 className="reveal font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">What We Print</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
