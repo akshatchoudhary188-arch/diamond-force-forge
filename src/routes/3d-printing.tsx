@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, PageShell, CONTACT } from "@/lib/site-shared";
+import print1 from "@/assets/print-3d1.jpeg.asset.json";
+import print2 from "@/assets/print-3d4.jpeg.asset.json";
+import print3 from "@/assets/print-3d.jpeg.asset.json";
+import print4 from "@/assets/print-3d3.jpeg.asset.json";
+
+const GALLERY = [
+  { src: print1.url, alt: "Red PLA Ganesha idol printed on a Bambu Lab printer bed" },
+  { src: print2.url, alt: "Ganesha idol and lotus bowl printed in red filament" },
+  { src: print3.url, alt: "Articulated dinosaur and duck keychains fresh off the print bed" },
+  { src: print4.url, alt: "Multi-colour penguin keychain printed on a textured PEI plate" },
+];
 
 const SERVICES = [
   { title: "FDM Printing", desc: "PLA, PLA+, PETG, ABS and TPU parts printed at 0.1–0.3 mm layer heights on calibrated machines." },
