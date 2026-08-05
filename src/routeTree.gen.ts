@@ -17,6 +17,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as R3dPrintingRouteImport } from './routes/3d-printing'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BotsIndexRouteImport } from './routes/bots.index'
 import { Route as BotsSlugRouteImport } from './routes/bots.$slug'
@@ -61,6 +62,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R3dPrintingRoute = R3dPrintingRouteImport.update({
+  id: '/3d-printing',
+  path: '/3d-printing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -79,6 +85,7 @@ const BotsSlugRoute = BotsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/3d-printing': typeof R3dPrintingRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
   '/contact': typeof ContactRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/3d-printing': typeof R3dPrintingRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
   '/contact': typeof ContactRoute
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/3d-printing': typeof R3dPrintingRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
   '/contact': typeof ContactRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/3d-printing'
     | '/about'
     | '/achievements'
     | '/contact'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/3d-printing'
     | '/about'
     | '/achievements'
     | '/contact'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/3d-printing'
     | '/about'
     | '/achievements'
     | '/contact'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R3dPrintingRoute: typeof R3dPrintingRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
   ContactRoute: typeof ContactRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/3d-printing': {
+      id: '/3d-printing'
+      path: '/3d-printing'
+      fullPath: '/3d-printing'
+      preLoaderRoute: typeof R3dPrintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -257,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R3dPrintingRoute: R3dPrintingRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
   ContactRoute: ContactRoute,
@@ -271,3 +292,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
