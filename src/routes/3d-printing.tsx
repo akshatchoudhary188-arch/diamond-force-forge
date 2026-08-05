@@ -78,7 +78,29 @@ function PrintingPage() {
         subtitle="Our in-house 3D printing venture — precision FDM parts, CAD design and rapid prototyping, built by the same crew that fabricates our combat robots."
       />
 
+      <div className="mx-auto max-w-6xl px-4 pb-4 sm:px-6">
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block rounded-sm bg-[#d4af37] px-7 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition-colors hover:bg-[#f0cf5a]"
+        >
+          Enquire on WhatsApp
+        </a>
+      </div>
+
       <div className="mx-auto max-w-6xl space-y-16 px-4 pb-4 sm:px-6">
+        <section>
+          <h2 className="reveal font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Our Prints</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {GALLERY.map((g) => (
+              <div key={g.src} className="reveal overflow-hidden rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e]">
+                <img src={g.src} alt={g.alt} loading="lazy" className="aspect-[3/4] w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section>
           <h2 className="reveal font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">What We Print</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
