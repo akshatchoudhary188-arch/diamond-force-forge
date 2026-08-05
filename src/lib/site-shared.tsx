@@ -35,6 +35,7 @@ export const NAV = [
   { label: "Our Team", href: "/team" },
   { label: "Our Bots", href: "/bots" },
   { label: "Achievements", href: "/achievements" },
+  { label: "3D Printing", href: "/3d-printing" },
   { label: "Sponsors", href: "/sponsors" },
   { label: "Join Team", href: "/join" },
   { label: "Gallery", href: "/gallery" },
