@@ -4,12 +4,22 @@ import print1 from "@/assets/print-3d1.jpeg.asset.json";
 import print2 from "@/assets/print-3d4.jpeg.asset.json";
 import print3 from "@/assets/print-3d.jpeg.asset.json";
 import print4 from "@/assets/print-3d3.jpeg.asset.json";
+import print5 from "@/assets/print-3d5.jpeg.asset.json";
+import print6 from "@/assets/print-3d6.jpeg.asset.json";
+import print7 from "@/assets/print-3d7.jpeg.asset.json";
+import print8 from "@/assets/print-3d8.jpeg.asset.json";
+import print9 from "@/assets/print-3d9.jpeg.asset.json";
 
 const GALLERY = [
   { src: print1.url, alt: "Red PLA Ganesha idol printed on a Bambu Lab printer bed" },
   { src: print2.url, alt: "Ganesha idol and lotus bowl printed in red filament" },
   { src: print3.url, alt: "Articulated dinosaur and duck keychains fresh off the print bed" },
   { src: print4.url, alt: "Multi-colour penguin keychain printed on a textured PEI plate" },
+  { src: print9.url, alt: "Custom Sakura Black Diamond branded storage case printed in teal and purple" },
+  { src: print8.url, alt: "Large black robot chassis shell printing on a Bambu Lab printer" },
+  { src: print6.url, alt: "Purple functional brackets printed in two-tone PLA" },
+  { src: print7.url, alt: "Teal parts organiser box labelled BEARINGS with printed clips" },
+  { src: print5.url, alt: "FDM printer mid-job laying down the first layers of a teal part" },
 ];
 
 const SERVICES = [
