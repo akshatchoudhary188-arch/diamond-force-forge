@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
 import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
 import { SponsorTicker } from "@/components/sponsor-ticker";
+import robowarsAsset from "@/assets/robowars-logo.webp.asset.json";
 
 function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -179,6 +180,21 @@ export function UpcomingEvent() {
   );
 }
 
+function RobowarsBadge() {
+  return (
+    <a
+      href="https://robowars.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Robowars India"
+      aria-label="Visit Robowars India"
+      className="fixed bottom-[7.25rem] right-6 z-50 flex h-11 w-11 items-center justify-center overflow-hidden rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] p-1.5 transition-colors hover:border-[#d4af37]"
+    >
+      <img src={robowarsAsset.url} alt="Robowars India logo" className="h-full w-full object-contain" />
+    </a>
+  );
+}
+
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-[#d4af37]/15 bg-black pt-14 pb-8">
@@ -274,6 +290,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <SiteFooter />
       <ScrollTop />
       <UpcomingEvent />
+      <RobowarsBadge />
       <SponsorTicker />
     </div>
   );
