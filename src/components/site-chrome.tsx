@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
 import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
 import { SponsorTicker } from "@/components/sponsor-ticker";
+import robowarsAsset from "@/assets/robowars-logo.webp.asset.json";
 
 function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -289,6 +290,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <SiteFooter />
       <ScrollTop />
       <UpcomingEvent />
+      <RobowarsBadge />
       <SponsorTicker />
     </div>
   );
