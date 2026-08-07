@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Volume2, VolumeX } from "lucide-react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
+import heroIntroAudio from "@/assets/hero-intro.mp3.asset.json";
 import { ACHIEVEMENTS, BOTS, SPONSORS, STATS, StatItem, useReveal } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/")({
@@ -22,6 +24,38 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   useReveal();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [muted, setMuted] = useState(true);
+
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    el.currentTime = 0;
+    el.muted = false;
+    el.play()
+      .then(() => setMuted(false))
+      .catch(() => {
+        el.muted = true;
+        setMuted(true);
+        el.play().catch(() => {});
+      });
+    return () => {
+      el.pause();
+      el.currentTime = 0;
+    };
+  }, []);
+
+  const toggleSound = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    const next = !muted;
+    el.muted = next;
+    setMuted(next);
+    if (!next) {
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    }
+  };
 
   return (
     <>
@@ -35,6 +69,15 @@ function HomePage() {
           playsInline
           className="absolute inset-0 h-full w-full object-cover"
         />
+        <audio ref={audioRef} src={heroIntroAudio.url} preload="auto" playsInline className="hidden" />
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-label={muted ? "Unmute intro sound" : "Mute intro sound"}
+          className="absolute bottom-6 right-6 z-10 flex h-11 w-11 items-center justify-center rounded-sm border border-[#d4af37]/50 bg-black/70 text-[#d4af37] backdrop-blur transition-colors hover:bg-[#d4af37] hover:text-black"
+        >
+          {muted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+        </button>
       </section>
 
       <section className="border-y border-[#d4af37]/15 bg-[#0e0e0e] py-14">
