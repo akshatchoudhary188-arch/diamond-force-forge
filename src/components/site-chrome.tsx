@@ -179,8 +179,22 @@ export function UpcomingEvent() {
   );
 }
 
+function RobowarsBadge() {
+  return (
+    <a
+      href="https://robowars.co.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Robowars India"
+      aria-label="Visit Robowars India"
+      className="fixed bottom-[7.25rem] right-6 z-50 flex h-11 w-11 items-center justify-center overflow-hidden rounded-sm border border-[#d4af37]/50 bg-[#0b0b0b] p-1.5 transition-colors hover:border-[#d4af37]"
+    >
+      <img src={robowarsAsset.url} alt="Robowars India logo" className="h-full w-full object-contain" />
+    </a>
+  );
+}
+
 export function SiteFooter() {
-  return null;
   return (
     <footer className="relative border-t border-[#d4af37]/15 bg-black pt-14 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
