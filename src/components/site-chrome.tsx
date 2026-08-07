@@ -180,6 +180,7 @@ export function UpcomingEvent() {
 }
 
 export function SiteFooter() {
+  return null;
   return (
     <footer className="relative border-t border-[#d4af37]/15 bg-black pt-14 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
