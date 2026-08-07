@@ -69,7 +69,7 @@ function HomePage() {
           playsInline
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <audio ref={audioRef} src={heroIntroAudio.url} preload="auto" playsInline className="hidden" />
+        <audio ref={audioRef} src={heroIntroAudio.url} preload="auto" className="hidden" />
         <button
           type="button"
           onClick={toggleSound}
