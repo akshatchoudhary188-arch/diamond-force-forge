@@ -77,20 +77,6 @@ function AboutPage() {
           </div>
         </section>
 
-        <section>
-          <h2 className="reveal font-[Orbitron] text-xl font-black uppercase tracking-widest text-[#d4af37]">Timeline</h2>
-          <ol className="mt-8 border-l border-[#d4af37]/25 pl-6">
-            {TIMELINE.map((t) => (
-              <li key={t.year} className="reveal relative pb-8 last:pb-0">
-                <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-[#d4af37]" />
-                <div className="text-xs uppercase tracking-[0.3em] text-[#d4af37]">{t.year}</div>
-                <h3 className="mt-2 font-[Orbitron] text-sm font-bold uppercase tracking-widest">{t.title}</h3>
-                <p className="mt-2 text-sm text-[#f5f5f5]/65">{t.desc}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
       </div>
     </PageShell>
   );
