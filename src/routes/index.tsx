@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Volume2, VolumeX } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroAsset from "@/assets/hero.jpeg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
-import heroIntroAudio from "@/assets/hero-intro.mp3.asset.json";
 import { ACHIEVEMENTS, BOTS, SPONSORS, STATS, StatItem, useReveal } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/")({
