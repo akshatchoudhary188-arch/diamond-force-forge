@@ -19,11 +19,13 @@ import prayasAsset from "@/assets/prayas.jpeg.asset.json";
 import chetanAsset from "@/assets/chetan.jpeg.asset.json";
 import narayaniAsset from "@/assets/narayni.jpeg.asset.json";
 import yashAsset from "@/assets/yash_pardhi.jpeg.asset.json";
-import tusharAsset from "@/assets/tushar.jpeg.asset.json";
-import harshAsset from "@/assets/harsh.jpeg.asset.json";
-import aryanAsset from "@/assets/aryan.jpeg.asset.json";
-import akshatAsset from "@/assets/akshat.jpeg.asset.json";
-import khushiAsset from "@/assets/khushi.jpeg.asset.json";
+import harshAsset from "@/assets/harsh-v2.jpeg.asset.json";
+import aryanAsset from "@/assets/aryan-v2.jpeg.asset.json";
+import akshatAsset from "@/assets/akshat-v2.jpeg.asset.json";
+import khushiAsset from "@/assets/khushi-v2.jpeg.asset.json";
+import shrikantAsset from "@/assets/shrikant-v2.jpeg.asset.json";
+import soumyaAsset from "@/assets/soumya-v2.jpeg.asset.json";
+import tusharV2Asset from "@/assets/tushar-v2.jpeg.asset.json";
 import sumeetAsset from "@/assets/sumeet.jpg.asset.json";
 import rollndriveAsset from "@/assets/rollndrive.png.asset.json";
 import ravvoAsset from "@/assets/ravvo.jpeg.asset.json";
@@ -46,7 +48,7 @@ export const NAV = [
 export const STATS = [
   { label: "Robots Built", value: 4 },
   { label: "Competitions", value: 29 },
-  { label: "Team Members", value: 15 },
+  { label: "Team Members", value: 17 },
   { label: "Years Active", value: 5 },
 ];
 
@@ -182,12 +184,14 @@ export const TEAM = [
   { name: "Narayani", role: "", image: narayaniAsset.url },
   { name: "Aryan", role: "", image: aryanAsset.url },
   { name: "Yash Pardhi", role: "", image: yashAsset.url },
-  { name: "Tushar Waghmare", role: "", image: tusharAsset.url },
+  { name: "Tushar Waghmare", role: "", image: tusharV2Asset.url },
   { name: "Harsh Channe", role: "", image: harshAsset.url },
   { name: "Sanket Giripunje", role: "", image: sanketAsset.url },
   { name: "Sumeet Pal", role: "", image: sumeetAsset.url },
   { name: "Akshat", role: "", image: akshatAsset.url },
   { name: "Khushi Khade", role: "", image: khushiAsset.url },
+  { name: "Shrikant", role: "", image: shrikantAsset.url },
+  { name: "Soumya", role: "", image: soumyaAsset.url },
 ];
 
 export const STEPS = [
