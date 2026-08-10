@@ -19,7 +19,6 @@ import prayasAsset from "@/assets/prayas.jpeg.asset.json";
 import chetanAsset from "@/assets/chetan.jpeg.asset.json";
 import narayaniAsset from "@/assets/narayni.jpeg.asset.json";
 import yashAsset from "@/assets/yash_pardhi.jpeg.asset.json";
-import tusharAsset from "@/assets/tushar.jpeg.asset.json";
 import harshAsset from "@/assets/harsh-v2.jpeg.asset.json";
 import aryanAsset from "@/assets/aryan-v2.jpeg.asset.json";
 import akshatAsset from "@/assets/akshat-v2.jpeg.asset.json";
