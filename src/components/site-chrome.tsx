@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
+import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar, ExternalLink } from "lucide-react";
 import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
 import { SponsorTicker } from "@/components/sponsor-ticker";
 import robowarsAsset from "@/assets/robowars-logo.webp.asset.json";
+import robofestVideoAsset from "@/assets/robofest-promo.mp4.asset.json";
 
 function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
