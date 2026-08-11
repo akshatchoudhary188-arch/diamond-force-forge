@@ -1,9 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar } from "lucide-react";
+import { Menu, X, ChevronUp, ChevronDown, Instagram, Calendar, ExternalLink } from "lucide-react";
 import { BOTS, CONTACT, Logo, NAV, SPONSORS } from "@/lib/site-shared";
 import { SponsorTicker } from "@/components/sponsor-ticker";
 import robowarsAsset from "@/assets/robowars-logo.webp.asset.json";
+import robofestVideoAsset from "@/assets/robofest-promo.mp4.asset.json";
 
 function NavLinks({ onNavigate, vertical = false }: { onNavigate?: () => void; vertical?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -162,11 +163,37 @@ export function UpcomingEvent() {
   return (
     <div className="fixed bottom-16 left-6 z-50 flex flex-col items-start gap-3">
       {open && (
-        <div className="w-64 rounded-sm border border-[#d4af37]/30 bg-[#0b0b0b] p-4">
+        <div className="w-72 rounded-sm border border-[#d4af37]/30 bg-[#0b0b0b] p-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#d4af37]">
             <Calendar className="h-3.5 w-3.5" /> Upcoming Event
           </div>
-          <p className="mt-3 text-xs text-[#f5f5f5]/70">Event details will be updated soon.</p>
+          <a
+            href="https://robofest.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[#f5f5f5] transition-colors hover:text-[#d4af37]"
+          >
+            ROBOFEST 2026
+            <ExternalLink className="h-3.5 w-3.5 text-[#d4af37]" />
+          </a>
+          <div className="mt-3 overflow-hidden rounded-sm border border-[#d4af37]/20">
+            <video
+              src={robofestVideoAsset.url}
+              controls
+              playsInline
+              muted
+              className="w-full bg-black"
+              aria-label="Robofest 2026 promo video"
+            />
+          </div>
+          <a
+            href="https://robofest.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 block text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#d4af37] transition-colors hover:text-[#f0cf5a]"
+          >
+            Visit robofest.in
+          </a>
         </div>
       )}
       <button
