@@ -232,7 +232,6 @@ export const FAQS = [
   { q: "Who can apply?", a: "Any enrolled student with genuine interest in mechanical design, electronics, fabrication, media or management." },
   { q: "Do I need prior robotics experience?", a: "No. We train fundamentals — what we look for is commitment and willingness to learn." },
   { q: "How much time does it take?", a: "Expect a few hours a week, increasing during build season and competition weeks." },
-  { q: "Is there a fee?", a: "No membership fee. Build costs are covered by the team and our sponsors." },
 ];
 
 /* ---------- Shared UI ---------- */
