@@ -5,6 +5,11 @@ import teamVideoAsset from "@/assets/team-video.mp4.asset.json";
 import galleryTeamArenaAsset from "@/assets/gallery-team-arena.jpg.asset.json";
 import galleryTeamBotsAsset from "@/assets/gallery-team-bots.png.asset.json";
 import galleryYroboAsset from "@/assets/gallery-yrobo.jpg.asset.json";
+import g1Asset from "@/assets/g1.jpeg.asset.json";
+import g2Asset from "@/assets/g2.jpeg.asset.json";
+import g5Asset from "@/assets/g5.jpeg.asset.json";
+import g6Asset from "@/assets/g6.jpeg.asset.json";
+import gg1Asset from "@/assets/gg1.jpeg.asset.json";
 import { BOTS, PageHero, PageShell } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/gallery")({
@@ -27,6 +32,11 @@ function GalleryPage() {
   const [fullscreen, setFullscreen] = useState(false);
   const photos = [
     { src: galleryTeamBotsAsset.url, label: "Team & Bots" },
+    { src: g1Asset.url, label: "Trophy Wall & Bots" },
+    { src: g6Asset.url, label: "Arena Celebration" },
+    { src: g5Asset.url, label: "Hyperion In The Arena" },
+    { src: gg1Asset.url, label: "Build & Pit Work" },
+    { src: g2Asset.url, label: "Medals & Drones Display" },
     { src: galleryYroboAsset.url, label: "Y ROBO C, Malaysia" },
     { src: galleryTeamArenaAsset.url, label: "Competition Arena" },
     ...BOTS.map((b) => ({ src: b.image, label: b.name })),
