@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
   Cpu, Zap, Shield, Cog,
-  ClipboardList, MessageSquare, FlaskConical, CheckCircle2,
+  ClipboardList, MessageSquare,
 } from "lucide-react";
 
 import logoAsset from "@/assets/logo.jpeg.asset.json";
@@ -197,8 +197,6 @@ export const TEAM = [
 export const STEPS = [
   { icon: ClipboardList, title: "Fill Registration Form", desc: "Submit your details and areas of interest." },
   { icon: MessageSquare, title: "Attend Interview", desc: "Meet the team, share your passion." },
-  { icon: FlaskConical, title: "Technical Test", desc: "Prove your engineering fundamentals." },
-  { icon: CheckCircle2, title: "Become a Team Member", desc: "Join the forge. Start building." },
 ];
 
 export const LOGO_URL = logoAsset.url;
