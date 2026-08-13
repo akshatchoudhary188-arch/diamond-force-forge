@@ -26,46 +26,39 @@ export const Route = createFileRoute("/sponsors")({
 function SponsorsPage() {
   return (
     <PageShell>
-      {/* Each sponsor is a full-page section, stacked vertically */}
-      {SPONSORS.map((s, index) => (
-        <section
-          key={s.name}
-          className="relative flex min-h-screen flex-col items-center justify-center px-6 py-24 text-center"
-        >
-          <div className="reveal mx-auto max-w-4xl">
-            <span className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">
-              {index === 0 ? "Title Partner" : "Proud Partner"}
-            </span>
-            <a
-              href={s.url}
-              target="_blank"
-              rel="noreferrer"
-              className="group mt-8 inline-block"
-            >
-              <div className="mx-auto flex h-56 w-56 items-center justify-center rounded-sm border border-[#d4af37]/30 bg-black p-8 transition-all duration-500 hover:border-[#d4af37] hover:shadow-[0_0_80px_rgba(212,175,55,0.12)] sm:h-72 sm:w-72 lg:h-96 lg:w-96">
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h1 className="mt-10 font-[Orbitron] text-3xl font-black uppercase tracking-[0.15em] text-[#f5f5f5] sm:text-5xl">
-                {s.name}
-              </h1>
-            </a>
-            <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-[#f5f5f5]/60">
-              A valued partner supporting our engineering, fabrication and competition programme.
-            </p>
+      {/* Sponsors grid — 3 columns on desktop, 1 on mobile */}
+      <section className="px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="reveal mb-14 text-center">
+            <span className="text-[11px] uppercase tracking-[0.4em] text-[#d4af37]">Proudly Supported By</span>
+            <h2 className="mt-4 font-[Orbitron] text-2xl font-black uppercase tracking-widest text-[#f5f5f5] sm:text-4xl">
+              Our Partners
+            </h2>
           </div>
 
-          {index < SPONSORS.length - 1 && (
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#f5f5f5]/40">Scroll down</span>
-              <ChevronDown className="h-5 w-5 animate-bounce text-[#d4af37]" />
-            </div>
-          )}
-        </section>
-      ))}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SPONSORS.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                className="reveal flex flex-col rounded-sm border border-[#d4af37]/20 bg-black transition-colors hover:border-[#d4af37]/60"
+              >
+                <div className="flex h-52 items-center justify-center p-8 sm:h-60">
+                  <img src={s.image} alt={s.name} loading="lazy" className="max-h-full max-w-[85%] object-contain" />
+                </div>
+                <div className="border-t border-[#d4af37]/15 p-5 text-center">
+                  <h3 className="font-[Orbitron] text-xs font-bold uppercase tracking-[0.25em] text-[#f5f5f5]">{s.name}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-[#f5f5f5]/60">
+                    A valued partner supporting our engineering, fabrication and competition programme.
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Why Sponsor Us */}
       <section className="px-4 py-24 sm:px-6">
