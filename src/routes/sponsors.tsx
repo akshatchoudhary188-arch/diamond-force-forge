@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronDown } from "lucide-react";
 import { PageShell, SPONSORS } from "@/lib/site-shared";
 
 const BENEFITS = [
