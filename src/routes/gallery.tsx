@@ -61,7 +61,7 @@ function GalleryPage() {
         <section className="reveal">
           <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Video</h2>
           <div className="group relative mt-6 overflow-hidden rounded-sm border border-[#d4af37]/20">
-            <video src={teamVideoAsset.url} controls playsInline className="max-h-[70vh] w-full bg-black object-contain" aria-label="Team video" />
+            <video src={teamVideoAsset.url} controls playsInline preload="metadata" poster={galleryTeamBotsAsset.url} className="max-h-[70vh] w-full bg-black object-contain" aria-label="Team video" />
             <button
               onClick={() => setFullscreen(true)}
               aria-label="Maximize video"
