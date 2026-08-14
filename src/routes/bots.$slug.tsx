@@ -64,7 +64,7 @@ function BotDetail() {
 
       <div className="mx-auto max-w-7xl space-y-16 px-4 sm:px-6">
         <section className="reveal grid gap-10 lg:grid-cols-2">
-          <img src={bot.image} alt={`${bot.name} combat robot`} className="w-full rounded-sm border border-[#d4af37]/25 object-cover" />
+          <img src={bot.image} alt={`${bot.name} combat robot`} fetchPriority="high" decoding="async" className="w-full rounded-sm border border-[#d4af37]/25 object-cover" />
           <div>
             <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Specifications</h2>
             <dl className="mt-6 divide-y divide-[#d4af37]/15 border-y border-[#d4af37]/15">
