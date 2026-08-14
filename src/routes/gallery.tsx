@@ -27,7 +27,7 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:image", content: galleryTeamBotsAsset.url },
       { name: "twitter:image", content: galleryTeamBotsAsset.url },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/gallery" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/gallery" }],
   }),
   component: GalleryPage,
 });

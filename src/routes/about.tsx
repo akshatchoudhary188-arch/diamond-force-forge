@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:description", content: "Story, mission, vision, values and the people behind the machines." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/about" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/about" }],
   }),
   component: AboutPage,
 });

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/team")({
       { property: "og:description", content: "Meet the 15 students behind Team Black Diamond Robotics — the designers, builders, drivers and strategists who make the bots battle-ready." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/team" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/team" }],
   }),
   component: TeamPage,
 });

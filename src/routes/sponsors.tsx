@@ -17,7 +17,7 @@ export const Route = createFileRoute("/sponsors")({
       { property: "og:description", content: "Partner with a competitive student combat robotics team." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/sponsors" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/sponsors" }],
   }),
   component: SponsorsPage,
 });

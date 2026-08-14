@@ -12,7 +12,7 @@ export const Route = createFileRoute("/bots/")({
       { property: "og:description", content: "Specifications, drive systems and competition history for every machine in our fleet." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/bots" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/bots" }],
   }),
   component: BotsPage,
 });

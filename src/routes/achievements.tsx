@@ -12,7 +12,7 @@ export const Route = createFileRoute("/achievements")({
       { property: "og:description", content: "National and international podiums earned by our combat robots." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/achievements" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/achievements" }],
   }),
   component: AchievementsPage,
 });
