@@ -57,12 +57,12 @@ export const Route = createFileRoute("/3d-printing")({
       { property: "og:title", content: "Black Diamond 3D Creates — 3D Printing Services" },
       { property: "og:description", content: "FDM 3D printing, CAD design and rapid prototyping by Team Black Diamond Robotics." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://diamond-force-forge.lovable.app/3d-printing" },
+      { property: "og:url", content: "https://black-diamond-robotics.lovable.app/3d-printing" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Black Diamond 3D Creates — 3D Printing Services" },
       { name: "twitter:description", content: "FDM 3D printing, CAD design and rapid prototyping by Team Black Diamond Robotics." },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/3d-printing" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/3d-printing" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
@@ -72,7 +72,7 @@ export const Route = createFileRoute("/3d-printing")({
         description: "3D printing, CAD design and rapid prototyping services.",
         telephone: CONTACT.phone,
         address: { "@type": "PostalAddress", streetAddress: CONTACT.address },
-        url: "https://diamond-force-forge.lovable.app/3d-printing",
+        url: "https://black-diamond-robotics.lovable.app/3d-printing",
       }),
     }],
   }),

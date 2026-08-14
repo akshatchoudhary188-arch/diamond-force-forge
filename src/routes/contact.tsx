@@ -12,7 +12,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:description", content: "Reach the team for sponsorships, collaborations and enquiries." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/contact" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
           name: "Team Black Diamond Robotics",
           email: CONTACT.email,
           telephone: CONTACT.phone,
-          url: "https://diamond-force-forge.lovable.app/",
+          url: "https://black-diamond-robotics.lovable.app/",
           address: { "@type": "PostalAddress", addressLocality: "Chandrapur", addressRegion: "Maharashtra", addressCountry: "IN" },
           sameAs: [CONTACT.instagram],
         }),

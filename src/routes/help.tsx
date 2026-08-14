@@ -33,7 +33,7 @@ export const Route = createFileRoute("/help")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/help" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/help" }],
   }),
   component: HelpPage,
 });

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/bots/$slug")({
         { property: "og:description", content: loaderData.desc },
         { property: "og:type", content: "article" },
       ],
-      links: [{ rel: "canonical", href: `https://diamond-force-forge.lovable.app/bots/${loaderData.slug}` }],
+      links: [{ rel: "canonical", href: `https://black-diamond-robotics.lovable.app/bots/${loaderData.slug}` }],
     };
   },
   component: BotDetail,

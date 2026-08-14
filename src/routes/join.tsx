@@ -11,7 +11,7 @@ export const Route = createFileRoute("/join")({
       { property: "og:description", content: "Eligibility, application process and FAQs for prospective members." },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://diamond-force-forge.lovable.app/join" }],
+    links: [{ rel: "canonical", href: "https://black-diamond-robotics.lovable.app/join" }],
   }),
   component: JoinPage,
 });
