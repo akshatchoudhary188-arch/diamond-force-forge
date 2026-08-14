@@ -104,7 +104,7 @@ function BotDetail() {
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {BOTS.filter((b) => b.slug !== bot.slug).map((b) => (
               <Link key={b.slug} to="/bots/$slug" params={{ slug: b.slug }} className="group overflow-hidden rounded-sm border border-[#d4af37]/15">
-                <img src={b.image} alt={b.name} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                <img src={b.image} alt={b.name} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                 <div className="bg-[#0e0e0e] px-4 py-3 text-[11px] uppercase tracking-[0.25em] text-[#f5f5f5]/60">{b.name}</div>
               </Link>
             ))}

@@ -135,7 +135,7 @@ function ContactPage() {
               src={CONTACT.mapEmbed}
               className="h-80 w-full border-0 sm:h-[26rem]"
               allowFullScreen
-              loading="lazy"
+              loading="lazy" decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>

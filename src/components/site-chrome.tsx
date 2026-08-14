@@ -264,7 +264,7 @@ export function SiteFooter() {
                   rel="noreferrer"
                   className="flex h-14 w-20 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-[#0e0e0e] p-2 transition-colors hover:border-[#d4af37]/60"
                 >
-                  <img src={s.image} alt={s.name} loading="lazy" className="max-h-full max-w-full object-contain" />
+                  <img src={s.image} alt={s.name} loading="lazy" decoding="async" className="max-h-full max-w-full object-contain" />
                 </a>
               ))}
             </div>

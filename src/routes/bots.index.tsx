@@ -69,7 +69,7 @@ function BotsPage() {
               params={{ slug: b.slug }}
               className="reveal group flex flex-col overflow-hidden rounded-sm border border-[#d4af37]/20 bg-[#0e0e0e] transition-colors hover:border-[#d4af37]/60"
             >
-              <img src={b.image} alt={b.name} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+              <img src={b.image} alt={b.name} loading="lazy" decoding="async" className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-[Orbitron] text-base font-bold uppercase tracking-widest">{b.name}</h2>
                 <div className="mt-3 space-y-1 text-[11px] uppercase tracking-widest">

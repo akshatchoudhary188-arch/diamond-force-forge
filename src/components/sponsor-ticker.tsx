@@ -34,7 +34,7 @@ export function SponsorTicker() {
                 <img
                   src={s.image}
                   alt={s.name}
-                  loading="lazy"
+                  loading="lazy" decoding="async"
                   className="h-5 w-auto object-contain opacity-80 transition-opacity group-hover:opacity-100 sm:h-6"
                 />
               </a>

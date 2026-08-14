@@ -45,7 +45,7 @@ function SponsorsPage() {
                 className="reveal flex flex-col rounded-sm border border-[#d4af37]/20 bg-black transition-colors hover:border-[#d4af37]/60"
               >
                 <div className="flex h-52 items-center justify-center p-8 sm:h-60">
-                  <img src={s.image} alt={s.name} loading="lazy" className="max-h-full max-w-[85%] object-contain" />
+                  <img src={s.image} alt={s.name} loading="lazy" decoding="async" className="max-h-full max-w-[85%] object-contain" />
                 </div>
                 <div className="border-t border-[#d4af37]/15 p-5 text-center">
                   <h3 className="font-[Orbitron] text-xs font-bold uppercase tracking-[0.25em] text-[#f5f5f5]">{s.name}</h3>
