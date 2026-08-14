@@ -16,6 +16,9 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: heroAsset.url },
     ],
+    links: [
+      { rel: "preload", as: "image", href: heroAsset.url, fetchpriority: "high" },
+    ],
   }),
   component: HomePage,
 });
@@ -33,6 +36,7 @@ function HomePage() {
           muted
           loop
           playsInline
+          preload="metadata"
           className="absolute inset-0 h-full w-full object-cover"
         />
       </section>
