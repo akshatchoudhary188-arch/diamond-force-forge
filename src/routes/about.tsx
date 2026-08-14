@@ -43,8 +43,8 @@ function AboutPage() {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <img src={galleryTeamBotsAsset.url} alt="Team with their combat robots in the workshop" loading="lazy" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
-            <img src={galleryTeamArenaAsset.url} alt="Team at the competition arena" loading="lazy" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
+            <img src={galleryTeamBotsAsset.url} alt="Team with their combat robots in the workshop" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
+            <img src={galleryTeamArenaAsset.url} alt="Team at the competition arena" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
           </div>
         </section>
 

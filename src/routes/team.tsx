@@ -37,7 +37,7 @@ function TeamPage() {
                   <img
                     src={m.image}
                     alt={m.name}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     className="h-full w-full object-cover"
                   />
                 ) : (

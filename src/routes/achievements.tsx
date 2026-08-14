@@ -44,8 +44,8 @@ function AchievementsPage() {
         <section className="reveal">
           <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Competition Photos</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
-            <img src={galleryYroboAsset.url} alt="Team at Y ROBO C Malaysia" loading="lazy" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
-            <img src={galleryTeamArenaAsset.url} alt="Team at the competition arena" loading="lazy" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
+            <img src={galleryYroboAsset.url} alt="Team at Y ROBO C Malaysia" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
+            <img src={galleryTeamArenaAsset.url} alt="Team at the competition arena" loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
           </div>
           <p className="mt-6 text-sm text-[#f5f5f5]/60">
             Award certificates and event videos are added after each competition season.

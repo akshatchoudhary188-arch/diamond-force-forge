@@ -16,6 +16,9 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: heroAsset.url },
     ],
+    links: [
+      { rel: "preload", as: "image", href: heroAsset.url, fetchpriority: "high" },
+    ],
   }),
   component: HomePage,
 });
@@ -33,6 +36,7 @@ function HomePage() {
           muted
           loop
           playsInline
+          preload="metadata"
           className="absolute inset-0 h-full w-full object-cover"
         />
       </section>
@@ -61,7 +65,7 @@ function HomePage() {
           </div>
           <div className="reveal grid grid-cols-2 gap-4">
             {BOTS.slice(0, 4).map((b) => (
-              <img key={b.slug} src={b.image} alt={b.name} loading="lazy" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
+              <img key={b.slug} src={b.image} alt={b.name} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-sm border border-[#d4af37]/20 object-cover" />
             ))}
           </div>
         </div>
@@ -89,7 +93,7 @@ function HomePage() {
           <div className="reveal mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {SPONSORS.map((s) => (
               <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="flex h-32 items-center justify-center rounded-sm border border-[#d4af37]/20 bg-black p-6 transition-colors hover:border-[#d4af37]/60">
-                <img src={s.image} alt={s.name} loading="lazy" className="max-h-full max-w-[80%] object-contain" />
+                <img src={s.image} alt={s.name} loading="lazy" decoding="async" className="max-h-full max-w-[80%] object-contain" />
               </a>
             ))}
           </div>

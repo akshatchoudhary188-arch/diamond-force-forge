@@ -105,7 +105,7 @@ function PrintingPage() {
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {GALLERY.map((g) => (
               <div key={g.src} className="reveal overflow-hidden rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e]">
-                <img src={g.src} alt={g.alt} loading="lazy" className="aspect-[3/4] w-full object-cover" />
+                <img src={g.src} alt={g.alt} loading="lazy" decoding="async" className="aspect-[3/4] w-full object-cover" />
               </div>
             ))}
           </div>

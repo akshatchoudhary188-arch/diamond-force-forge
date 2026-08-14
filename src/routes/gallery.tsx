@@ -61,7 +61,7 @@ function GalleryPage() {
         <section className="reveal">
           <h2 className="font-[Orbitron] text-sm font-bold uppercase tracking-[0.3em] text-[#d4af37]">Video</h2>
           <div className="group relative mt-6 overflow-hidden rounded-sm border border-[#d4af37]/20">
-            <video src={teamVideoAsset.url} controls playsInline className="max-h-[70vh] w-full bg-black object-contain" aria-label="Team video" />
+            <video src={teamVideoAsset.url} controls playsInline preload="metadata" poster={galleryTeamBotsAsset.url} className="max-h-[70vh] w-full bg-black object-contain" aria-label="Team video" />
             <button
               onClick={() => setFullscreen(true)}
               aria-label="Maximize video"
@@ -77,7 +77,7 @@ function GalleryPage() {
           <div className="mt-6 grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
             {photos.map((p, i) => (
               <figure key={i} className="group overflow-hidden rounded-sm border border-[#d4af37]/15 bg-[#0e0e0e]">
-                <img src={p.src} alt={p.label} loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                <img src={p.src} alt={p.label} loading="lazy" decoding="async" className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                 <figcaption className="px-4 py-3 text-[10px] uppercase tracking-[0.25em] text-[#f5f5f5]/55">{p.label}</figcaption>
               </figure>
             ))}
