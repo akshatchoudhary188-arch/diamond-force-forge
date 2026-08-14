@@ -10,6 +10,10 @@ import g2Asset from "@/assets/g2.jpeg.asset.json";
 import g5Asset from "@/assets/g5.jpeg.asset.json";
 import g6Asset from "@/assets/g6.jpeg.asset.json";
 import gg1Asset from "@/assets/gg1.jpeg.asset.json";
+import d1Asset from "@/assets/d1.jpeg.asset.json";
+import d2Asset from "@/assets/d2.jpeg.asset.json";
+import d3Asset from "@/assets/d3.jpeg.asset.json";
+import d4Asset from "@/assets/d4.jpeg.asset.json";
 import { BOTS, PageHero, PageShell } from "@/lib/site-shared";
 
 export const Route = createFileRoute("/gallery")({
@@ -32,6 +36,10 @@ function GalleryPage() {
   const [fullscreen, setFullscreen] = useState(false);
   const photos = [
     { src: galleryTeamBotsAsset.url, label: "Team & Bots" },
+    { src: d3Asset.url, label: "Titanium 2025 — 15 kg Winner" },
+    { src: d2Asset.url, label: "Team On Arena Stage" },
+    { src: d4Asset.url, label: "Flag Walk-In, Robowars" },
+    { src: d1Asset.url, label: "Driver Focus In The Pit" },
     { src: g1Asset.url, label: "Trophy Wall & Bots" },
     { src: g6Asset.url, label: "Arena Celebration" },
     { src: g5Asset.url, label: "Hyperion In The Arena" },
