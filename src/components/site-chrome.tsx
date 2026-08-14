@@ -182,6 +182,7 @@ export function UpcomingEvent() {
               controls
               playsInline
               muted
+              preload="none"
               className="w-full bg-black"
               aria-label="Robofest 2026 promo video"
             />
